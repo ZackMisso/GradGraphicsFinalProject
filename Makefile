@@ -12,6 +12,7 @@ SRCS= $(shell ls *.cpp)
 SRCS+= $(shell ls views/*.cpp)
 SRCS+= $(shell ls test/*.cpp)
 SRCS+= $(shell ls math/*.cpp)
+SRCS+= $(shell ls render/*.cpp)
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
 
@@ -29,3 +30,4 @@ clean:
 	rm -f views/*.o
 	rm -f test/*.o
 	rm -f math/*.o
+	rm -f render/*.o

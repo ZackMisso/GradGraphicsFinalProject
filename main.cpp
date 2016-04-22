@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
 #include "views/viewController.h"
+#include "render/modeler.h"
 
 // OpenGL callbacks
 void display();
@@ -13,6 +14,7 @@ void error(int error, const char* description);
 int main(int argc,char** argv) {
   // initialize our own subsystems
   ViewController::initialize();
+  Modeler::initialize();
   // initialize glfw
   if(!glfwInit())
     exit(EXIT_FAILURE);
