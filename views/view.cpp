@@ -6,7 +6,7 @@ View::~View() { }
 
 void View::initialize() { }
 
-void View::destroy() { }
+void View::deInitialize() { }
 
 void View::keyboard(int key,int scancode,int action,int mods) { }
 

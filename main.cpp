@@ -1,6 +1,7 @@
 #define GLFW_INCLUDE_GLU
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
+#include "views/viewController.h"
 
 // OpenGL callbacks
 void display();
@@ -10,6 +11,8 @@ void mouseClick(GLFWwindow* window,int button,int action,int mods);
 void error(int error, const char* description);
 
 int main(int argc,char** argv) {
+  // initialize our own subsystems
+  ViewController::initialize();
   // initialize glfw
   if(!glfwInit())
     exit(EXIT_FAILURE);
@@ -52,9 +55,7 @@ int main(int argc,char** argv) {
 }
 
 void display() {
-  glClearColor(0.0f,0.0f,0.0f,1.0f);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  // to be implemented
+  ViewController::getInstance()->getCurrentView()->display();
 }
 
 void keyboard(GLFWwindow* window,int key,int scancode,int action,int mods) {
@@ -63,6 +64,7 @@ void keyboard(GLFWwindow* window,int key,int scancode,int action,int mods) {
   if(key == GLFW_KEY_W && action == GLFW_PRESS) {
     // example of handling key presses
   }
+  ViewController::getInstance()->getCurrentView()->keyboard(key,scancode,action,mods);
 }
 
 void error(int error, const char* description) {
@@ -70,11 +72,12 @@ void error(int error, const char* description) {
 }
 
 void mouseMove(GLFWwindow* window,double x,double y) {
-  // to be implemented
+  ViewController::getInstance()->getCurrentView()->mouseMove(x,y);
 }
 
 void mouseClick(GLFWwindow* window,int button,int action,int mods) {
   if(button == GLFW_MOUSE_BUTTON_LEFT && GLFW_PRESS) {
     // example input
   }
+  ViewController::getInstance()->getCurrentView()->mouseClick(button,action,mods);
 }

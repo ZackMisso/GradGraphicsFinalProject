@@ -9,7 +9,7 @@ public:
   View();
   ~View();
   virtual void initialize();
-  virtual void destroy();
+  virtual void deInitialize();
   virtual void keyboard(int key,int scancode,int action,int mods);
   virtual void mouseMove(double x,double y);
   virtual void mouseClick(int button,int action,int mods);

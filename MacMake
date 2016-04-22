@@ -9,8 +9,8 @@ PROD= fracture
 
 #HDRS= $(shell ls *.h)
 SRCS= $(shell ls *.cpp)
-SRCS= $(shell ls views/*.cpp)
-SRCS= $(shell ls test/*.cpp)
+SRCS+= $(shell ls views/*.cpp)
+SRCS+= $(shell ls test/*.cpp)
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
 
