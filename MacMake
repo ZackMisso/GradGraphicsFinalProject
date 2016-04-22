@@ -9,6 +9,8 @@ PROD= fracture
 
 #HDRS= $(shell ls *.h)
 SRCS= $(shell ls *.cpp)
+SRCS= $(shell ls views/*.cpp)
+SRCS= $(shell ls test/*.cpp)
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
 
@@ -23,3 +25,5 @@ $(PROD): $(OBJS)
 clean:
 	rm -f $(PROD)
 	rm -f *.o
+	rm -f views/*.o
+	tm -f test/*.o
