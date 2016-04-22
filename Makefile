@@ -11,6 +11,7 @@ PROD= fracture
 SRCS= $(shell ls *.cpp)
 SRCS+= $(shell ls views/*.cpp)
 SRCS+= $(shell ls test/*.cpp)
+SRCS+= $(shell ls math/*.cpp)
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
 
@@ -27,3 +28,4 @@ clean:
 	rm -f *.o
 	rm -f views/*.o
 	rm -f test/*.o
+	rm -f math/*.o
