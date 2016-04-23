@@ -1,13 +1,5 @@
 #include "voxelizeView.h"
 
-VoxelizeView::VoxelizeView() {
-  // to be implemented
-}
-
-VoxelizeView::~VoxelizeView() {
-  // to be implemented
-}
-
 void VoxelizeView::initialize() {
   // to be implemented
 }

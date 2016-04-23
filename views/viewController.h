@@ -7,7 +7,7 @@
 #include "../dataStructures/array.h"
 #include "view.h"
 
-enum ViewID {TEST_VIEW=0};
+enum ViewID {TEST_VIEW=0,PERI_VIEW,VOXEL_VIEW};
 
 class ViewController {
 private:

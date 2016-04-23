@@ -1,13 +1,5 @@
 #include "periTestView.h"
 
-PeriTestView::PeriTestView() {
-  // to be implemented
-}
-
-PeriTestView::~PeriTestView() {
-  // to be implemented
-}
-
 void PeriTestView::initialize() {
   // to be implemented
 }

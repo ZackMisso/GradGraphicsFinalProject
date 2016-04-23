@@ -12,6 +12,6 @@ public:
   virtual void mouseMove(double x,double y);
   virtual void mouseClick(int button,int action,int mods);
   virtual void display();
-}
+};
 
 #endif

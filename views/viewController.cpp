@@ -1,5 +1,7 @@
 #include "viewController.h"
 #include "testView.h"
+#include "periTestView.h"
+#include "voxelizeView.h"
 
 ViewController* ViewController::instance = 0x0;
 
@@ -19,6 +21,8 @@ ViewController::~ViewController() {
 
 void ViewController::createViews() {
   views->add(new TestView());
+  views->add(new PeriTestView());
+  views->add(new VoxelizeView());
   // create more in the order they appear in the enum
 }
 
