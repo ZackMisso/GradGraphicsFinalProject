@@ -2,7 +2,8 @@ CC=clang++
 #CC=g++
 CFLAGS+= -std=c++11 #-g -O0 -Wall -pedantic -I./ -I./include
 
-GLUT2 =  -framework OpenGL -framework GLUT -framework IOKit -framework CoreVideo -lglfw3
+STRINGFIX = -ldl -lm -lXext -lX11 -lXxf86vm -lXrandr -lXi -lXcursor -lXinerama -L/usr/lib/nvidia-340-updates
+GLUT2 = -lGL -lGLU -lglfw3 -lpthread
 LIBS = $(STRINGFIX) $(GLUT2) #$(GLUI2)
 
 PROD= fracture
