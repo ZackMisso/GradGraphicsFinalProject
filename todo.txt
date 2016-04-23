@@ -7,3 +7,10 @@ Peri Physics Test View
 Voxelizer Test View
 
 Make a method to split a mesh into 3d point masses - Voxelization.
+
+Implement Baking system for Point Masses
+
+Implement TriMesh and its required geometry classes
+Implement Obj File IO
+
+Figure out how to write every frame to a file to make a movie
