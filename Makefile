@@ -2,8 +2,7 @@ CC=clang++
 #CC=g++
 CFLAGS+= -std=c++11 #-g -O0 -Wall -pedantic -I./ -I./include
 
-STRINGFIX = -ldl -lm -lXext -lX11 -lXxf86vm -lXrandr -lXi -lXcursor -lXinerama -L/usr/lib/nvidia-340-updates
-GLUT2 = -lGL -lGLU -lglfw3 -lpthread
+GLUT2 =  -framework OpenGL -framework GLUT -framework IOKit -framework CoreVideo -lglfw3
 LIBS = $(STRINGFIX) $(GLUT2) #$(GLUI2)
 
 PROD= fracture
@@ -16,6 +15,7 @@ SRCS+= $(shell ls math/*.cpp)
 SRCS+= $(shell ls render/*.cpp)
 SRCS+= $(shell ls geometry/*.cpp)
 SRCS+= $(shell ls peri/*.cpp)
+SRCS+= $(shell ls io/*.cpp)
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
 
@@ -36,3 +36,4 @@ clean:
 	rm -f render/*.o
 	rm -f peri/*.o
 	rm -f geometry/*.o
+	rm -f io/*.o

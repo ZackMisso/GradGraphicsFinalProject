@@ -7,6 +7,9 @@ private:
 public:
   Vec3f();
   Vec3f(float x,float y,float z);
+  // methods
+  void normalize();
+  float mag();
   // operator overloads
   Vec3f operator+(Vec3f& other) const; // addition
   Vec3f operator-(Vec3f& other) const; // subtraction
@@ -21,6 +24,9 @@ private:
 public:
   Vec3d();
   Vec3d(double x,double y,double z);
+  // methods
+  void normalize();
+  double mag();
   // operator overloads
   Vec3d operator+(Vec3d& other) const; // addition
   Vec3d operator-(Vec3d& other) const; // subtraction
