@@ -7,6 +7,13 @@ Trif::Trif(int* vals) {
   norm = Vec3f();
 }
 
+Trif::Trif(int one,int two,int three) {
+  ind[0] = one;
+  ind[1] = two;
+  ind[2] = three;
+  norm = Vec3f();
+}
+
 void Trif::calculateNorm(Array<Vertexf*>* verts) {
   Vec3f a = verts->get(ind[0])->getPos();
   Vec3f b = verts->get(ind[1])->getPos();
@@ -28,6 +35,13 @@ Trid::Trid(int* vals) {
   ind[0] = vals[0];
   ind[1] = vals[1];
   ind[2] = vals[2];
+  norm = Vec3d();
+}
+
+Trid::Trid(int one,int two,int three) {
+  ind[0] = one;
+  ind[1] = two;
+  ind[2] = three;
   norm = Vec3d();
 }
 

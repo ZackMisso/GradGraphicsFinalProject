@@ -9,6 +9,7 @@ private:
   Vec3f norm;
 public:
   Vertexf(float *vals);
+  Vertexf(Vec3f position);
   void addToNorm(Vec3f pos);
   void normalizeNorm();
   // getter methods
@@ -25,6 +26,7 @@ private:
   Vec3d norm;
 public:
   Vertexd(float *vals);
+  Vertexd(Vec3d positon);
   void addToNorm(Vec3d pos);
   void normalizeNorm();
   // getter methods

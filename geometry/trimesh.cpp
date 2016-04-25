@@ -38,6 +38,12 @@ void TriMeshf::render() {
   // to be implemented
 }
 
+Array<Vertexf*>* TriMeshf::getVerts() { return verts; }
+Array<Trif*>* TriMeshf::getTris() { return tris; }
+
+void TriMeshf::setVerts(Array<Vertexf*>* param) { verts = param; }
+void TriMeshf::setTris(Array<Trif*>* param) { tris = param; }
+
 /////////////////////////// DOUBLE VERSION ////////////////////////////////
 
 TriMeshd::TriMeshd() {
@@ -72,3 +78,9 @@ void TriMeshd::addTri(int *vals) {
 void TriMeshd::render() {
   // to be implemented
 }
+
+Array<Vertexd*>* TriMeshd::getVerts() { return verts; }
+Array<Trid*>* TriMeshd::getTris() { return tris; }
+
+void TriMeshd::setVerts(Array<Vertexd*>* param) { verts = param; }
+void TriMeshd::setTris(Array<Trid*>* param) { tris = param; }

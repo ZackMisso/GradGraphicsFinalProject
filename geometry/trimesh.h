@@ -24,6 +24,12 @@ public:
   virtual void addVertex(float *vals);
   virtual void addTri(int *vals);
   virtual void render();
+  // getter methods
+  Array<Vertexf*>* getVerts();
+  Array<Trif*>* getTris();
+  // setter methods
+  void setVerts(Array<Vertexf*>* param);
+  void setTris(Array<Trif*>* param);
 };
 
 class TriMeshd : public TriMesh {
@@ -37,6 +43,12 @@ public:
   virtual void addVertex(float *vals);
   virtual void addTri(int *vals);
   virtual void render();
+  // getter methods
+  Array<Vertexd*>* getVerts();
+  Array<Trid*>* getTris();
+  // setter methods
+  void setVerts(Array<Vertexd*>* param);
+  void setTris(Array<Trid*>* param);
 };
 
 #endif

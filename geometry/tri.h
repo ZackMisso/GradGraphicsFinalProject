@@ -11,6 +11,7 @@ private:
   Vec3f norm;
 public:
   Trif(int* vals);
+  Trif(int one,int two,int three);
   void calculateNorm(Array<Vertexf*>* verts);
   // getter methods
   Vec3f getNorm();
@@ -22,6 +23,7 @@ private:
   Vec3d norm;
 public:
   Trid(int* vals);
+  Trid(int one,int two,int three);
   void calculateNorm(Array<Vertexd*>* verts);
   // getter methods
   Vec3d getNorm();

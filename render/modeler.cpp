@@ -8,7 +8,7 @@ Modeler::Modeler() { }
 
 Modeler::~Modeler() { }
 
-void drawCube(RenderMode rm) {
+void Modeler::drawCube(RenderMode rm) {
   if(rm == WIREFRAME) {
     glBegin(GL_LINES);
     glVertex3f(-1.0,-1.0,-1.0);
@@ -120,7 +120,7 @@ void drawCube(RenderMode rm) {
 	glEnd();
 }
 
-void drawCube(RenderMode rm,Vec3f pos,float d) {
+void Modeler::drawCube(RenderMode rm,Vec3f pos,float d) {
   if(rm == WIREFRAME) {
     glBegin(GL_LINES);
     glVertex3f(pos[0]-d,pos[1]-d,pos[2]-d);
@@ -231,7 +231,7 @@ void drawCube(RenderMode rm,Vec3f pos,float d) {
 	glEnd();
 }
 
-void drawCube(RenderMode rm,Vec3d pos,double d) {
+void Modeler::drawCube(RenderMode rm,Vec3d pos,double d) {
   if(rm == WIREFRAME) {
     glBegin(GL_LINES);
     glVertex3f(pos[0]-d,pos[1]-d,pos[2]-d);

@@ -5,6 +5,11 @@ Vertexf::Vertexf(float *vals) {
   norm = Vec3f();
 }
 
+Vertexf::Vertexf(Vec3f position) {
+  pos = position;
+  norm = Vec3f();
+}
+
 void Vertexf::addToNorm(Vec3f pos) {
   norm = norm + pos;
 }
@@ -23,6 +28,11 @@ void Vertexf::setNorm(Vec3f param) { norm = param; }
 
 Vertexd::Vertexd(float *vals) {
   pos = Vec3d(vals[0],vals[1],vals[2]);
+  norm = Vec3d();
+}
+
+Vertexd::Vertexd(Vec3d position) {
+  pos = position;
   norm = Vec3d();
 }
 
