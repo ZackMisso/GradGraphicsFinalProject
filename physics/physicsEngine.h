@@ -2,6 +2,7 @@
 #define __PHYSICSENGINE_H__
 
 // A singleton that oversees all physics interactions
+// will need this for the final simulation
 
 class PhysicsEngine {
 private:

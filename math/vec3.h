@@ -13,6 +13,7 @@ public:
   // operator overloads
   Vec3f operator+(Vec3f& other) const; // addition
   Vec3f operator-(Vec3f& other) const; // subtraction
+  //Vec3f operator-(Vec3f& one,Vec3f& two) const;
   Vec3f operator^(Vec3f& other) const; // cross-product
   float operator*(Vec3f& other) const; // dot-product
   float& operator[](int val); // array operator
@@ -30,6 +31,7 @@ public:
   // operator overloads
   Vec3d operator+(Vec3d& other) const; // addition
   Vec3d operator-(Vec3d& other) const; // subtraction
+  //Vec3d operator-(Vec3d& one,Vec3d& two) const;
   Vec3d operator^(Vec3d& other) const; // cross-product
   double operator*(Vec3d& other) const; // dot-product
   double& operator[](int val); // array operator
