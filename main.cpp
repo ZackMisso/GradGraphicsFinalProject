@@ -3,6 +3,11 @@
 #include <stdlib.h>
 #include "views/viewController.h"
 #include "render/modeler.h"
+#include "io/frameReader.h"
+#include "io/frameWriter.h"
+#include "io/simulationStateReader.h"
+#include "io/simulationStateWriter.h"
+#include "io/trimeshReader.h"
 
 // OpenGL callbacks
 void display();
@@ -15,6 +20,12 @@ int main(int argc,char** argv) {
   // initialize our own subsystems
   ViewController::initialize();
   Modeler::initialize();
+  // initialize io
+  FrameReader::initialize();
+  FrameWriter::initialize();
+  SimulationStateReader::initialize();
+  SimulationStateWriter::initialize();
+  TriMeshReader::initialize();
   // initialize glfw
   if(!glfwInit())
     exit(EXIT_FAILURE);
