@@ -2,49 +2,60 @@
 #define __SPRING_H__
 
 #include "../math/vec3.h"
-#include "../peri/pointMass.h"
 
 class Springf {
 private:
-  PointMassf* one;
-  PointMassf* two;
+  int oneID;
+  int twoID;
   float restLength;
+  Vec3f firstPosition;
+  Vec3f secondPosition;
   Vec3f currentPotential;
 public:
-  Springf(PointMassf* param,PointMassf* param2);
+  Springf(int param,int param2);
   ~Springf();
   void calculatePotential();
   // getter methods
-  PointMassf* getOne();
-  PointMassf* getTwo();
+  int getOneID();
+  int getTwoID();
   float getRestLength();
+  Vec3f getFirstPosition();
+  Vec3f getSecondPosition();
   Vec3f getCurrentPotential();
   // setter methods
-  void setOne(PointMassf* param);
-  void setTwo(PointMassf* param);
+  void setOneID(int param);
+  void setTwoID(int param);
   void setRestLength(float param);
+  void setFirstPosition(Vec3f param);
+  void setSecondPosition(Vec3f param);
   void setCurrentPotential(Vec3f param);
 };
 
 class Springd {
 private:
-  PointMassd* one;
-  PointMassd* two;
+  int oneID;
+  int twoID;
   double restLength;
+  Vec3d firstPosition;
+  Vec3d secondPosition;
   Vec3d currentPotential;
 public:
-  Springd(PointMassd* param,PointMassd* param2);
+  Springd(int param,int param2);
   ~Springd();
   void calculatePotential();
   // getter methods
-  PointMassd* getOne();
-  PointMassd* getTwo();
+  int getOneID();
+  int getTwoID();
   double getRestLength();
+  Vec3d getFirstPosition();
+  Vec3d getSecondPosition();
   Vec3d getCurrentPotential();
   // setter methods
-  void setOne(PointMassd* param);
-  void setTwo(PointMassd* param);
+  void setOneID(int param);
+  void setTwoID(int param);
   void setRestLength(double param);
+  void setFirstPosition(Vec3d param);
+  void setSecondPosition(Vec3d param);
   void setCurrentPotential(Vec3d param);
 };
 
