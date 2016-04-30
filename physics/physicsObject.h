@@ -1,7 +1,7 @@
 #ifndef __PHYSICSOBJECT_H__
 #define __PHYSICSOBJECT_H__
 
-// still not sure if we need this or not
+// represents anything that has its own separate physics
 
 #include "../math/vec3.h"
 #include "../dataStructures/array.h"

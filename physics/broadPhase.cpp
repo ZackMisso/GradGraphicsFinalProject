@@ -8,12 +8,12 @@ BroadPhase::~BroadPhase() {
   // to be implemented
 }
 
-Array<Collisionf*>* BroadPhase::detectCollisions(Array<PhysicsObjectf*>* objects) {
+Array<Collisionf*>* BroadPhase::detectCollisions(Array<PhysicsBodyf*>* objects) {
   // to be implemented
   return 0x0;
 }
 
-Array<Collisiond*>* BroadPhase::detectCollisions(Array<PhysicsObjectd*>* objects) {
+Array<Collisiond*>* BroadPhase::detectCollisions(Array<PhysicsBodyd*>* objects) {
   // to be implemented
   return 0x0;
 }
