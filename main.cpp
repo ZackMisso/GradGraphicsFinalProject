@@ -8,6 +8,7 @@
 #include "io/simulationStateReader.h"
 #include "io/simulationStateWriter.h"
 #include "io/trimeshReader.h"
+#include "geometry/voxelizer.h"
 
 // OpenGL callbacks
 void display();
@@ -20,6 +21,7 @@ int main(int argc,char** argv) {
   // initialize our own subsystems
   ViewController::initialize();
   Modeler::initialize();
+  Voxelizer::initialize();
   // initialize io
   FrameReader::initialize();
   FrameWriter::initialize();
@@ -62,6 +64,17 @@ int main(int argc,char** argv) {
     glfwPollEvents();
   }
   // clean up
+  // destroy our own subsystems
+  ViewController::destroy();
+  Modeler::destroy();
+  Voxelizer::destroy();
+  // destroy io
+  FrameReader::destroy();
+  FrameWriter::destroy();
+  SimulationStateReader::destroy();
+  SimulationStateWriter::destroy();
+  TriMeshReader::destroy();
+  // clean up glfw
   glfwDestroyWindow(window);
   glfwTerminate();
   return 0;

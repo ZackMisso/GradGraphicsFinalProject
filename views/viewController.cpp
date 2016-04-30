@@ -10,7 +10,7 @@ ViewController::ViewController() {
   views = new Array<View*>();
   currentView = 0x0;
   createViews();
-  switchToView(TEST_VIEW);
+  switchToView(VOXEL_VIEW);
 }
 
 ViewController::~ViewController() {
