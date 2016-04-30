@@ -1,9 +1,17 @@
 #include "manifold.h"
 
-Manifold::Manifold() {
+Manifoldf::Manifoldf() {
   // to be implemented
 }
 
-Manifold::~Manifold() {
+Manifoldf::~Manifoldf() {
+  // to be implemented
+}
+
+Manifoldd::Manifoldd() {
+  // to be implemented
+}
+
+Manifoldd::~Manifoldd() {
   // to be implemented
 }

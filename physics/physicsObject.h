@@ -3,11 +3,18 @@
 
 // still not sure if we need this or not
 
-class PhysicsObject {
+class PhysicsObjectf {
 private:
 public:
-  PhysicsObject();
-  ~PhysicsObject();
+  PhysicsObjectf();
+  ~PhysicsObjectf();
+};
+
+class PhysicsObjectd {
+private:
+public:
+  PhysicsObjectd();
+  ~PhysicsObjectd();
 };
 
 #endif

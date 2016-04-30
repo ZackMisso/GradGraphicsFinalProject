@@ -4,11 +4,18 @@
 // generated when a collision is detected
 // will need this for the final simulation
 
-class Manifold {
+class Manifoldf {
 private:
 public:
-  Manifold();
-  ~Manifold();
+  Manifoldf();
+  ~Manifoldf();
+};
+
+class Manifoldd {
+private:
+public:
+  Manifoldd();
+  ~Manifoldd();
 };
 
 #endif

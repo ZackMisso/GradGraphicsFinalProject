@@ -1,9 +1,17 @@
 #include "physicsObject.h"
 
-PhysicsObject::PhysicsObject() {
+PhysicsObjectf::PhysicsObjectf() {
   // to be implemented
 }
 
-PhysicsObject::~PhysicsObject() {
+PhysicsObjectf::~PhysicsObjectf() {
+  // to be implemented
+}
+
+PhysicsObjectd::PhysicsObjectd() {
+  // to be implemented
+}
+
+PhysicsObjectd::~PhysicsObjectd() {
   // to be implemented
 }
