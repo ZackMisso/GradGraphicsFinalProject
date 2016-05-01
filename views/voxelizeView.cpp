@@ -13,6 +13,7 @@ void VoxelizeView::initialize() {
   displayOriginalShape = true;
   displayVoxels = false;
   animateDisplay = false;
+  wireframe = false;
   originalShape = BBoxf(Vec3f(0.0f,0.0f,0.0f),Vec3f(2.0f,2.0f,2.0f));
   dt = 0.0f;
   // do voxelizing
@@ -39,6 +40,9 @@ void VoxelizeView::keyboard(int key,int scancode,int action,int mods) {
   if(key == GLFW_KEY_V && action == GLFW_PRESS) {
     displayVoxels = !displayVoxels;
   }
+  if(key == GLFW_KEY_W && action == GLFW_PRESS) {
+    wireframe = !wireframe;
+  }
 }
 
 void VoxelizeView::mouseMove(double x,double y) {
@@ -52,6 +56,7 @@ void VoxelizeView::mouseClick(int button,int action,int mods) {
 void VoxelizeView::display() {
   glClearColor(0.0f,0.0f,0.0f,1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glEnable(GL_CULL_FACE);
   glCullFace(GL_BACK);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -74,11 +79,17 @@ void VoxelizeView::display() {
   }
   if(displayVoxels) {
     int numVox = voxelMesh->getSize();
-    RenderMode rm = SOLID;
+    RenderMode rm;
+    if(wireframe)
+      rm = WIREFRAME;
+    else
+      rm = SOLID;
     for(int i=0;i<numVox;i++) {
-      glColor4f(1.0f/((float)numVox)*((float)i),0.0f,0.0f,1.0f);
+      glColor3f(1.0f/((float)numVox)*((float)(i+1)),0.0f,0.0f);
+      //glColor3f(1.0f,0.0f,0.0f);
       voxelMesh->get(i)->display(rm);
     }
+    glDisable(GL_CULL_FACE);
   }
 
 

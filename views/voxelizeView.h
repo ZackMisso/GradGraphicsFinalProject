@@ -17,6 +17,7 @@ private:
   bool displayOriginalShape;
   bool displayVoxels;
   bool animateDisplay;
+  bool wireframe;
 public:
   virtual void initialize();
   virtual void deInitialize();

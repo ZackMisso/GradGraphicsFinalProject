@@ -86,19 +86,19 @@ void Modeler::drawCube(RenderMode rm) {
     glBegin(GL_QUADS);
 
     glVertex3f(-1.0,-1.0,-1.0);
-    glVertex3f(-1.0,1.0,-1.0);
+    glVertex3f(1.0,-1.0,-1.0);
     glVertex3f(1.0,1.0,-1.0);
-    glVertex3f(1.0,-1.0,-1.0);
-
-    glVertex3f(-1.0,-1.0,-1.0);
-    glVertex3f(1.0,-1.0,-1.0);
-    glVertex3f(1.0,-1.0,1.0);
-    glVertex3f(-1.0,-1.0,1.0);
-
-    glVertex3f(-1.0,-1.0,-1.0);
     glVertex3f(-1.0,1.0,-1.0);
-    glVertex3f(-1.0,1.0,1.0);
+
+    glVertex3f(-1.0,-1.0,-1.0);
     glVertex3f(-1.0,-1.0,1.0);
+    glVertex3f(1.0,-1.0,1.0);
+    glVertex3f(1.0,-1.0,-1.0);
+
+    glVertex3f(-1.0,-1.0,-1.0);
+    glVertex3f(-1.0,-1.0,1.0);
+    glVertex3f(-1.0,1.0,1.0);
+    glVertex3f(-1.0,1.0,-1.0);
 
     glVertex3f(1.0,1.0,1.0);
     glVertex3f(1.0,-1.0,1.0);
@@ -197,19 +197,19 @@ void Modeler::drawCube(RenderMode rm,Vec3f pos,float d) {
   } else if(rm == SOLID) {
     glBegin(GL_QUADS);
   	glVertex3f(pos[0]-d,pos[1]-d,pos[2]-d);
-  	glVertex3f(pos[0]+d,pos[1]-d,pos[2]-d);
+  	glVertex3f(pos[0]-d,pos[1]+d,pos[2]-d);
   	glVertex3f(pos[0]+d,pos[1]+d,pos[2]-d);
-  	glVertex3f(pos[0]-d,pos[1]+d,pos[2]-d);
+    glVertex3f(pos[0]+d,pos[1]-d,pos[2]-d);
 
   	glVertex3f(pos[0]-d,pos[1]-d,pos[2]-d);
-  	glVertex3f(pos[0]-d,pos[1]-d,pos[2]+d);
-  	glVertex3f(pos[0]+d,pos[1]-d,pos[2]+d);
   	glVertex3f(pos[0]+d,pos[1]-d,pos[2]-d);
+  	glVertex3f(pos[0]+d,pos[1]-d,pos[2]+d);
+    glVertex3f(pos[0]-d,pos[1]-d,pos[2]+d);
 
   	glVertex3f(pos[0]-d,pos[1]-d,pos[2]-d);
-  	glVertex3f(pos[0]-d,pos[1]+d,pos[2]-d);
-  	glVertex3f(pos[0]-d,pos[1]+d,pos[2]+d);
   	glVertex3f(pos[0]-d,pos[1]-d,pos[2]+d);
+  	glVertex3f(pos[0]-d,pos[1]+d,pos[2]+d);
+    glVertex3f(pos[0]-d,pos[1]+d,pos[2]-d);
 
   	glVertex3f(pos[0]+d,pos[1]+d,pos[2]+d);
   	glVertex3f(pos[0]+d,pos[1]-d,pos[2]+d);
