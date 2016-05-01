@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "views/viewController.h"
 #include "render/modeler.h"
+#include "physics/collisionMethods.h"
 #include "io/frameReader.h"
 #include "io/frameWriter.h"
 #include "io/simulationStateReader.h"
@@ -22,6 +23,7 @@ int main(int argc,char** argv) {
   ViewController::initialize();
   Modeler::initialize();
   Voxelizer::initialize();
+  CollisionMethods::initialize();
   // initialize io
   FrameReader::initialize();
   FrameWriter::initialize();
@@ -68,6 +70,7 @@ int main(int argc,char** argv) {
   ViewController::destroy();
   Modeler::destroy();
   Voxelizer::destroy();
+  CollisionMethods::destroy();
   // destroy io
   FrameReader::destroy();
   FrameWriter::destroy();

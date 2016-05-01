@@ -11,11 +11,10 @@ public:
   void normalize();
   float mag();
   // operator overloads
-  Vec3f operator+(Vec3f& other) const; // addition
-  Vec3f operator-(Vec3f& other) const; // subtraction
-  //Vec3f operator-(Vec3f& one,Vec3f& two) const;
-  Vec3f operator^(Vec3f& other) const; // cross-product
-  float operator*(Vec3f& other) const; // dot-product
+  Vec3f operator+(Vec3f other); // addition
+  Vec3f operator-(Vec3f other); // subtraction
+  Vec3f operator^(Vec3f other); // cross-product
+  float operator*(Vec3f other); // dot-product
   float& operator[](int val); // array operator
 };
 
@@ -29,11 +28,10 @@ public:
   void normalize();
   double mag();
   // operator overloads
-  Vec3d operator+(Vec3d& other) const; // addition
-  Vec3d operator-(Vec3d& other) const; // subtraction
-  //Vec3d operator-(Vec3d& one,Vec3d& two) const;
-  Vec3d operator^(Vec3d& other) const; // cross-product
-  double operator*(Vec3d& other) const; // dot-product
+  Vec3d operator+(Vec3d other); // addition
+  Vec3d operator-(Vec3d other); // subtraction
+  Vec3d operator^(Vec3d other); // cross-product
+  double operator*(Vec3d other); // dot-product
   double& operator[](int val); // array operator
 };
 

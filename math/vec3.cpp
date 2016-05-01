@@ -21,11 +21,11 @@ float Vec3f::mag() {
   return 0.0f;
 }
 
-Vec3f Vec3f::operator+(Vec3f& other) const {
+Vec3f Vec3f::operator+(Vec3f other) {
   return Vec3f(v[0]+other[0], v[1]+other[1], v[2]+other[2]);
 }
 
-Vec3f Vec3f::operator-(Vec3f& other) const {
+Vec3f Vec3f::operator-(Vec3f other) {
   return Vec3f(v[0]-other[0], v[1]-other[1], v[2]-other[2]);
 }
 
@@ -33,7 +33,7 @@ Vec3f Vec3f::operator-(Vec3f& other) const {
 //  return Vec3f(one[0]-two[0], one[1]-two[1], one[2]-two[2]);
 //}
 
-Vec3f Vec3f::operator^(Vec3f& other) const {
+Vec3f Vec3f::operator^(Vec3f other) {
   Vec3f vec;
   vec[0] = v[1]*other[2]-other[1]*v[2];
   vec[1] = v[2]*other[0]-other[2]*v[0];
@@ -41,7 +41,7 @@ Vec3f Vec3f::operator^(Vec3f& other) const {
   return vec;
 }
 
-float Vec3f::operator*(Vec3f& other) const {
+float Vec3f::operator*(Vec3f other) {
   return v[0]*other[0] + v[1]*other[1] + v[2]*other[2];
 }
 
@@ -70,11 +70,11 @@ double Vec3d::mag() {
   return 0.0;
 }
 
-Vec3d Vec3d::operator+(Vec3d& other) const {
+Vec3d Vec3d::operator+(Vec3d other) {
   return Vec3d(v[0]+other[0], v[1]+other[1], v[2]+other[2]);
 }
 
-Vec3d Vec3d::operator-(Vec3d& other) const {
+Vec3d Vec3d::operator-(Vec3d other) {
   return Vec3d(v[0]-other[0], v[1]-other[1], v[2]-other[2]);
 }
 
@@ -82,7 +82,7 @@ Vec3d Vec3d::operator-(Vec3d& other) const {
 //  return Vec3d(one[0]-two[0], one[1]-two[1], one[2]-two[2]);
 //}
 
-Vec3d Vec3d::operator^(Vec3d& other) const {
+Vec3d Vec3d::operator^(Vec3d other) {
   Vec3d vec;
   vec[0] = v[1]*other[2]-other[1]*v[2];
   vec[1] = v[2]*other[0]-other[2]*v[0];
@@ -90,7 +90,7 @@ Vec3d Vec3d::operator^(Vec3d& other) const {
   return vec;
 }
 
-double Vec3d::operator*(Vec3d& other) const {
+double Vec3d::operator*(Vec3d other) {
   return v[0]*other[0] + v[1]*other[1] + v[2]*other[2];
 }
 
