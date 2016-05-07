@@ -17,6 +17,11 @@ void PointMassf::performPhysicsStep(float dt) {
   // to be implemented
 }
 
+float PointMassf::getDistTo(PointMassf* other) {
+  Vec3f dist = position - other->position;
+  return dist.mag();
+}
+
 Vec3f PointMassf::accumulateForces() {
   // to be implemented
   return Vec3f();
@@ -34,10 +39,13 @@ Array<Springf*>* PointMassf::getNeighborhood() { return neighborhood; }
 Vec3f PointMassf::getOriginalPosition() { return originalPosition; }
 float PointMassf::getRadius() { return radius; }
 float PointMassf::getVolume() { return volume; }
+int PointMassf::getID() { return id; }
 
 void PointMassf::setNeighborhood(Array<Springf*>* param) { neighborhood = param; }
 void PointMassf::setOriginalPosition(Vec3f param) { originalPosition = param; }
 void PointMassf::setRadius(float param) { radius = param; }
+void PointMassf::setVolume(float param) { volume = param; }
+void PointMassf::setID(int param) { id = param; }
 
 /////////////////////////// DOUBLE VERSION //////////////////////////////
 
@@ -57,6 +65,11 @@ void PointMassd::performPhysicsStep(double dt) {
   // to be implemented
 }
 
+double PointMassd::getDistTo(PointMassd* other) {
+  Vec3d dist = position - other->position;
+  return dist.mag();
+}
+
 Vec3d PointMassd::accumulateForces() {
   // to be implemented
   return Vec3d();
@@ -74,7 +87,10 @@ Array<Springd*>* PointMassd::getNeighborhood() { return neighborhood; }
 Vec3d PointMassd::getOriginalPosition() { return originalPosition; }
 double PointMassd::getRadius() { return radius; }
 double PointMassd::getVolume() { return volume; }
+int PointMassd::getID() { return id; }
 
 void PointMassd::setNeighborhood(Array<Springd*>* param) { neighborhood = param; }
 void PointMassd::setOriginalPosition(Vec3d param) { originalPosition = param; }
 void PointMassd::setRadius(double param) { radius = param; }
+void PointMassd::setVolume(double param) { volume = param; }
+void PointMassd::setID(int param) { id = param; }

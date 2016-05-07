@@ -5,6 +5,16 @@
 
 #include "../geometry/trimesh.h"
 
+enum TriRTokenID { T_NONE=-1,T_VERT,T_FACE};
+
+struct TriRTokenPair {
+  char strval[256];
+  TriRTokenID id;
+  //bool operator==(const TokenPair &other) const {
+  //  return strcmp(strval,other.strval)
+  //}
+};
+
 class TriMeshReader {
 private:
   static TriMeshReader* instance;
