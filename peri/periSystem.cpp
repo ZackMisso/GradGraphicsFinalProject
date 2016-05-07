@@ -73,7 +73,7 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
             connection->setTwoRef((void*)two);
             connection->setRestLength(pm->getDistTo(two));
             connection->setFirstRestPosition(pm->getPosition());
-            connection->setSecondPosition(two->getPosition());
+            connection->setSecondRestPosition(two->getPosition());
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);
@@ -174,7 +174,7 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
             connection->setTwoRef((void*)two);
             connection->setRestLength(pm->getDistTo(two));
             connection->setFirstRestPosition(pm->getPosition());
-            connection->setSecondPosition(two->getPosition());
+            connection->setSecondRestPosition(two->getPosition());
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);

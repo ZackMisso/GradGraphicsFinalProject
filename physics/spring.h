@@ -2,6 +2,7 @@
 #define __SPRING_H__
 
 #include "../math/vec3.h"
+#include "../render/renderInclude.h"
 
 class Springf {
 private:
@@ -20,6 +21,7 @@ public:
   ~Springf();
   void calculatePotential();
   bool isEqual(int one,int two);
+  void render();
   // getter methods
   int getOneID();
   int getTwoID();
@@ -61,6 +63,7 @@ public:
   ~Springd();
   void calculatePotential();
   bool isEqual(int one,int two);
+  void render();
   // getter methods
   int getOneID();
   int getTwoID();
