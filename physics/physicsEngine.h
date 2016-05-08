@@ -7,6 +7,8 @@
 class PhysicsEngine {
 private:
   static PhysicsEngine* instance;
+  //BroadPhase* broadPhase;
+  //NarrowPhase* narrowPhase;
   PhysicsEngine();
 public:
   ~PhysicsEngine();
@@ -14,6 +16,12 @@ public:
   static PhysicsEngine* getInstance();
   static void initialize();
   static void destroy();
+  // getter methods
+  //BroadPhase* getBroadPhase();
+  //NarrowPhase* getNarrowPhase();
+  // setter methods
+  //void setBroadPhase(BroadPhase* param);
+  //void setNarrowPhase(NarrowPhase* param);
 };
 
 #endif

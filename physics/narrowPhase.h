@@ -5,15 +5,14 @@
 
 #include "../dataStructures/array.h"
 #include "manifold.h"
-#include "collision.h"
 
 class NarrowPhase {
 private:
 public:
   NarrowPhase();
   ~NarrowPhase();
-  Array<Manifoldf*>* collisionResolutionf(Array<Collisionf*>* collisions);
-  Array<Manifoldd*>* collisionResolutiond(Array<Collisiond*>* collisions);
+  virtual Array<Manifoldf*>* collisionResolutionf(Array<Manifoldf*>* collisions);
+  virtual Array<Manifoldd*>* collisionResolutiond(Array<Manifoldd*>* collisions);
 };
 
 #endif

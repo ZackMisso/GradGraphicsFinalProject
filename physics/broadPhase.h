@@ -5,15 +5,15 @@
 
 #include "../dataStructures/array.h"
 #include "physicsBody.h"
-#include "collision.h"
+#include "manifold.h"
 
 class BroadPhase {
 private:
 public:
   BroadPhase();
   ~BroadPhase();
-  Array<Collisionf*>* detectCollisions(Array<PhysicsBodyf*>* bodies);
-  Array<Collisiond*>* detectCollisions(Array<PhysicsBodyd*>* bodies);
+  virtual Array<Manifoldf*>* detectCollisions(Array<PhysicsBodyf*>* bodies);
+  virtual Array<Manifoldd*>* detectCollisions(Array<PhysicsBodyd*>* bodies);
 };
 
 #endif
