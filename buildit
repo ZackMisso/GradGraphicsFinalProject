@@ -1,5 +1,7 @@
 #!/bin/bash
 
 make clean
+rm frames/*.vox
+rm physicsFrames/*pvox
 make -j4
 ./fracture
