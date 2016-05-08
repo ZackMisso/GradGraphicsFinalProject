@@ -1,5 +1,5 @@
 #ifndef __NAIVEBROADPHASE_H__
-#define __NAIVEBROADPHASE_H
+#define __NAIVEBROADPHASE_H__
 
 #include "broadPhase.h"
 
