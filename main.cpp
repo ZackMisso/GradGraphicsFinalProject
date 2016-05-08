@@ -91,8 +91,11 @@ void display() {
 void keyboard(GLFWwindow* window,int key,int scancode,int action,int mods) {
   if(key==GLFW_KEY_ESCAPE && action==GLFW_PRESS)
     glfwSetWindowShouldClose(window,GL_TRUE);
-  if(key == GLFW_KEY_W && action == GLFW_PRESS) {
-    // example of handling key presses
+  if(key == GLFW_KEY_5 && action == GLFW_PRESS) {
+    ViewController::getInstance()->switchToView(FRAME_IO_VIEW);
+  }
+  if(key == GLFW_KEY_4 && action == GLFW_PRESS) {
+    ViewController::getInstance()->switchToView(VOXEL_VIEW);
   }
   ViewController::getInstance()->getCurrentView()->keyboard(key,scancode,action,mods);
 }

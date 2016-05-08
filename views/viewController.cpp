@@ -3,6 +3,7 @@
 #include "periTestView.h"
 #include "voxelizeView.h"
 #include "trimeshIOView.h"
+#include "frameIOView.h"
 
 ViewController* ViewController::instance = 0x0;
 
@@ -25,6 +26,7 @@ void ViewController::createViews() {
   views->add(new PeriTestView());
   views->add(new VoxelizeView());
   views->add(new TrimeshIOView());
+  views->add(new FrameIOView());
   // create more in the order they appear in the enum
 }
 
