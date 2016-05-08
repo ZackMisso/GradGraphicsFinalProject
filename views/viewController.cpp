@@ -45,8 +45,10 @@ void ViewController::initialize() {
 }
 
 void ViewController::destroy() {
-  if(instance)
+  if(instance) {
     delete instance;
+    instance = 0x0;
+  }
 }
 
 View* ViewController::getCurrentView() { return currentView; }
