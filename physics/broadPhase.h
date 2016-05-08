@@ -4,7 +4,7 @@
 // this phase detects all possible collisions
 
 #include "../dataStructures/array.h"
-#include "physicsBody.h"
+#include "physicsWorld.h"
 #include "manifold.h"
 
 class BroadPhase {
@@ -12,8 +12,8 @@ private:
 public:
   BroadPhase();
   ~BroadPhase();
-  virtual Array<Manifoldf*>* detectCollisions(Array<PhysicsBodyf*>* bodies);
-  virtual Array<Manifoldd*>* detectCollisions(Array<PhysicsBodyd*>* bodies);
+  virtual Array<Manifoldf*>* detectCollisionsf(PhysicsWorld* world);
+  virtual Array<Manifoldd*>* detectCollisionsd(PhysicsWorld* world);
 };
 
 #endif

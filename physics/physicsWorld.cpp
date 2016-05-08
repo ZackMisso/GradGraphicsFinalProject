@@ -64,49 +64,55 @@ PhysicsWorld::~PhysicsWorld() {
 
 void PhysicsWorld::addPhysicsBodyToWorld(PhysicsBodyf* body) {
   if(usingSeparateLists) {
-    // to be implemented
+    physicsBodiesF->add(body);
   } else {
-    // to be implemented
+    for(int i=0;i<body->getObjects()->getSize();i++)
+      physicsObjectsF->add(body->getObjects()->get(i));
   }
 }
 
 void PhysicsWorld::addPhysicsBodyToWorld(PhysicsBodyd* body) {
   if(usingSeparateLists) {
-    // to be implemented
+    physicsBodiesD->add(body);
   } else {
-    // to be implemented
+    for(int i=0;i<body->getObjects()->getSize();i++)
+      physicsObjectsD->add(body->getObjects()->get(i));
   }
 }
 
 void PhysicsWorld::addPhysicsObjectToWorld(PhysicsObjectf* object) {
   if(usingSeparateLists) {
-    // to be implemented
+    physicsObjectsF->add(object);
   } else {
-    // to be implemented
+    physicsObjectsF->add(object);
+    // leaving separate just in case future work needs it
   }
 }
 
 void PhysicsWorld::addPhysicsObjectToWorld(PhysicsObjectd* object) {
   if(usingSeparateLists) {
-    // to be implemented
+    physicsObjectsD->add(object);
   } else {
-    // to be implemented
+    physicsObjectsD->add(object);
+    // leaving separate just in case future work needs it
   }
 }
 
 void PhysicsWorld::addPeriSystemToWorld(PeriSystemf* peri) {
   if(usingSeparateLists) {
-    // to be implemented
+    periSystemsF->add(peri);
   } else {
-    // to be implemented
+    // leaving separate just in case future work needs it
+    periSystemsF->add(peri);
   }
 }
 
 void PhysicsWorld::addPeriSystemToWorld(PeriSystemd* peri) {
   if(usingSeparateLists) {
-    // to be implemented
+    periSystemsD->add(peri);
   } else {
-    // to be implemented
+    // leaving separate just in case future work needs it
+    periSystemsD->add(peri);
   }
 }
 

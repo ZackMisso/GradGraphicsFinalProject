@@ -5,8 +5,8 @@
 
 class NaiveBroadPhase : public BroadPhase {
 public:
-  virtual Array<Manifoldf*>* detectCollisions(Array<PhysicsBodyf*>* bodies);
-  virtual Array<Manifoldd*>* detectCollisions(Array<PhysicsBodyd*>* bodies);
+  virtual Array<Manifoldf*>* detectCollisionsf(PhysicsWorld* world);
+  virtual Array<Manifoldd*>* detectCollisionsd(PhysicsWorld* world);
 };
 
 #endif

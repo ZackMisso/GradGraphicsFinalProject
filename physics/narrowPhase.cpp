@@ -9,11 +9,11 @@ NarrowPhase::~NarrowPhase() {
 }
 
 Array<Manifoldf*>* NarrowPhase::collisionResolutionf(Array<Manifoldf*>* collisions) {
-  // to be implemented
+  // to be extended
   return 0x0;
 }
 
 Array<Manifoldd*>* NarrowPhase::collisionResolutiond(Array<Manifoldd*>* collisions) {
-  // to be implemented
+  // to be extended
   return 0x0;
 }

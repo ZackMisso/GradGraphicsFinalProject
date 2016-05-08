@@ -8,12 +8,12 @@ BroadPhase::~BroadPhase() {
   // to be implemented
 }
 
-Array<Manifoldf*>* BroadPhase::detectCollisions(Array<PhysicsBodyf*>* objects) {
+Array<Manifoldf*>* BroadPhase::detectCollisionsf(PhysicsWorld* world) {
   // to be extended
   return 0x0;
 }
 
-Array<Manifoldd*>* BroadPhase::detectCollisions(Array<PhysicsBodyd*>* objects) {
+Array<Manifoldd*>* BroadPhase::detectCollisionsd(PhysicsWorld* world) {
   // to be extended
   return 0x0;
 }
