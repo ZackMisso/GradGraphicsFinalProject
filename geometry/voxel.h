@@ -22,9 +22,9 @@ public:
   void createMesh();
   void updateMesh();
   // getter methods
-  Vec3f getPos();
-  TriMeshf* getMesh();
-  float getRadius();
+  Vec3f getPos() const;
+  TriMeshf* getMesh() const;
+  float getRadius() const;
   // setter methods
   void setPos(Vec3f param);
   void setMesh(TriMeshf* param);
@@ -47,9 +47,9 @@ public:
   void createMesh();
   void updateMesh();
   // getter methods
-  Vec3d getPos();
-  TriMeshd* getMesh();
-  double getRadius();
+  Vec3d getPos() const;
+  TriMeshd* getMesh() const;
+  double getRadius() const;
   // setter methods
   void setPos(Vec3d param);
   void setMesh(TriMeshd* param);

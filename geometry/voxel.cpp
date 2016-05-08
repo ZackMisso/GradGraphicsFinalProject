@@ -69,9 +69,9 @@ void Voxelf::display(RenderMode rm) {
   Modeler::getInstance()->drawCube(rm,pos,radius);
 }
 
-Vec3f Voxelf::getPos() { return pos; }
-TriMeshf* Voxelf::getMesh() { return mesh; }
-float Voxelf::getRadius() { return radius; }
+Vec3f Voxelf::getPos() const { return pos; }
+TriMeshf* Voxelf::getMesh() const { return mesh; }
+float Voxelf::getRadius() const { return radius; }
 
 void Voxelf::setPos(Vec3f param) { pos = param; }
 void Voxelf::setMesh(TriMeshf* param) { mesh = param; }
@@ -150,9 +150,9 @@ void Voxeld::display(RenderMode rm) {
   Modeler::getInstance()->drawCube(rm,pos,radius);
 }
 
-Vec3d Voxeld::getPos() { return pos; }
-TriMeshd* Voxeld::getMesh() { return mesh; }
-double Voxeld::getRadius() { return radius; }
+Vec3d Voxeld::getPos() const { return pos; }
+TriMeshd* Voxeld::getMesh() const { return mesh; }
+double Voxeld::getRadius() const { return radius; }
 
 void Voxeld::setPos(Vec3d param) { pos = param; }
 void Voxeld::setMesh(TriMeshd* param) { mesh = param; }
@@ -160,5 +160,5 @@ void Voxeld::setRadius(double param) { radius = param; }
 
 std::ostream & operator<<(std::ostream& os, const Voxeld& v) {
   Vec3d pos = v.getPos();
-  return os << v[0] << "," << v[1] << "," << v[2]
+  return os << pos[0] << "," << pos[1] << "," << pos[2] << ":" << v.getRadius();
 }
