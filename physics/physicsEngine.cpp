@@ -1,9 +1,13 @@
 #include "physicsEngine.h"
+#include "naiveBroadPhase.h"
+#include "naiveNarrowPhase.h"
 
 PhysicsEngine* PhysicsEngine::instance = 0x0;
 
 PhysicsEngine::PhysicsEngine() {
-  // to be implemented
+  broadPhase = new NaiveBroadPhase();
+  narrowPhase = new NaiveNarrowPhase();
+  world = new PhysicsWorld();
 }
 
 PhysicsEngine::~PhysicsEngine() {
