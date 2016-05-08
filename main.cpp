@@ -1,4 +1,5 @@
 #define GLFW_INCLUDE_GLU
+#include <iostream>
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
 #include "views/viewController.h"
@@ -98,6 +99,7 @@ void keyboard(GLFWwindow* window,int key,int scancode,int action,int mods) {
 
 void error(int error, const char* description) {
   // to be implemented
+  std::cout << "error code " << error << ": " << description << std::endl;
 }
 
 void mouseMove(GLFWwindow* window,double x,double y) {
