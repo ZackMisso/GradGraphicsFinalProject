@@ -17,12 +17,12 @@ public:
   static void initialize();
   static void destroy();
   // collision methods
-  bool bboxOnbbox(BBoxf one,BBoxf two);
-  bool bboxOnbbox(BBoxd one,BBoxd two);
-  bool sphereOnsphere(Spheref one,Spheref two);
-  bool sphereOnsphere(Sphered one,Sphered two);
-  bool bboxOnsphere(BBoxf one,Spheref two);
-  bool bboxOnsphere(BBoxd one,Sphered two);
+  bool bboxOnbbox(BBoxf one,BBoxf two,float* pen,Vec3f* norm);
+  bool bboxOnbbox(BBoxd one,BBoxd two,double* pen,Vec3d* norm);
+  bool sphereOnsphere(Spheref one,Spheref two,float* pen,Vec3f* norm);
+  bool sphereOnsphere(Sphered one,Sphered two,double* pen,Vec3d* norm);
+  bool bboxOnsphere(BBoxf one,Spheref two,float* pen,Vec3f* norm);
+  bool bboxOnsphere(BBoxd one,Sphered two,double* pen,Vec3d* norm);
 };
 
 #endif

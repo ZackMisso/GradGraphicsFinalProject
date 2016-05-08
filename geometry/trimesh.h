@@ -1,29 +1,34 @@
 #ifndef __TRIMESH_H__
 #define __TRIMESH_H__
 
+#include "geometry.h"
 #include "../dataStructures/array.h"
 #include "vertex.h"
 #include "tri.h"
 
-class TriMesh {
-public:
-  virtual void normalCalc();
-  virtual void addVertex(float *vals);
-  virtual void addTri(int* vals);
-  virtual void render();
-}; // used for IO
+//class TriMesh {
+//public:
+//  virtual void normalCalc();
+//  virtual void addVertex(float *vals);
+//  virtual void addTri(int* vals);
+//  virtual void render();
+//}; // used for IO
 
-class TriMeshf : public TriMesh {
+class TriMeshf : public Geometryf {
 private:
   Array<Vertexf*>* verts;
   Array<Trif*>* tris;
 public:
   TriMeshf();
   ~TriMeshf();
-  virtual void normalCalc();
-  virtual void addVertex(float *vals);
-  virtual void addTri(int *vals);
-  virtual void render();
+  // geometry methods
+  virtual BBoxf getBBox();
+  virtual bool containsPoint(Vec3f point);
+  // methods
+  void normalCalc();
+  void addVertex(float *vals);
+  void addTri(int *vals);
+  void render();
   // getter methods
   Array<Vertexf*>* getVerts();
   Array<Trif*>* getTris();
@@ -32,17 +37,21 @@ public:
   void setTris(Array<Trif*>* param);
 };
 
-class TriMeshd : public TriMesh {
+class TriMeshd : public Geometryd {
 private:
   Array<Vertexd*>* verts;
   Array<Trid*>* tris;
 public:
   TriMeshd();
   ~TriMeshd();
-  virtual void normalCalc();
-  virtual void addVertex(float *vals);
-  virtual void addTri(int *vals);
-  virtual void render();
+  // geometry methods
+  virtual BBoxd getBBox();
+  virtual bool containsPoint(Vec3d point);
+  // methods
+  void normalCalc();
+  void addVertex(float *vals);
+  void addTri(int *vals);
+  void render();
   // getter methods
   Array<Vertexd*>* getVerts();
   Array<Trid*>* getTris();

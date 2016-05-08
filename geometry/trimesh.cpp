@@ -1,10 +1,5 @@
 #include "trimesh.h"
 
-void TriMesh::normalCalc() { }
-void TriMesh::addVertex(float *vals) { }
-void TriMesh::addTri(int* vals) { }
-void TriMesh::render() { }
-
 TriMeshf::TriMeshf() {
   verts = new Array<Vertexf*>();
   tris = new Array<Trif*>();
@@ -17,6 +12,16 @@ TriMeshf::~TriMeshf() {
     delete tris->removeLast();
   delete verts;
   delete tris;
+}
+
+BBoxf TriMeshf::getBBox() {
+  // to be implemented
+  return BBoxf();
+}
+
+bool TriMeshf::containsPoint(Vec3f point) {
+  // to be implemented
+  return false;
 }
 
 void TriMeshf::normalCalc() {
@@ -58,6 +63,16 @@ TriMeshd::~TriMeshd() {
     delete tris->removeLast();
   delete verts;
   delete tris;
+}
+
+BBoxd TriMeshd::getBBox() {
+  // to be implemented
+  return BBoxd();
+}
+
+bool TriMeshd::containsPoint(Vec3d point) {
+  // to be implemented
+  return false;
 }
 
 void TriMeshd::normalCalc() {

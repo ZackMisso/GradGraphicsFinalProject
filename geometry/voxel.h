@@ -5,7 +5,7 @@
 #include "../math/vec3.h"
 #include "../render/renderInclude.h"
 
-class Voxelf {
+class Voxelf : public Geometryf {
 private:
   Vec3f pos;
   TriMeshf* mesh;
@@ -15,6 +15,9 @@ public:
   Voxelf(Vec3f param);
   Voxelf(Vec3f param,float r);
   ~Voxelf();
+  // geometry methods
+  virtual BBoxf getBBox();
+  virtual bool containsPoint(Vec3f point);
   // methods
   void display(RenderMode rm);
   void createMesh();
@@ -29,7 +32,7 @@ public:
   void setRadius(float param);
 };
 
-class Voxeld {
+class Voxeld : public Geometryd {
 private:
   Vec3d pos;
   TriMeshd* mesh;
@@ -39,6 +42,9 @@ public:
   Voxeld(Vec3d param);
   Voxeld(Vec3d param,double r);
   ~Voxeld();
+  // geometry methods
+  virtual BBoxd getBBox();
+  virtual bool containsPoint(Vec3d point);
   // methods
   void display(RenderMode rm);
   void createMesh();

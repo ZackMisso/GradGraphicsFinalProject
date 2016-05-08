@@ -28,6 +28,16 @@ Voxelf::~Voxelf() {
   delete mesh;
 }
 
+BBoxf Voxelf::getBBox() {
+  // to be implemented
+  return BBoxf();
+}
+
+bool Voxelf::containsPoint(Vec3f point) {
+  // to be implemented
+  return false;
+}
+
 void Voxelf::createMesh() {
   Array<Vertexf*>* verts = new Array<Vertexf*>();
   verts->add(new Vertexf(Vec3f(pos[0]+radius,pos[1]+radius,pos[2]+radius))); // 0
@@ -102,6 +112,16 @@ Voxeld::Voxeld(Vec3d param,double r) {
 
 Voxeld::~Voxeld() {
   delete mesh;
+}
+
+BBoxd Voxeld::getBBox() {
+  // to be implemented
+  return BBoxd();
+}
+
+bool Voxeld::containsPoint(Vec3d point) {
+  // to be implemented
+  return false;
 }
 
 void Voxeld::createMesh() {
