@@ -23,12 +23,7 @@ void FrameIOView::keyboard(int key,int scancode,int action,int mods) {
     // read in the pixel data, TGA's pixels are BGR aligned
     glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, pixels);
 
-    for (int y = 0; y < height; ++y) {
-    	for (int x = 0; x < width; ++x) {
-    		unsigned char* rgb = pixels + 3 * (y * width + x);
-        // TODO: write the pixels to PNG somehow...
-    	}
-    }
+    writeBMP("test.bmp", width, height, pixels);
   }
 }
 
