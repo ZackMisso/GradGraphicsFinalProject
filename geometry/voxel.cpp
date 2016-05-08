@@ -77,6 +77,11 @@ void Voxelf::setPos(Vec3f param) { pos = param; }
 void Voxelf::setMesh(TriMeshf* param) { mesh = param; }
 void Voxelf::setRadius(float param) { radius = param; }
 
+std::ostream & operator<<(std::ostream& os, const Voxelf& v) {
+  Vec3f pos = v.getPos();
+  return os << pos[0] << "," << pos[1] << "," << pos[2] << ":" << v.getRadius();
+}
+
 ///////////////////////////////// DOUBLE VERSION ////////////////////////////////////
 
 Voxeld::Voxeld() {
@@ -152,3 +157,8 @@ double Voxeld::getRadius() { return radius; }
 void Voxeld::setPos(Vec3d param) { pos = param; }
 void Voxeld::setMesh(TriMeshd* param) { mesh = param; }
 void Voxeld::setRadius(double param) { radius = param; }
+
+std::ostream & operator<<(std::ostream& os, const Voxeld& v) {
+  Vec3d pos = v.getPos();
+  return os << v[0] << "," << v[1] << "," << v[2]
+}

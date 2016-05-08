@@ -5,6 +5,7 @@
 #include "../geometry/voxelizer.h"
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 void VoxelizeView::initialize() {
@@ -82,16 +83,28 @@ void VoxelizeView::display() {
     RenderMode rm;
     if(wireframe)
       rm = WIREFRAME;
+
     else
       rm = SOLID;
+    static int frame = 0;
+    char buff[15];
+    sprintf(buff, "frame%03d.vox", frame++);
+    ofstream file(buff);
+    file << "f " << numVox << endl;
     for(int i=0;i<numVox;i++) {
       glColor3f(1.0f/((float)numVox)*((float)(i+1)),0.0f,0.0f);
       //glColor3f(1.0f,0.0f,0.0f);
       voxelMesh->get(i)->display(rm);
+      file << voxelMesh << endl;
     }
+    file.close();
     glDisable(GL_CULL_FACE);
   }
 
 
+  int numVox = voxelMesh->getSize();
+  for(int i = 0; i < numVox; i++) {
+    
+  }
   // do draw stuffs
 }
