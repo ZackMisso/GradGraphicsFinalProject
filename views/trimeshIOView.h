@@ -6,7 +6,7 @@
 
 class TrimeshIOView : public View {
 private:
-  TriMesh* trimesh;
+  TriMeshf* trimesh;
 public:
   virtual void initialize();
   virtual void deInitialize();

@@ -10,6 +10,16 @@ Spheref::Spheref(Vec3f p,float r) {
   radius = r;
 }
 
+BBoxf Spheref::getBBox() {
+  // to be implemented
+  return BBoxf();
+}
+
+bool Spheref::containsPoint(Vec3f point) {
+  Vec3f dist = position-point;
+  return dist.mag() <= radius;
+}
+
 Vec3f Spheref::getPosition() { return position; }
 float Spheref::getRadius() { return radius; }
 
@@ -26,6 +36,16 @@ Sphered::Sphered() {
 Sphered::Sphered(Vec3d p,double r) {
   position = p;
   radius = r;
+}
+
+BBoxd Sphered::getBBox() {
+  // to be implemented
+  return BBoxd();
+}
+
+bool Sphered::containsPoint(Vec3d point) {
+  Vec3d dist = position-point;
+  return dist.mag() <= radius;
 }
 
 Vec3d Sphered::getPosition() { return position; }

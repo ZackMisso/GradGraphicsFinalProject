@@ -14,6 +14,16 @@ Trif::Trif(int one,int two,int three) {
   norm = Vec3f();
 }
 
+BBoxf Trif::getBBox() {
+  // to be implemented
+  return BBoxf();
+}
+
+bool Trif::containsPoint(Vec3f point) {
+  // to be implemented
+  return false;
+}
+
 void Trif::calculateNorm(Array<Vertexf*>* verts) {
   Vec3f a = verts->get(ind[0])->getPos();
   Vec3f b = verts->get(ind[1])->getPos();
@@ -43,6 +53,16 @@ Trid::Trid(int one,int two,int three) {
   ind[1] = two;
   ind[2] = three;
   norm = Vec3d();
+}
+
+BBoxd Trid::getBBox() {
+  // to be implemented
+  return BBoxd();
+}
+
+bool Trid::containsPoint(Vec3d point) {
+  // to be implemented
+  return false;
 }
 
 void Trid::calculateNorm(Array<Vertexd*>* verts) {

@@ -24,7 +24,7 @@ void CollisionMethods::destroy() {
     delete instance;
 }
 
-bool CollisionMethods::bboxOnbbox(BBoxf one,BBoxf two) {
+bool CollisionMethods::bboxOnbbox(BBoxf one,BBoxf two,float* pen,Vec3f* norm) {
   if(one.getPosition()[0] > two.getPosition()[0] + two.getDimension()[0])
     return false;
   if(one.getPosition()[1] > two.getPosition()[1] + two.getDimension()[1])
@@ -37,10 +37,11 @@ bool CollisionMethods::bboxOnbbox(BBoxf one,BBoxf two) {
     return false;
   if(one.getPosition()[2] + one.getDimension()[2] < two.getPosition()[2])
     return false;
+  // ToDo :: Calculate the penetration and normal
   return true;
 }
 
-bool CollisionMethods::bboxOnbbox(BBoxd one,BBoxd two) {
+bool CollisionMethods::bboxOnbbox(BBoxd one,BBoxd two,double* pen,Vec3d* norm) {
   if(one.getPosition()[0] > two.getPosition()[0] + two.getDimension()[0])
     return false;
   if(one.getPosition()[1] > two.getPosition()[1] + two.getDimension()[1])
@@ -53,22 +54,25 @@ bool CollisionMethods::bboxOnbbox(BBoxd one,BBoxd two) {
     return false;
   if(one.getPosition()[2] + one.getDimension()[2] < two.getPosition()[2])
     return false;
+  // ToDo :: Calculate the penetration and normal
   return true;
 }
 
-bool CollisionMethods::sphereOnsphere(Spheref one,Spheref two) {
+bool CollisionMethods::sphereOnsphere(Spheref one,Spheref two,float* pen,Vec3f* norm) {
   Vec3f dif = one.getPosition() - two.getPosition();
   float dist = dif.mag();
+  // ToDo :: Calculate the penetration and normal
   return dist < one.getRadius() + two.getRadius();
 }
 
-bool CollisionMethods::sphereOnsphere(Sphered one,Sphered two) {
+bool CollisionMethods::sphereOnsphere(Sphered one,Sphered two,double* pen,Vec3d* norm) {
   Vec3d dif = one.getPosition() - two.getPosition();
   double dist = dif.mag();
+  // ToDo :: Calculate the penetration and normal
   return dist < one.getRadius() + two.getRadius();
 }
 
-bool CollisionMethods::bboxOnsphere(BBoxf one,Spheref two) {
+bool CollisionMethods::bboxOnsphere(BBoxf one,Spheref two,float* pen,Vec3f* norm) {
   float dmin = 0.0f;
 
   Vec3f center = two.getPosition();
@@ -89,11 +93,11 @@ bool CollisionMethods::bboxOnsphere(BBoxf one,Spheref two) {
     dmin += (center[2]-bmin[2]) * (center[2]-bmin[2]);
   else if(center[2] > bmax[2])
     dmin += (center[2]-bmax[2]) * (center[2]-bmax[2]);
-
+  // ToDo :: Calculate the penetration and normal
   return dmin <= two.getRadius() * two.getRadius();
 }
 
-bool CollisionMethods::bboxOnsphere(BBoxd one,Sphered two) {
+bool CollisionMethods::bboxOnsphere(BBoxd one,Sphered two,double* pen,Vec3d* norm) {
   double dmin = 0.0f;
 
   Vec3d center = two.getPosition();
@@ -114,6 +118,6 @@ bool CollisionMethods::bboxOnsphere(BBoxd one,Sphered two) {
     dmin += (center[2]-bmin[2]) * (center[2]-bmin[2]);
   else if(center[2] > bmax[2])
     dmin += (center[2]-bmax[2]) * (center[2]-bmax[2]);
-
+  // ToDo :: Calculate the penetration and normal
   return dmin <= two.getRadius() * two.getRadius();
 }
