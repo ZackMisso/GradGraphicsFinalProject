@@ -27,7 +27,7 @@ public:
   void setHeight(float param);
 };
 
-class Cylinderd : public Geometryd{
+class Cylinderd : public Geometryd {
 private:
   Vec3d position; // position of base
   double radius;

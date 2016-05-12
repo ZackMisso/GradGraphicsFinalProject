@@ -13,8 +13,10 @@ Springf::Springf(void* one,void* two) {
   twoRef = two;
   springConstant = 0.0f;
   breakForce = 100.0f;
+  dampConstant = 0.05f;
   currentPotential = Vec3f();
   currentForce = Vec3f();
+  currentDampForce = Vec3f();
   PhysicsObjectf* oneRefP = (PhysicsObjectf*)one;
   PhysicsObjectf* twoRefP = (PhysicsObjectf*)two;
   firstRestPosition = oneRefP->getPosition();
@@ -33,6 +35,8 @@ Springf::Springf(int param,int param2) {
   twoRef = 0x0;
   springConstant = 0.0f;
   breakForce = 10.0f;
+  dampConstant = 0.05f;
+  currentPotential = Vec3f();
   currentPotential = Vec3f();
   currentForce = Vec3f();
   currentRestPosition = Vec3f();
@@ -65,10 +69,10 @@ void Springf::calculatePeriPotential() {
 // this method assumes calculateCurrentRestPositon was called first
 void Springf::calculateSpringPotential() {
   // idk if that is the right order or not
-  Vec3f dPos = currentRestPosition - secondPosition;
-  currentForce[0] = springConstant * dPos[0] * dPos[0] * 0.5f;
-  currentForce[1] = springConstant * dPos[1] * dPos[1] * 0.5f;
-  currentForce[2] = springConstant * dPos[2] * dPos[2] * 0.5f;
+  Vec3f dPos = currentRestPosition - (secondPosition - firstPosition);
+  currentPotential[0] = springConstant * dPos[0] * dPos[0] * 0.5f;
+  currentPotential[1] = springConstant * dPos[1] * dPos[1] * 0.5f;
+  currentPotential[2] = springConstant * dPos[2] * dPos[2] * 0.5f;
 }
 
 void Springf::calculateForce() {
@@ -83,12 +87,14 @@ void Springf::calculateForce() {
 void Springf::calculateSpringForce() {
   // displacement from rest position.
   // idk if that is the right order or not
-  Vec3f dPos = currentRestPosition - secondPosition;
-  cout << "SecondPosition: ";
-  secondPosition.debug();
+  Vec3f dPos = currentRestPosition - (secondPosition - firstPosition);
+  //cout << "DPos: ";
+  //dPos.debug();
   currentForce[0] = springConstant * dPos[0];
   currentForce[1] = springConstant * dPos[1];
   currentForce[2] = springConstant * dPos[2];
+  //cout << "MainCurrentForce: ";
+  //currentForce.debug();
 }
 
 // this method assumes calculateCurrentRestPositon was called first
@@ -105,8 +111,8 @@ void Springf::calculateCurrentRestPosition() {
   currentRestPosition[0] = diff[0] * restLength;
   currentRestPosition[1] = diff[1] * restLength;
   currentRestPosition[2] = diff[2] * restLength;
-  cout << "Current Rest Position: ";
-  currentRestPosition.debug();
+  //cout << "Current Rest Position: ";
+  //currentRestPosition.debug();
 }
 
 void Springf::setCurrentPositions() {
@@ -117,8 +123,8 @@ void Springf::setCurrentPositions() {
 }
 
 Vec3f Springf::getForceForObject(void* obj) {
-  cout << "CurrentForce: ";
-  currentForce.debug();
+  //cout << "CurrentForce: ";
+  //currentForce.debug();
   if(obj != oneRef) {
     return currentForce;
   } else {
@@ -151,11 +157,13 @@ void* Springf::getTwoRef() { return twoRef; }
 float Springf::getRestLength() { return restLength; }
 float Springf::getSpringConstant() { return springConstant; }
 float Springf::getBreakForce() { return breakForce; }
+float Springf::getDampConstant() { return dampConstant; }
 Vec3f Springf::getFirstRestPosition() { return firstRestPosition; }
 Vec3f Springf::getSecondRestPosition() { return secondRestPosition; }
 Vec3f Springf::getCurrentPotential() { return currentPotential; }
 Vec3f Springf::getCurrentForce() { return currentForce; }
 Vec3f Springf::getCurrentRestPosition() { return currentRestPosition; }
+Vec3f Springf::getCurrentDampForce() { return currentDampForce; }
 bool Springf::getIsPeriSpring() { return isPeriSpring; }
 
 void Springf::setOneID(int param) { oneID = param; }
@@ -165,25 +173,30 @@ void Springf::setTwoRef(void* param) { twoRef = param; }
 void Springf::setRestLength(float param) { restLength = param; }
 void Springf::setSpringConstant(float param) { springConstant = param; }
 void Springf::setBreakForce(float param) { breakForce = param; }
+void Springf::setDampConstant(float param) { dampConstant = param; }
 void Springf::setFirstRestPosition(Vec3f param) { firstRestPosition = param; }
 void Springf::setSecondRestPosition(Vec3f param) { secondRestPosition = param; }
 void Springf::setCurrentPotential(Vec3f param) { currentPotential = param; }
 void Springf::setCurrentForce(Vec3f param) { currentForce = param; }
 void Springf::setCurrentRestPosition(Vec3f param) { currentRestPosition = param; }
+void Springf::setCurrentDampForce(Vec3f param) { currentDampForce = param; }
 void Springf::setIsPeriSpring(bool param) { isPeriSpring = param; }
 
 //////////////////////// DOUBLE VERSION //////////////////////////
 
 Springd::Springd(void* one,void* two) {
-  oneID = -1;cout << "CurrentForce: ";
-  currentForce.debug();
+  oneID = -1;
+  //cout << "CurrentForce: ";
+  //currentForce.debug();
   twoID = -1;
   oneRef = one;
   twoRef = two;
   springConstant = 0.0;
   breakForce = 100.0;
+  dampConstant = 0.05;
   currentPotential = Vec3d();
   currentForce = Vec3d();
+  currentDampForce = Vec3d();
   PhysicsObjectd* oneRefP = (PhysicsObjectd*)one;
   PhysicsObjectd* twoRefP = (PhysicsObjectd*)two;
   firstRestPosition = oneRefP->getPosition();
@@ -208,6 +221,8 @@ Springd::Springd(int param,int param2) {
   isPeriSpring = false;
   springConstant = 0.0;
   breakForce = 0.0;
+  dampConstant = 0.05;
+  currentDampForce = Vec3d();
 }
 
 Springd::~Springd() {
@@ -234,10 +249,10 @@ void Springd::calculatePeriPotential() {
 // this method assumes calculateCurrentRestPositon was called first
 void Springd::calculateSpringPotential() {
   // idk if that is the right order or not
-  Vec3d dPos = currentRestPosition - secondPosition;
-  currentForce[0] = springConstant * dPos[0] * dPos[0] * 0.5;
-  currentForce[1] = springConstant * dPos[1] * dPos[1] * 0.5;
-  currentForce[2] = springConstant * dPos[2] * dPos[2] * 0.5;
+  Vec3d dPos = currentRestPosition - (secondPosition - firstPosition);
+  currentPotential[0] = springConstant * dPos[0] * dPos[0] * 0.5f;
+  currentPotential[1] = springConstant * dPos[1] * dPos[1] * 0.5f;
+  currentPotential[2] = springConstant * dPos[2] * dPos[2] * 0.5f;
 }
 
 // this method assumes calculateCurrentRestPositon was called first
@@ -253,7 +268,7 @@ void Springd::calculateForce() {
 void Springd::calculateSpringForce() {
   // displacement from rest position.
   // idk if that is the right order or not
-  Vec3d dPos = currentRestPosition - secondPosition;
+  Vec3d dPos = currentRestPosition - (secondPosition - firstPosition);
   currentForce[0] = springConstant * dPos[0];
   currentForce[1] = springConstant * dPos[1];
   currentForce[2] = springConstant * dPos[2];
@@ -315,11 +330,13 @@ void* Springd::getTwoRef() { return twoRef; }
 double Springd::getRestLength() { return restLength; }
 double Springd::getSpringConstant() { return springConstant; }
 double Springd::getBreakForce() { return breakForce; }
+double Springd::getDampConstant() { return dampConstant; }
 Vec3d Springd::getFirstRestPosition() { return firstRestPosition; }
 Vec3d Springd::getSecondRestPosition() { return secondRestPosition; }
 Vec3d Springd::getCurrentPotential() { return currentPotential; }
 Vec3d Springd::getCurrentForce() { return currentForce; }
 Vec3d Springd::getCurrentRestPosition() { return currentRestPosition; }
+Vec3d Springd::getCurrentDampForce() { return currentDampForce; }
 bool Springd::getIsPeriSpring() { return isPeriSpring; }
 
 void Springd::setOneID(int param) { oneID = param; }
@@ -329,9 +346,11 @@ void Springd::setTwoRef(void* param) { twoRef = param; }
 void Springd::setRestLength(double param) { restLength = param; }
 void Springd::setSpringConstant(double param) { springConstant = param; }
 void Springd::setBreakForce(double param) { breakForce = param; }
+void Springd::setDampConstant(double param) { dampConstant = param; }
 void Springd::setFirstRestPosition(Vec3d param) { firstRestPosition = param; }
 void Springd::setSecondRestPosition(Vec3d param) { secondRestPosition = param; }
 void Springd::setCurrentPotential(Vec3d param) { currentPotential = param; }
 void Springd::setCurrentForce(Vec3d param) { currentForce = param; }
 void Springd::setCurrentRestPosition(Vec3d param) { currentRestPosition = param; }
+void Springd::setCurrentDampForce(Vec3d param) { currentDampForce = param; }
 void Springd::setIsPeriSpring(bool param) { isPeriSpring = param; }

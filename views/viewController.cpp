@@ -8,6 +8,7 @@
 #include "collisionTestView.h"
 #include "finalDemoView.h"
 #include "springTestView.h"
+#include "physicsEngineTestView.h"
 
 ViewController* ViewController::instance = 0x0;
 
@@ -36,6 +37,7 @@ void ViewController::createViews() {
   views->add(new CollisionTestView());
   views->add(new FinalDemoView());
   views->add(new SpringTestView());
+  views->add(new PhysicsEngineTestView());
   // create more in the order they appear in the enum
 }
 

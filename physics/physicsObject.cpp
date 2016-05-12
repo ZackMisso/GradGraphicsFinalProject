@@ -45,8 +45,15 @@ Vec3f PhysicsObjectf::accumulateForces(float dt) {
     totalForce = totalForce + *(externalForces->get(i));
   }
   for(int i=0;i<collisionForces->getSize();i++) {
-    totalForce = totalForce + collisionForces->get(i)->getForceForObject((void*)this);
+    Vec3f force = collisionForces->get(i)->getForceForObject((void*)this);
+    // spring dampening
+    float dampC = collisionForces->get(i)->getDampConstant();
+    force = force - Vec3f(dampC*velocity[0],dampC*velocity[1],dampC*velocity[2]);
+    // acumulate dampened force
+    totalForce = totalForce + force;
   }
+  //cout << "Total Force: ";
+  //totalForce.debug();
   return totalForce;
 }
 

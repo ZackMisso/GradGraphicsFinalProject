@@ -7,6 +7,7 @@ void SpringTestView::initialize() {
   two->setPosition(Vec3f(0.2f,0.0f,0.0f));
   spring = new Springf((void*)one,(void*)two);
   spring->setSpringConstant(1.0f);
+  spring->setDampConstant(0.1f);
   one->getCollisionForces()->add(spring);
   two->getCollisionForces()->add(spring);
 }
@@ -53,5 +54,5 @@ void SpringTestView::doPhysicsStep(float dt) {
   spring->calculateForce();
   spring->calculatePotential();
   one->performPhysicsStep(dt);
-  //two->performPhysicsStep(dt);
+  two->performPhysicsStep(dt);
 }
