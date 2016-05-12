@@ -6,11 +6,11 @@ FrameWriter::FrameWriter() { }
 
 FrameWriter::~FrameWriter() { }
 
-void FrameWriter::writeFramef(PhysicsWorld* ps) {
+void FrameWriter::writeFramef(PhysicsWorld* ps,string fileName) {
   // to be implemented
 }
 
-void FrameWriter::writeFramed(PhysicsWorld* ps) {
+void FrameWriter::writeFramed(PhysicsWorld* ps,string fileName) {
   // to be implemented
 }
 

@@ -116,6 +116,44 @@ void PhysicsWorld::addPeriSystemToWorld(PeriSystemd* peri) {
   }
 }
 
+void PhysicsWorld::clearWorld() {
+  if(usingSeparateLists) {
+    while(allObjectsF->getSize())
+      allObjectsF->removeLast();
+    while(allObjectsD->getSize())
+      allObjectsD->removeLast();
+    while(physicsBodiesF->getSize())
+      delete physicsBodiesF->removeLast();
+    while(physicsBodiesD->getSize())
+      delete physicsBodiesD->removeLast();
+    while(physicsObjectsF->getSize())
+      delete physicsObjectsF->removeLast();
+    while(physicsObjectsD->getSize())
+      delete physicsObjectsD->removeLast();
+    while(periSystemsF->getSize())
+      delete periSystemsF->removeLast();
+    while(periSystemsD->getSize())
+      delete periSystemsD->removeLast();
+  } else {
+    while(physicsBodiesF->getSize())
+      physicsBodiesF->removeLast();
+    while(physicsBodiesD->getSize())
+      physicsBodiesD->removeLast();
+    while(physicsObjectsF->getSize())
+      physicsObjectsF->removeLast();
+    while(physicsObjectsD->getSize())
+      physicsObjectsD->removeLast();
+    while(periSystemsF->getSize())
+      periSystemsF->removeLast();
+    while(periSystemsD->getSize())
+      periSystemsD->removeLast();
+    while(allObjectsF->getSize())
+      delete allObjectsF->removeLast();
+    while(allObjectsD->getSize())
+      delete allObjectsD->removeLast();
+  }
+}
+
 Array<PhysicsObjectf*>* PhysicsWorld::getAllObjectsF() { return allObjectsF; }
 Array<PhysicsObjectd*>* PhysicsWorld::getAllObjectsD() { return allObjectsD; }
 Array<PhysicsBodyf*>* PhysicsWorld::getPhysicsBodiesF() { return physicsBodiesF; }

@@ -6,11 +6,11 @@ SimulationStateWriter::SimulationStateWriter() { }
 
 SimulationStateWriter::~SimulationStateWriter() { }
 
-void SimulationStateWriter::writeSimulationStatef(PhysicsWorld* world) {
+void SimulationStateWriter::writeSimulationStatef(PhysicsWorld* world,string fileName) {
   // to be implemented
 }
 
-void SimulationStateWriter::writeSimulationStated(PhysicsWorld* world) {
+void SimulationStateWriter::writeSimulationStated(PhysicsWorld* world,string fileName) {
   // to be implemented
 }
 

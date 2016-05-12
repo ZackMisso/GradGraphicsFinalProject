@@ -29,6 +29,8 @@ public:
   void addPhysicsObjectToWorld(PhysicsObjectd* object);
   void addPeriSystemToWorld(PeriSystemf* peri);
   void addPeriSystemToWorld(PeriSystemd* peri);
+  // methods
+  void clearWorld();
   // getter methods
   Array<PhysicsObjectf*>* getAllObjectsF();
   Array<PhysicsObjectd*>* getAllObjectsD();

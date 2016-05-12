@@ -6,6 +6,7 @@
 #include "../physics/physicsWorld.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -21,8 +22,8 @@ private:
   void writePhysicsBody(PhysicsBodyd* body,ofstream& file);
 public:
   ~SimulationStateWriter();
-  void writeSimulationStatef(PhysicsWorld* world);
-  void writeSimulationStated(PhysicsWorld* world);
+  void writeSimulationStatef(PhysicsWorld* world,string fileName);
+  void writeSimulationStated(PhysicsWorld* world,string fileName);
   // singleton methods
   static SimulationStateWriter* getInstance();
   static void initialize();

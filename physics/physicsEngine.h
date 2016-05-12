@@ -17,6 +17,9 @@ private:
   PhysicsEngine();
 public:
   ~PhysicsEngine();
+  // physics methods
+  void simulatePhysicsStepf(float step);
+  void simulatePhysicsStepd(double step);
   // singleton methods
   static PhysicsEngine* getInstance();
   static void initialize();
@@ -24,9 +27,11 @@ public:
   // getter methods
   BroadPhase* getBroadPhase();
   NarrowPhase* getNarrowPhase();
+  PhysicsWorld* getWorld();
   // setter methods
   void setBroadPhase(BroadPhase* param);
   void setNarrowPhase(NarrowPhase* param);
+  void setWorld(PhysicsWorld* param);
 };
 
 #endif

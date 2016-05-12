@@ -6,6 +6,7 @@
 #include "../physics/physicsWorld.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -21,8 +22,8 @@ private:
   void writePhysicsBody(PhysicsBodyd* body,ofstream& file);
 public:
   ~FrameWriter();
-  void writeFramef(PhysicsWorld* world);
-  void writeFramed(PhysicsWorld* world);
+  void writeFramef(PhysicsWorld* world,string fileName);
+  void writeFramed(PhysicsWorld* world,string fileName);
   // singleton methods
   static FrameWriter* getInstance();
   static void initialize();
