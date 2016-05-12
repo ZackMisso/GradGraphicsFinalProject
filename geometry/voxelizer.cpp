@@ -44,6 +44,16 @@ Array<Voxelf*>* Voxelizer::voxelizeBBox(BBoxf bbox,float vRad) {
   return voxelMesh;
 }
 
+Array<Voxelf*>* Voxelizer::voxelizeSphere(Spheref sphere,float vRad) {
+  // to be implemented
+  return 0x0;
+}
+
+Array<Voxelf*>* Voxelizer::voxelizeCylinder(Cylinderf cyl,float vRad) {
+  // to be implemented
+  return 0x0;
+}
+
 Array<Voxelf*>* Voxelizer::voxelizeTriMesh(TriMeshf* mesh,float vRad) {
   // to be implemented
   return 0x0;
@@ -55,6 +65,16 @@ Array<Voxeld*>* Voxelizer::voxelizeCube(Vec3d pos,double side,double vRad) {
 }
 
 Array<Voxeld*>* Voxelizer::voxelizeBBox(BBoxd bbox,double vRad) {
+  // to be implemented
+  return 0x0;
+}
+
+Array<Voxeld*>* Voxelizer::voxelizeSphere(Sphered sphere,double vRad) {
+  // to be implemented
+  return 0x0;
+}
+
+Array<Voxeld*>* Voxelizer::voxelizeCylinder(Cylinderd cyl,double vRad) {
   // to be implemented
   return 0x0;
 }

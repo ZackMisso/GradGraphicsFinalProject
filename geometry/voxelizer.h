@@ -7,6 +7,8 @@
 #include "voxel.h"
 #include "bbox.h"
 #include "trimesh.h"
+#include "sphere.h"
+#include "cylinder.h"
 
 class Voxelizer {
 private:
@@ -21,9 +23,13 @@ public:
   // voxelizing methods
   Array<Voxelf*>* voxelizeCube(Vec3f pos,float side,float vRad);
   Array<Voxelf*>* voxelizeBBox(BBoxf bbox,float vRad);
+  Array<Voxelf*>* voxelizeSphere(Spheref sphere,float vRad);
+  Array<Voxelf*>* voxelizeCylinder(Cylinderf cyl, float vRad);
   Array<Voxelf*>* voxelizeTriMesh(TriMeshf* mesh,float vRad);
   Array<Voxeld*>* voxelizeCube(Vec3d pos,double side,double vRad);
   Array<Voxeld*>* voxelizeBBox(BBoxd bbox,double vRad);
+  Array<Voxeld*>* voxelizeSphere(Sphered sphere,double vRad);
+  Array<Voxeld*>* voxelizeCylinder(Cylinderd cyl, double vRad);
   Array<Voxeld*>* voxelizeTriMesh(TriMeshd* mesh,double vRad);
 };
 

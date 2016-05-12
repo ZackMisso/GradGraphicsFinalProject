@@ -20,7 +20,9 @@ public:
   void drawCube(RenderMode rm);
   void drawCube(RenderMode rm,Vec3f pos,float dim);
   void drawCube(RenderMode rm,Vec3d pos,double dim);
+  // TODO :: Add methods for BBox
   // TODO :: Add methods for spheres
+  // TODO :: Add methods for cylinders
 };
 
 #endif
