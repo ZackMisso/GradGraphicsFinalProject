@@ -50,16 +50,18 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
     pm->setOriginalPosition(pm->getPosition());
     pm->setVolume(8.0f*pointMassR*pointMassR*pointMassR);
     pm->setMass(pointMassM);
+    pm->setGeometry(voxels->get(i));
     pointMasses->add(pm);
   }
   // create springs - Very Expensive but only done at the beginning
+  float sqrH = pointMassH*pointMassH;
   for(int i=0;i<pointMasses->getSize();i++) {
     PointMassf* pm = pointMasses->get(i);
     for(int j=0;j<pointMasses->getSize();j++) {
       if(i!=j) {
         PointMassf* two = pointMasses->get(j);
         // check if the two pointmasses are in the same neighborhood
-        if(pm->getDistTo(two) <= pointMassH) {
+        if(pm->getSqrDistTo(two) <= sqrH) {
           bool exists = false;
           // make sure their connection doesnt already exist
           for(int k=0;k<springs->getSize();k++) {
@@ -74,6 +76,7 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
             connection->setRestLength(pm->getDistTo(two));
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
+            connection->setIsPeriSpring(true);
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);
@@ -151,16 +154,18 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
     pm->setOriginalPosition(pm->getPosition());
     pm->setVolume(8.0*pointMassR*pointMassR*pointMassR);
     pm->setMass(pointMassM);
+    pm->setGeometry(voxels->get(i));
     pointMasses->add(pm);
   }
   // create springs - Very Expensive but only done at the beginning
+  double sqrH = pointMassH*pointMassH;
   for(int i=0;i<pointMasses->getSize();i++) {
     PointMassd* pm = pointMasses->get(i);
     for(int j=0;j<pointMasses->getSize();j++) {
       if(i!=j) {
         PointMassd* two = pointMasses->get(j);
         // check if the two pointmasses are in the same neighborhood
-        if(pm->getDistTo(two) <= pointMassH) {
+        if(pm->getSqrDistTo(two) <= sqrH) {
           bool exists = false;
           // make sure their connection doesnt already exist
           for(int k=0;k<springs->getSize();k++) {
@@ -175,6 +180,7 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
             connection->setRestLength(pm->getDistTo(two));
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
+            connection->setIsPeriSpring(true);
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);

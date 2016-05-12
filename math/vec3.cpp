@@ -1,4 +1,5 @@
 #include "vec3.h"
+#include <tgmath.h>
 
 Vec3f::Vec3f() {
   v[0] = 0.0f;
@@ -13,12 +14,20 @@ Vec3f::Vec3f(float x,float y,float z) {
 }
 
 void Vec3f::normalize() {
-  // to be implemented
+  float mag = sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
+  if(mag!=0.0f) {
+    v[0]/=mag;
+    v[1]/=mag;
+    v[2]/=mag;
+  }
 }
 
 float Vec3f::mag() {
-  // to be implemented
-  return 0.0f;
+  return sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
+}
+
+float Vec3f::sqrMag() {
+  return v[0]*v[0]+v[1]*v[1]+v[2]*v[2];
 }
 
 Vec3f Vec3f::operator+(Vec3f other) {
@@ -62,12 +71,20 @@ Vec3d::Vec3d(double x,double y,double z) {
 }
 
 void Vec3d::normalize() {
-  // to be implemented
+  double mag = sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
+  if(mag!=0.0) {
+    v[0]/=mag;
+    v[1]/=mag;
+    v[2]/=mag;
+  }
 }
 
 double Vec3d::mag() {
-  // to be implemented
-  return 0.0;
+  return sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
+}
+
+double Vec3d::sqrMag() {
+  return v[0]*v[0]+v[1]*v[1]+v[2]*v[2];
 }
 
 Vec3d Vec3d::operator+(Vec3d other) {

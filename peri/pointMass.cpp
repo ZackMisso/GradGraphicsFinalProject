@@ -24,6 +24,11 @@ float PointMassf::getDistTo(PointMassf* other) {
   return dist.mag();
 }
 
+float PointMassf::getSqrDistTo(PointMassf* other) {
+  Vec3f dist = position - other->position;
+  return dist.sqrMag();
+}
+
 Vec3f PointMassf::accumulateForces() {
   // to be implemented
   return Vec3f();
@@ -74,6 +79,11 @@ void PointMassd::performPhysicsStep(double dt) {
 double PointMassd::getDistTo(PointMassd* other) {
   Vec3d dist = position - other->position;
   return dist.mag();
+}
+
+double PointMassd::getSqrDistTo(PointMassd* other) {
+  Vec3d dist = position - other->position;
+  return dist.sqrMag();
 }
 
 Vec3d PointMassd::accumulateForces() {

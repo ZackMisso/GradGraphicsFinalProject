@@ -10,6 +10,7 @@ public:
   // methods
   void normalize();
   float mag();
+  float sqrMag();
   // operator overloads
   Vec3f operator+(Vec3f other); // addition
   Vec3f operator-(Vec3f other); // subtraction
@@ -27,6 +28,7 @@ public:
   // methods
   void normalize();
   double mag();
+  double sqrMag();
   // operator overloads
   Vec3d operator+(Vec3d other); // addition
   Vec3d operator-(Vec3d other); // subtraction
