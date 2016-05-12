@@ -22,8 +22,8 @@ public:
   virtual bool containsPoint(Vec3f point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(istream& file);
+  virtual void render(RenderMode rm);
   // methods
-  void display(RenderMode rm);
   void createMesh();
   void updateMesh();
   // getter methods
@@ -52,8 +52,8 @@ public:
   virtual bool containsPoint(Vec3d point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(istream& file);
+  virtual void render(RenderMode rm);
   // methods
-  void display(RenderMode rm);
   void createMesh();
   void updateMesh();
   // getter methods

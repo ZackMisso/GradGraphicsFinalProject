@@ -22,6 +22,7 @@ public:
   ~PhysicsObjectf();
   virtual void performPhysicsStep(float dt);
   virtual void eulerIntegration(float dt);
+  virtual void implicitIntegration(float dt);
   virtual Vec3f accumulateForces(float dt);
   // getter methods
   Array<Springf*>* getCollisionForces();
@@ -55,6 +56,7 @@ public:
   ~PhysicsObjectd();
   virtual void performPhysicsStep(double dt);
   virtual void eulerIntegration(double dt);
+  virtual void implicitIntegration(double dt);
   virtual Vec3d accumulateForces(double dt);
   // getter methods
   Array<Springd*>* getCollisionForces();

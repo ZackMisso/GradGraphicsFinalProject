@@ -5,7 +5,7 @@
 
 class BBoxf {
 private:
-  Vec3f position;
+  Vec3f position; // top left corner ??
   Vec3f dimension;
 public:
   BBoxf();

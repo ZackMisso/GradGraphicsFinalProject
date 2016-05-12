@@ -16,6 +16,7 @@ public:
   virtual bool containsPoint(Vec3f point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
+  virtual void render(RenderMode rm);
   // getter methods
   Vec3f getPosition();
   float getRadius();
@@ -36,6 +37,7 @@ public:
   virtual bool containsPoint(Vec3d point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
+  virtual void render(RenderMode rm);
   // getter methods
   Vec3d getPosition();
   double getRadius();

@@ -29,9 +29,17 @@ void RectPrismf::readFromFile(ifstream& file) {
   // to be implemented
 }
 
+void RectPrismf::render(RenderMode rm) {
+  // to be implemented
+}
+
 BBoxf RectPrismf::getPrism() { return prism; }
+Vec3f RectPrismf::getPosition() { return prism.getPosition(); }
+Vec3f RectPrismf::getDimension() { return prism.getDimension(); }
 
 void RectPrismf::setPrism(BBoxf param) { prism = param; }
+void RectPrismf::setPosition(Vec3f param) { prism.setPosition(param); }
+void RectPrismf::setDimension(Vec3f param) { prism.setDimension(param); }
 
 //////////////////// DOUBLE VERSION ///////////////////////
 
@@ -64,6 +72,14 @@ void RectPrismd::readFromFile(ifstream& file) {
   // to be implemented
 }
 
+void RectPrismd::render(RenderMode rm) {
+  // to be implemented
+}
+
 BBoxd RectPrismd::getPrism() { return prism; }
+Vec3d RectPrismd::getPosition() { return prism.getPosition(); }
+Vec3d RectPrismd::getDimension() { return prism.getDimension(); }
 
 void RectPrismd::setPrism(BBoxd param) { prism = param; }
+void RectPrismd::setPosition(Vec3d param) { prism.setPosition(param); }
+void RectPrismd::setDimension(Vec3d param) { prism.setDimension(param); }

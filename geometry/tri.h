@@ -18,6 +18,7 @@ public:
   virtual bool containsPoint(Vec3f point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
+  virtual void render(RenderMode rm);
   // methods
   void calculateNorm(Array<Vertexf*>* verts);
   // getter methods
@@ -36,6 +37,7 @@ public:
   virtual bool containsPoint(Vec3d point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
+  virtual void render(RenderMode rm);
   // methods
   void calculateNorm(Array<Vertexd*>* verts);
   // getter methods

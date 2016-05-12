@@ -1,7 +1,6 @@
 #include "collisionTestView.h"
 #include "../io/frameWriter.h"
 #include "../io/simulationStateWriter.h"
-#include "../geometry/rectPrism.h"
 #include <iostream>
 
 using namespace std;
@@ -9,15 +8,20 @@ using namespace std;
 void CollisionTestView::initialize() {
   one = new PhysicsObjectf();
   two = new PhysicsObjectf();
-  Vec3f onePosition = Vec3f();
-  Vec3f twoPosition = Vec3f();
-  Vec3f oneDimension = Vec3f();
-  Vec3f twoDimension = Vec3f();
-  one->setGeometry(new RectPrismf(onePosition,oneDimension));
-  two->setGeometry(new RectPrismf(twoPosition,twoDimension));
+  Vec3f onePosition = Vec3f(-0.1f,0.3f,0.0f);
+  Vec3f twoPosition = Vec3f(-0.5f,-0.3,0.0f);
+  Vec3f oneDimension = Vec3f(0.2f,0.2f,0.0f);
+  Vec3f twoDimension = Vec3f(1.0f,0.4f,0.0f);
+  onePr = new RectPrismf(onePosition,oneDimension);
+  twoPr = new RectPrismf(twoPosition,twoDimension);
+  one->setGeometry(onePr);
+  two->setGeometry(twoPr);
   one->setPosition(onePosition);
   two->setPosition(twoPosition);
+  Vec3f* grav = new Vec3f(0.0f,-2.0f,0.0f);
+  one->getExternelForces()->add(grav);
   collisionSpring = 0x0;
+  isWireFrame = false;
 }
 
 void CollisionTestView::deInitialize() {
@@ -28,7 +32,9 @@ void CollisionTestView::deInitialize() {
 }
 
 void CollisionTestView::keyboard(int key,int scancode,int action,int mods) {
-  // to be implemented
+  if(key == GLFW_KEY_W && action == GLFW_PRESS) {
+    isWireFrame = !isWireFrame;
+  }
 }
 
 void CollisionTestView::mouseClick(int button,int action,int mods) {
@@ -36,9 +42,65 @@ void CollisionTestView::mouseClick(int button,int action,int mods) {
 }
 
 void CollisionTestView::display() {
-  // to be implemented
+  doPhysicsStep(1.0f/60.0f);
+
+  glClearColor(0.0f,0.0f,0.0f,1.0f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glLoadIdentity();
+  glColor3f(1.0,0.0,0.0);
+
+  if(!isWireFrame) {
+    glBegin(GL_QUADS);
+    glVertex2f(one->getPosition()[0],one->getPosition()[1]);
+    glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]);
+    glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]-onePr->getDimension()[1]);
+    glVertex2f(one->getPosition()[0],one->getPosition()[1]-onePr->getDimension()[1]);
+
+    glVertex2f(two->getPosition()[0],two->getPosition()[1]);
+    glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]);
+    glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]-twoPr->getDimension()[1]);
+    glVertex2f(two->getPosition()[0],two->getPosition()[1]-twoPr->getDimension()[1]);
+    glEnd();
+  } else {
+    glBegin(GL_LINES);
+    glVertex2f(one->getPosition()[0],one->getPosition()[1]);
+    glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]);
+
+    glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]);
+    glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]-onePr->getDimension()[1]);
+
+    glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]-onePr->getDimension()[1]);
+    glVertex2f(one->getPosition()[0],one->getPosition()[1]-onePr->getDimension()[1]);
+
+    glVertex2f(one->getPosition()[0],one->getPosition()[1]-onePr->getDimension()[1]);
+    glVertex2f(one->getPosition()[0],one->getPosition()[1]);
+
+    glVertex2f(two->getPosition()[0],two->getPosition()[1]);
+    glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]);
+
+    glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]);
+    glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]-twoPr->getDimension()[1]);
+
+    glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]-twoPr->getDimension()[1]);
+    glVertex2f(two->getPosition()[0],two->getPosition()[1]-twoPr->getDimension()[1]);
+
+    glVertex2f(two->getPosition()[0],two->getPosition()[1]-twoPr->getDimension()[1]);
+    glVertex2f(two->getPosition()[0],two->getPosition()[1]);
+    glEnd();
+  }
+
+  glColor3f(0.0f,0.0f,1.0f);
+  if(collisionSpring)
+    collisionSpring->render();
 }
 
 void CollisionTestView::doPhysicsStep(float dt) {
+  if(collisionSpring) {
+    collisionSpring->setCurrentPositions();
+    collisionSpring->calculateCurrentRestPosition();
+    collisionSpring->calculateForce();
+    collisionSpring->calculatePotential();
+  }
+  one->performPhysicsStep(dt);
   // to be implemented
 }

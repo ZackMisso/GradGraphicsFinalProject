@@ -31,6 +31,10 @@ void Cylinderf::readFromFile(ifstream& file) {
   // to be implemented
 }
 
+void Cylinderf::render(RenderMode rm) {
+  // to be implemented
+}
+
 Vec3f Cylinderf::getPosition() { return position; }
 float Cylinderf::getRadius() { return radius; }
 float Cylinderf::getHeight() { return height; }
@@ -69,6 +73,10 @@ void Cylinderd::writeToFile(ofstream& file) {
 }
 
 void Cylinderd::readFromFile(ifstream& file) {
+  // to be implemented
+}
+
+void Cylinderd::render(RenderMode rm) {
   // to be implemented
 }
 

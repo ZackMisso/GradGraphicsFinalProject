@@ -83,7 +83,7 @@ void Voxelf::updateMesh() {
   createMesh();
 }
 
-void Voxelf::display(RenderMode rm) {
+void Voxelf::render(RenderMode rm) {
   Modeler::getInstance()->drawCube(rm,pos,radius);
 }
 
@@ -182,7 +182,7 @@ void Voxeld::updateMesh() {
   createMesh();
 }
 
-void Voxeld::display(RenderMode rm) {
+void Voxeld::render(RenderMode rm) {
   Modeler::getInstance()->drawCube(rm,pos,radius);
 }
 

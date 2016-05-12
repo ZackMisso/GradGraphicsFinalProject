@@ -26,6 +26,7 @@ Springf::Springf(void* one,void* two) {
   secondPosition = secondRestPosition;
   restLength = (firstPosition - secondPosition).mag();
   isPeriSpring = false;
+  isCollisionSpring = false;
 }
 
 Springf::Springf(int param,int param2) {
@@ -43,6 +44,7 @@ Springf::Springf(int param,int param2) {
   firstRestPosition = Vec3f();
   secondRestPosition = Vec3f();
   isPeriSpring = false;
+  isCollisionSpring = false;
 }
 
 Springf::~Springf() {
@@ -165,6 +167,7 @@ Vec3f Springf::getCurrentForce() { return currentForce; }
 Vec3f Springf::getCurrentRestPosition() { return currentRestPosition; }
 Vec3f Springf::getCurrentDampForce() { return currentDampForce; }
 bool Springf::getIsPeriSpring() { return isPeriSpring; }
+bool Springf::getIsCollisionSpring() { return isCollisionSpring; }
 
 void Springf::setOneID(int param) { oneID = param; }
 void Springf::setTwoID(int param) { twoID = param; }
@@ -181,6 +184,7 @@ void Springf::setCurrentForce(Vec3f param) { currentForce = param; }
 void Springf::setCurrentRestPosition(Vec3f param) { currentRestPosition = param; }
 void Springf::setCurrentDampForce(Vec3f param) { currentDampForce = param; }
 void Springf::setIsPeriSpring(bool param) { isPeriSpring = param; }
+void Springf::setIsCollisionSpring(bool param) { isCollisionSpring = param; }
 
 //////////////////////// DOUBLE VERSION //////////////////////////
 
@@ -206,6 +210,7 @@ Springd::Springd(void* one,void* two) {
   secondPosition = secondRestPosition;
   restLength = (firstPosition - secondPosition).mag();
   isPeriSpring = false;
+  isCollisionSpring = false;
 }
 
 Springd::Springd(int param,int param2) {
@@ -223,6 +228,7 @@ Springd::Springd(int param,int param2) {
   breakForce = 0.0;
   dampConstant = 0.05;
   currentDampForce = Vec3d();
+  isCollisionSpring = false;
 }
 
 Springd::~Springd() {
@@ -338,6 +344,7 @@ Vec3d Springd::getCurrentForce() { return currentForce; }
 Vec3d Springd::getCurrentRestPosition() { return currentRestPosition; }
 Vec3d Springd::getCurrentDampForce() { return currentDampForce; }
 bool Springd::getIsPeriSpring() { return isPeriSpring; }
+bool Springd::getIsCollisionSpring() { return isCollisionSpring; }
 
 void Springd::setOneID(int param) { oneID = param; }
 void Springd::setTwoID(int param) { twoID = param; }
@@ -354,3 +361,4 @@ void Springd::setCurrentForce(Vec3d param) { currentForce = param; }
 void Springd::setCurrentRestPosition(Vec3d param) { currentRestPosition = param; }
 void Springd::setCurrentDampForce(Vec3d param) { currentDampForce = param; }
 void Springd::setIsPeriSpring(bool param) { isPeriSpring = param; }
+void Springd::setIsCollisionSpring(bool param) { isCollisionSpring = param; }

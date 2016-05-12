@@ -26,6 +26,10 @@ void Geometryf::readFromFile(ifstream& file) {
   // to be extended
 }
 
+void Geometryf::render(RenderMode rm) {
+  // to be extended
+}
+
 ///////////////////// DOUBLE VERSION ///////////////////
 
 Geometryd::Geometryd() {
@@ -51,5 +55,9 @@ void Geometryd::writeToFile(ofstream& file) {
 }
 
 void Geometryd::readFromFile(ifstream& file) {
+  // to be extended
+}
+
+void Geometryd::render(RenderMode rm) {
   // to be extended
 }

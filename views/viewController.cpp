@@ -17,7 +17,8 @@ ViewController::ViewController() {
   currentView = 0x0;
   createViews();
   //switchToView(VOXEL_VIEW);
-  switchToView(SPRING_TEST_VIEW);
+  //switchToView(SPRING_TEST_VIEW);
+  switchToView(COLLISION_TEST_VIEW);
 }
 
 ViewController::~ViewController() {

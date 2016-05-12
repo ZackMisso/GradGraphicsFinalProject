@@ -26,11 +26,11 @@ public:
   virtual bool containsPoint(Vec3f point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
+  virtual void render(RenderMode rm);
   // methods
   void normalCalc();
   void addVertex(float *vals);
   void addTri(int *vals);
-  void render();
   // getter methods
   Array<Vertexf*>* getVerts();
   Array<Trif*>* getTris();
@@ -51,11 +51,11 @@ public:
   virtual bool containsPoint(Vec3d point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
+  virtual void render(RenderMode rm);
   // methods
   void normalCalc();
   void addVertex(float *vals);
   void addTri(int *vals);
-  void render();
   // getter methods
   Array<Vertexd*>* getVerts();
   Array<Trid*>* getTris();

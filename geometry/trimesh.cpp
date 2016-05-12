@@ -47,7 +47,7 @@ void TriMeshf::addTri(int *vals) {
   tris->add(new Trif(vals));
 }
 
-void TriMeshf::render() {
+void TriMeshf::render(RenderMode rm) {
   // to be implemented
 }
 
@@ -106,7 +106,7 @@ void TriMeshd::addTri(int *vals) {
   tris->add(new Trid(vals));
 }
 
-void TriMeshd::render() {
+void TriMeshd::render(RenderMode rm) {
   // to be implemented
 }
 

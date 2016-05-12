@@ -28,6 +28,10 @@ void Spheref::readFromFile(ifstream& file) {
   // to be implemented
 }
 
+void Spheref::render(RenderMode rm) {
+  // to be implemented
+}
+
 Vec3f Spheref::getPosition() { return position; }
 float Spheref::getRadius() { return radius; }
 
@@ -61,6 +65,10 @@ void Sphered::writeToFile(ofstream& file) {
 }
 
 void Sphered::readFromFile(ifstream& file) {
+  // to be implemented
+}
+
+void Sphered::render(RenderMode rm) {
   // to be implemented
 }
 

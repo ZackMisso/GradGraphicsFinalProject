@@ -2,6 +2,7 @@
 #define __GEOMETRY_H__
 
 #include "bbox.h"
+#include "../render/renderInclude.h"
 #include <iostream>
 #include <fstream>
 
@@ -16,6 +17,7 @@ public:
   virtual bool containsPoint(Vec3f point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
+  virtual void render(RenderMode rm);
 };
 
 class Geometryd {
@@ -27,6 +29,7 @@ public:
   virtual bool containsPoint(Vec3d point);
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
+  virtual void render(RenderMode rm);
 };
 
 #endif

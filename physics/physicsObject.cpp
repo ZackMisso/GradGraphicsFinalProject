@@ -39,6 +39,10 @@ void PhysicsObjectf::eulerIntegration(float dt) {
   velocity[2] = velocity[2] + acc[2] * dt;
 }
 
+void PhysicsObjectf::implicitIntegration(float dt) {
+  // to be implemented
+}
+
 Vec3f PhysicsObjectf::accumulateForces(float dt) {
   Vec3f totalForce = Vec3f();
   for(int i=0;i<externalForces->getSize();i++) {
@@ -101,6 +105,10 @@ void PhysicsObjectd::performPhysicsStep(double dt) {
 }
 
 void PhysicsObjectd::eulerIntegration(double dt) {
+  // to be implemented
+}
+
+void PhysicsObjectd::implicitIntegration(double dt) {
   // to be implemented
 }
 

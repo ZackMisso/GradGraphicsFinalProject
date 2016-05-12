@@ -23,6 +23,7 @@ private:
   Vec3f currentRestPosition;
   Vec3f currentDampForce;
   bool isPeriSpring;
+  bool isCollisionSpring;
 public:
   Springf(void* one,void* two);
   Springf(int param,int param2);
@@ -56,6 +57,7 @@ public:
   Vec3f getCurrentRestPosition();
   Vec3f getCurrentDampForce();
   bool getIsPeriSpring();
+  bool getIsCollisionSpring();
   // setter methods
   void setOneID(int param);
   void setTwoID(int param);
@@ -74,6 +76,7 @@ public:
   void setCurrentRestPosition(Vec3f param);
   void setCurrentDampForce(Vec3f param);
   void setIsPeriSpring(bool param);
+  void setIsCollisionSpring(bool param);
 };
 
 class Springd {
@@ -95,6 +98,7 @@ private:
   Vec3d currentRestPosition;
   Vec3d currentDampForce;
   bool isPeriSpring;
+  bool isCollisionSpring;
 public:
   Springd(void* one,void* two);
   Springd(int param,int param2);
@@ -128,6 +132,7 @@ public:
   Vec3d getCurrentRestPosition();
   Vec3d getCurrentDampForce();
   bool getIsPeriSpring();
+  bool getIsCollisionSpring();
   // setter methods
   void setOneID(int param);
   void setTwoID(int param);
@@ -146,6 +151,7 @@ public:
   void setCurrentRestPosition(Vec3d param);
   void setCurrentDampForce(Vec3d param);
   void setIsPeriSpring(bool param);
+  void setIsCollisionSpring(bool param);
 };
 
 #endif
