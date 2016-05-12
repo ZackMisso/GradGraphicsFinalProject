@@ -15,7 +15,8 @@ enum ViewID {
   FRAME_IO_VIEW,
   REPLAY_VIEW,
   COLLISION_TEST_VIEW,
-  DEMO_VIEW
+  DEMO_VIEW,
+  SPRING_TEST_VIEW
 };
 
 class ViewController {

@@ -11,6 +11,7 @@ private:
   void* oneRef;
   void* twoRef;
   float restLength;
+  float breakForce;
   float springConstant;
   Vec3f firstRestPosition;
   Vec3f secondRestPosition;
@@ -18,14 +19,20 @@ private:
   Vec3f secondPosition; // may not need
   Vec3f currentPotential;
   Vec3f currentForce;
-  //Vec3f currentRestPosition;
+  Vec3f currentRestPosition;
   bool isPeriSpring;
 public:
+  Springf(void* one,void* two);
   Springf(int param,int param2);
   ~Springf();
   void calculatePotential();
   void calculateSpringPotential();
   void calculatePeriPotential();
+  void calculateForce();
+  void calculateSpringForce();
+  void calculatePeriForce();
+  void calculateCurrentRestPositon();
+  void setCurrentPositions();
   bool isEqual(int one,int two);
   void render();
   // getter methods
@@ -35,13 +42,14 @@ public:
   void* getTwoRef();
   float getRestLength();
   float getSpringConstant();
+  float getBreakForce();
   Vec3f getFirstRestPosition();
   Vec3f getSecondRestPosition();
   Vec3f getFirstPosition();
   Vec3f getSecondPosition();
   Vec3f getCurrentPotential();
   Vec3f getCurrentForce();
-  //Vec3f getCurrentRestPosition();
+  Vec3f getCurrentRestPosition();
   bool getIsPeriSpring();
   // setter methods
   void setOneID(int param);
@@ -50,13 +58,14 @@ public:
   void setTwoRef(void* param);
   void setRestLength(float param);
   void setSpringConstant(float param);
+  void setBreakForce(float param);
   void setFirstRestPosition(Vec3f param);
   void setSecondRestPosition(Vec3f param);
   void setFirstPosition(Vec3f param);
   void setSecondPosition(Vec3f param);
   void setCurrentPotential(Vec3f param);
   void setCurrentForce(Vec3f param);
-  //void setCurrentRestPosition(Vec3f param);
+  void setCurrentRestPosition(Vec3f param);
   bool setIsPeriSpring(bool param);
 };
 
@@ -68,19 +77,27 @@ private:
   void* twoRef;
   double restLength;
   double springConstant;
+  double breakForce;
   Vec3d firstRestPosition;
   Vec3d secondRestPosition;
   Vec3d firstPosition;
   Vec3d secondPosition;
   Vec3d currentPotential;
   Vec3d currentForce;
+  Vec3d currentRestPosition;
   bool isPeriSpring;
 public:
+  Springd(void* one,void* two);
   Springd(int param,int param2);
   ~Springd();
   void calculatePotential();
   void calculateSpringPotential();
   void calculatePeriPotential();
+  void calculateForce();
+  void calculateSpringForce();
+  void calculatePeriForce();
+  void calculateCurrentRestPositon();
+  void setCurrentPositions();
   bool isEqual(int one,int two);
   void render();
   // getter methods
@@ -90,12 +107,14 @@ public:
   void* getTwoRef();
   double getRestLength();
   double getSpringConstant();
+  double getBreakForce();
   Vec3d getFirstRestPosition();
   Vec3d getSecondRestPosition();
   Vec3d getFirstPosition();
   Vec3d getSecondPosition();
   Vec3d getCurrentPotential();
   Vec3d getCurrentForce();
+  Vec3d getCurrentRestPosition();
   bool getIsPeriSpring();
   // setter methods
   void setOneID(int param);
@@ -104,12 +123,14 @@ public:
   void setTwoRef(void* param);
   void setRestLength(double param);
   void setSpringConstant(double param);
+  void setBreakForce(double param);
   void setFirstRestPosition(Vec3d param);
   void setSecondRestPosition(Vec3d param);
   void setFirstPosition(Vec3d param);
   void setSecondPosition(Vec3d param);
   void setCurrentPotential(Vec3d param);
   void setCurrentForce(Vec3d param);
+  void setCurrentRestPosition(Vec3d param);
   void setIsPeriSpring(bool param);
 };
 
