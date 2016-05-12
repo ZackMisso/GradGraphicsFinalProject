@@ -22,6 +22,8 @@ void View::display() { }
 
 void View::headless() { }
 
+void View::headlessFromFrame(int frame) { }
+
 double View::getTimeStep() { return timeStep; }
 double View::getLengthOfSimulation() { return lengthOfSimulation; }
 bool View::getDoublePercision() { return doublePercision; }

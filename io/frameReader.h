@@ -3,7 +3,8 @@
 
 // reads the contents of a scene for a specified frame
 
-#include "../physics/physicsWorld.h"
+#include "../bake/bakedSystem.h"
+#include "../dataStructures/array.h"
 #include <iostream>
 #include <fstream>
 
@@ -13,16 +14,16 @@ class FrameReader {
 private:
   static FrameReader* instance;
   FrameReader();
-  PeriSystemf* readPeriSystemf(ifstream& file);
-  PeriSystemd* readPeriSystemd(ifstream& file);
-  PhysicsObjectf* readPhysicsObjectf(ifstream& file);
-  PhysicsObjectf* readPhysicsObjectd(ifstream& file);
-  PhysicsBodyf* readPhysicsBodyf(ifstream& file);
-  PhysicsBodyd* readPhysicsBodyd(ifstream& file);
+  Array<BakedPhysicsObjectf*>* readPeriSystemf(ifstream& file);
+  Array<BakedPhysicsObjectd*>* readPeriSystemd(ifstream& file);
+  BakedPhysicsObjectf* readPhysicsObjectf(ifstream& file);
+  BakedPhysicsObjectd* readPhysicsObjectd(ifstream& file);
+  Array<BakedPhysicsObjectf*>* readPhysicsBodyf(ifstream& file);
+  Array<BakedPhysicsObjectd*>* readPhysicsBodyd(ifstream& file);
 public:
   ~FrameReader();
-  void readFramef(PhysicsWorld* world);
-  void readFramed(PhysicsWorld* world);
+  void readFramef(BakedSystem* world,string fileName);
+  void readFramed(BakedSystem* world,string fileName);
   // singleton methods
   static FrameReader* getInstance();
   static void initialize();

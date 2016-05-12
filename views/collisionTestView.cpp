@@ -76,3 +76,7 @@ void CollisionTestView::headless() {
     currentTime += getTimeStep();
   }
 }
+
+void CollisionTestView::headlessFromFrame(int frame) {
+  // to be implemented
+}

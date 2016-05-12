@@ -19,6 +19,7 @@ SRCS+= $(shell ls peri/*.cpp)
 SRCS+= $(shell ls io/*.cpp)
 SRCS+= $(shell ls physics/*.cpp)
 SRCS+= $(shell ls dataStructures/*.cpp)
+SRCS+= $(shell ls bake/*.cpp)
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
 
@@ -42,3 +43,4 @@ clean:
 	rm -f io/*.o
 	rm -f physics/*.o
 	rm -f dataStructures/*.o
+	rm -f bake/*.o

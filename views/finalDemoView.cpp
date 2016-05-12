@@ -76,3 +76,7 @@ void FinalDemoView::headless() {
     currentTime += getTimeStep();
   }
 }
+
+void FinalDemoView::headlessFromFrame(int frame) {
+  // to be implemented
+}

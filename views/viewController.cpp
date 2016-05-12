@@ -4,6 +4,9 @@
 #include "voxelizeView.h"
 #include "trimeshIOView.h"
 #include "frameIOView.h"
+#include "replayView.h"
+#include "collisionTestView.h"
+#include "finalDemoView.h"
 
 ViewController* ViewController::instance = 0x0;
 
@@ -27,6 +30,9 @@ void ViewController::createViews() {
   views->add(new VoxelizeView());
   views->add(new TrimeshIOView());
   views->add(new FrameIOView());
+  views->add(new ReplayView());
+  views->add(new CollisionTestView());
+  views->add(new FinalDemoView());
   // create more in the order they appear in the enum
 }
 

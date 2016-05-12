@@ -19,6 +19,7 @@ public:
   virtual void mouseClick(int button,int action,int mods);
   virtual void display();
   virtual void headless();
+  virtual void headlessFromFrame(int frame);
 };
 
 #endif

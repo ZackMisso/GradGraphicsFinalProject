@@ -7,7 +7,16 @@
 #include "../dataStructures/array.h"
 #include "view.h"
 
-enum ViewID {TEST_VIEW=0,PERI_VIEW,VOXEL_VIEW,TRIMESH_IO_VIEW,FRAME_IO_VIEW};
+enum ViewID {
+  TEST_VIEW=0,
+  PERI_VIEW,
+  VOXEL_VIEW,
+  TRIMESH_IO_VIEW,
+  FRAME_IO_VIEW,
+  REPLAY_VIEW,
+  COLLISION_TEST_VIEW,
+  DEMO_VIEW
+};
 
 class ViewController {
 private:
