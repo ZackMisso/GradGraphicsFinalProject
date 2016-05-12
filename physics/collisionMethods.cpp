@@ -1,4 +1,7 @@
 #include "collisionMethods.h"
+#include <iostream>
+
+using namespace std;
 
 CollisionMethods* CollisionMethods::instance = 0x0;
 
@@ -25,18 +28,23 @@ void CollisionMethods::destroy() {
 }
 
 bool CollisionMethods::bboxOnbbox(BBoxf one,BBoxf two,float* pen,Vec3f* norm) {
+  //cout << "Checking For Collision" << endl;
   if(one.getPosition()[0] > two.getPosition()[0] + two.getDimension()[0])
     return false;
   if(one.getPosition()[1] > two.getPosition()[1] + two.getDimension()[1])
     return false;
-  if(one.getPosition()[2] > two.getPosition()[2] + two.getDimension()[2])
+  if(one.getPosition()[2] > two.getPosition()[2] + two.getDimension()[2]) {
+    //cout << "HERE2" << endl;
     return false;
+  }
   if(one.getPosition()[0] + one.getDimension()[0] < two.getPosition()[0])
     return false;
   if(one.getPosition()[1] + one.getDimension()[1] < two.getPosition()[1])
     return false;
-  if(one.getPosition()[2] + one.getDimension()[2] < two.getPosition()[2])
+  if(one.getPosition()[2] + one.getDimension()[2] < two.getPosition()[2]) {
+    //cout << "HERE" << endl;
     return false;
+  }
   // ToDo :: Calculate the penetration and normal
   return true;
 }

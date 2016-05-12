@@ -27,6 +27,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3f pos);
   // methods
   void normalCalc();
   void addVertex(float *vals);
@@ -52,6 +53,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3d pos);
   // methods
   void normalCalc();
   void addVertex(float *vals);

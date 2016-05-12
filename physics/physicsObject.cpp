@@ -8,6 +8,7 @@ PhysicsObjectf::PhysicsObjectf() {
   velocity = Vec3f();
   mass = 1.0f;
   noForce = false;
+  isDummy = false;
 }
 
 PhysicsObjectf::~PhysicsObjectf() {
@@ -23,6 +24,7 @@ PhysicsObjectf::~PhysicsObjectf() {
 
 void PhysicsObjectf::performPhysicsStep(float dt) {
   eulerIntegration(dt);
+  geometry->updatePosition(position);
 }
 
 void PhysicsObjectf::eulerIntegration(float dt) {
@@ -68,6 +70,7 @@ Vec3f PhysicsObjectf::getPosition() { return position; }
 Vec3f PhysicsObjectf::getVelocity() { return velocity; }
 float PhysicsObjectf::getMass() { return mass; }
 bool PhysicsObjectf::getNoForce() { return noForce; }
+bool PhysicsObjectf::getIsDummy() { return isDummy; }
 
 void PhysicsObjectf::setCollisionForces(Array<Springf*>* param) { collisionForces = param; }
 void PhysicsObjectf::setExternelForces(Array<Vec3f*>* param) { externalForces = param; }
@@ -76,6 +79,7 @@ void PhysicsObjectf::setPosition(Vec3f param) { position = param; }
 void PhysicsObjectf::setVelocity(Vec3f param) { velocity = param; }
 void PhysicsObjectf::setMass(float param) { mass = param; }
 void PhysicsObjectf::setNoForce(bool param) { noForce = param; }
+void PhysicsObjectf::setIsDummy(bool param) { isDummy = param; }
 
 ////////////////////////// DOUBLE VERSION ///////////////////////////
 
@@ -87,6 +91,7 @@ PhysicsObjectd::PhysicsObjectd() {
   velocity = Vec3d();
   mass = 1.0;
   noForce = false;
+  isDummy = false;
 }
 
 PhysicsObjectd::~PhysicsObjectd() {
@@ -101,11 +106,22 @@ PhysicsObjectd::~PhysicsObjectd() {
 }
 
 void PhysicsObjectd::performPhysicsStep(double dt) {
-  // to be extended
+  eulerIntegration(dt);
+  geometry->updatePosition(position);
 }
 
 void PhysicsObjectd::eulerIntegration(double dt) {
-  // to be implemented
+  Vec3d force = Vec3d();
+  if(!noForce) {
+    force = accumulateForces(dt);
+  }
+  Vec3d acc = Vec3d(force[0]/mass,force[1]/mass,force[2]/mass);
+  position[0] = position[0] + velocity[0] * dt;
+  position[1] = position[1] + velocity[1] * dt;
+  position[2] = position[2] + velocity[2] * dt;
+  velocity[0] = velocity[0] + acc[0] * dt;
+  velocity[1] = velocity[1] + acc[1] * dt;
+  velocity[2] = velocity[2] + acc[2] * dt;
 }
 
 void PhysicsObjectd::implicitIntegration(double dt) {
@@ -113,7 +129,21 @@ void PhysicsObjectd::implicitIntegration(double dt) {
 }
 
 Vec3d PhysicsObjectd::accumulateForces(double dt) {
-  // to be implemented
+  Vec3d totalForce = Vec3d();
+  for(int i=0;i<externalForces->getSize();i++) {
+    totalForce = totalForce + *(externalForces->get(i));
+  }
+  for(int i=0;i<collisionForces->getSize();i++) {
+    Vec3d force = collisionForces->get(i)->getForceForObject((void*)this);
+    // spring dampening
+    double dampC = collisionForces->get(i)->getDampConstant();
+    force = force - Vec3d(dampC*velocity[0],dampC*velocity[1],dampC*velocity[2]);
+    // acumulate dampened force
+    totalForce = totalForce + force;
+  }
+  //cout << "Total Force: ";
+  //totalForce.debug();
+  return totalForce;
 }
 
 Array<Springd*>* PhysicsObjectd::getCollisionForces() { return collisionForces; }
@@ -123,6 +153,7 @@ Vec3d PhysicsObjectd::getPosition() { return position; }
 Vec3d PhysicsObjectd::getVelocity() { return velocity; }
 double PhysicsObjectd::getMass() { return mass; }
 bool PhysicsObjectd::getNoForce() { return noForce; }
+bool PhysicsObjectd::getIsDummy() { return isDummy; }
 
 void PhysicsObjectd::setCollisionForces(Array<Springd*>* param) { collisionForces = param; }
 void PhysicsObjectd::setExternelForces(Array<Vec3d*>* param) { externalForces = param; }
@@ -131,3 +162,4 @@ void PhysicsObjectd::setPosition(Vec3d param) { position = param; }
 void PhysicsObjectd::setVelocity(Vec3d param) { velocity = param; }
 void PhysicsObjectd::setMass(double param) { mass = param; }
 void PhysicsObjectd::setNoForce(bool param) { noForce = param; }
+void PhysicsObjectd::setIsDummy(bool param) { isDummy = param; }

@@ -33,6 +33,10 @@ void RectPrismf::render(RenderMode rm) {
   // to be implemented
 }
 
+void RectPrismf::updatePosition(Vec3f pos) {
+  prism.setPosition(pos);
+}
+
 BBoxf RectPrismf::getPrism() { return prism; }
 Vec3f RectPrismf::getPosition() { return prism.getPosition(); }
 Vec3f RectPrismf::getDimension() { return prism.getDimension(); }
@@ -74,6 +78,10 @@ void RectPrismd::readFromFile(ifstream& file) {
 
 void RectPrismd::render(RenderMode rm) {
   // to be implemented
+}
+
+void RectPrismd::updatePosition(Vec3d pos) {
+  prism.setPosition(pos);
 }
 
 BBoxd RectPrismd::getPrism() { return prism; }

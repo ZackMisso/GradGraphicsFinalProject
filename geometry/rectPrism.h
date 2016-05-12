@@ -16,6 +16,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3f pos);
   // getter methods
   BBoxf getPrism();
   Vec3f getPosition();
@@ -39,6 +40,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3d pos);
   // getter methods
   BBoxd getPrism();
   Vec3d getPosition();

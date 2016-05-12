@@ -18,6 +18,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3f pos);
   // getter methods
   Vec3f getPosition();
   float getRadius();
@@ -42,6 +43,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3d pos);
   // getter methods
   Vec3d getPosition();
   double getRadius();

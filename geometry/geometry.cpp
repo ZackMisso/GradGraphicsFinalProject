@@ -30,6 +30,10 @@ void Geometryf::render(RenderMode rm) {
   // to be extended
 }
 
+void Geometryf::updatePosition(Vec3f pos) {
+  // to be extended
+}
+
 ///////////////////// DOUBLE VERSION ///////////////////
 
 Geometryd::Geometryd() {
@@ -59,5 +63,9 @@ void Geometryd::readFromFile(ifstream& file) {
 }
 
 void Geometryd::render(RenderMode rm) {
+  // to be extended
+}
+
+void Geometryd::updatePosition(Vec3d pos) {
   // to be extended
 }

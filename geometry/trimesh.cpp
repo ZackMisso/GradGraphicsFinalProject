@@ -51,6 +51,10 @@ void TriMeshf::render(RenderMode rm) {
   // to be implemented
 }
 
+void TriMeshf::updatePosition(Vec3f param) {
+  // to be implemented
+}
+
 Array<Vertexf*>* TriMeshf::getVerts() { return verts; }
 Array<Trif*>* TriMeshf::getTris() { return tris; }
 
@@ -107,6 +111,10 @@ void TriMeshd::addTri(int *vals) {
 }
 
 void TriMeshd::render(RenderMode rm) {
+  // to be implemented
+}
+
+void TriMeshd::updatePosition(Vec3d param) {
   // to be implemented
 }
 

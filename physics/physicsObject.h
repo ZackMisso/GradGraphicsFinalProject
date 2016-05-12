@@ -17,6 +17,7 @@ protected:
   Vec3f velocity;
   float mass;
   bool noForce;
+  bool isDummy; // hack
 public:
   PhysicsObjectf();
   ~PhysicsObjectf();
@@ -32,6 +33,7 @@ public:
   Vec3f getVelocity();
   float getMass();
   bool getNoForce();
+  bool getIsDummy();
   // setter methods
   void setCollisionForces(Array<Springf*>* param);
   void setExternelForces(Array<Vec3f*>* param);
@@ -40,6 +42,7 @@ public:
   void setVelocity(Vec3f param);
   void setMass(float param);
   void setNoForce(bool param);
+  void setIsDummy(bool param);
 };
 
 class PhysicsObjectd {
@@ -51,6 +54,7 @@ protected:
   Vec3d velocity;
   double mass;
   bool noForce;
+  bool isDummy; // hack
 public:
   PhysicsObjectd();
   ~PhysicsObjectd();
@@ -66,6 +70,7 @@ public:
   Vec3d getVelocity();
   double getMass();
   bool getNoForce();
+  bool getIsDummy();
   // setter methods
   void setCollisionForces(Array<Springd*>* param);
   void setExternelForces(Array<Vec3d*>* param);
@@ -74,6 +79,7 @@ public:
   void setVelocity(Vec3d param);
   void setMass(double param);
   void setNoForce(bool param);
+  void setIsDummy(bool param);
 };
 
 #endif

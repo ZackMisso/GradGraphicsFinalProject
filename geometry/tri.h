@@ -19,6 +19,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3f pos);
   // methods
   void calculateNorm(Array<Vertexf*>* verts);
   // getter methods
@@ -38,6 +39,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(ifstream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3d pos);
   // methods
   void calculateNorm(Array<Vertexd*>* verts);
   // getter methods

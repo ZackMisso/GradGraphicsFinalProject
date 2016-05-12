@@ -36,6 +36,10 @@ void Trif::render(RenderMode rm) {
   // to be implemented
 }
 
+void Trif::updatePosition(Vec3f pos) {
+  // does nothing
+}
+
 void Trif::calculateNorm(Array<Vertexf*>* verts) {
   Vec3f a = verts->get(ind[0])->getPos();
   Vec3f b = verts->get(ind[1])->getPos();
@@ -87,6 +91,10 @@ void Trid::readFromFile(ifstream& file) {
 
 void Trid::render(RenderMode rm) {
   // to be implemented
+}
+
+void Trid::updatePosition(Vec3d pos) {
+  // does nothing
 }
 
 void Trid::calculateNorm(Array<Vertexd*>* verts) {

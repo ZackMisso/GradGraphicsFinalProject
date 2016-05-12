@@ -23,6 +23,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(istream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3f param);
   // methods
   void createMesh();
   void updateMesh();
@@ -53,6 +54,7 @@ public:
   virtual void writeToFile(ofstream& file);
   virtual void readFromFile(istream& file);
   virtual void render(RenderMode rm);
+  virtual void updatePosition(Vec3d param);
   // methods
   void createMesh();
   void updateMesh();

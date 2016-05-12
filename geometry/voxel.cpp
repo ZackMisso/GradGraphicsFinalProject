@@ -46,6 +46,10 @@ void Voxelf::readFromFile(istream& file) {
   // to be implemented
 }
 
+void Voxelf::updatePosition(Vec3f param) {
+  pos = param;
+}
+
 void Voxelf::createMesh() {
   Array<Vertexf*>* verts = new Array<Vertexf*>();
   verts->add(new Vertexf(Vec3f(pos[0]+radius,pos[1]+radius,pos[2]+radius))); // 0
@@ -184,6 +188,10 @@ void Voxeld::updateMesh() {
 
 void Voxeld::render(RenderMode rm) {
   Modeler::getInstance()->drawCube(rm,pos,radius);
+}
+
+void Voxeld::updatePosition(Vec3d param) {
+  pos = param;
 }
 
 Vec3d Voxeld::getPos() const { return pos; }

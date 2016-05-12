@@ -7,7 +7,7 @@ Cylinderf::Cylinderf() {
 }
 
 Cylinderf::Cylinderf(Vec3f pos,float r,float h) {
-  pos = position;
+  position = pos;
   radius = r;
   height = h;
 }
@@ -33,6 +33,10 @@ void Cylinderf::readFromFile(ifstream& file) {
 
 void Cylinderf::render(RenderMode rm) {
   // to be implemented
+}
+
+void Cylinderf::updatePosition(Vec3f pos) {
+  position = pos;
 }
 
 Vec3f Cylinderf::getPosition() { return position; }
@@ -78,6 +82,10 @@ void Cylinderd::readFromFile(ifstream& file) {
 
 void Cylinderd::render(RenderMode rm) {
   // to be implemented
+}
+
+void Cylinderd::updatePosition(Vec3d pos) {
+  position = pos;
 }
 
 Vec3d Cylinderd::getPosition() { return position; }
