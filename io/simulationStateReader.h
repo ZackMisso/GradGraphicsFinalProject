@@ -3,16 +3,26 @@
 
 // reads the simulation state for a specified frame
 
-#include "../peri/periSystem.h"
+#include "../physics/physicsWorld.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 class SimulationStateReader {
 private:
   static SimulationStateReader* instance;
   SimulationStateReader();
+  PeriSystemf* readPeriSystemf(ifstream& file);
+  PeriSystemd* readPeriSystemd(ifstream& file);
+  PhysicsObjectf* readPhysicsObjectf(ifstream& file);
+  PhysicsObjectf* readPhysicsObjectd(ifstream& file);
+  PhysicsBodyf* readPhysicsBodyf(ifstream& file);
+  PhysicsBodyd* readPhysicsBodyd(ifstream& file);
 public:
   ~SimulationStateReader();
-  void readSimulationStatef(PeriSystemf* ps);
-  void readSimulationStated(PeriSystemd* ps);
+  void readSimulationStatef(PhysicsWorld* ps);
+  void readSimulationStated(PhysicsWorld* ps);
   // singleton methods
   static SimulationStateReader* getInstance();
   static void initialize();

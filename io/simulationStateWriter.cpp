@@ -6,12 +6,36 @@ SimulationStateWriter::SimulationStateWriter() { }
 
 SimulationStateWriter::~SimulationStateWriter() { }
 
-void writeSimulationStatef(PeriSystemf* ps) {
+void SimulationStateWriter::writeSimulationStatef(PhysicsWorld* world) {
   // to be implemented
 }
 
-void writeSimulationStated(PeriSystemd* ps) {
+void SimulationStateWriter::writeSimulationStated(PhysicsWorld* world) {
   // to be implemented
+}
+
+void SimulationStateWriter::writePeriSystem(PeriSystemf* peri,ofstream& file) {
+  // to be implemented
+}
+
+void SimulationStateWriter::writePeriSystem(PeriSystemd* peri,ofstream& file) {
+  // to be implemented
+}
+
+void SimulationStateWriter::writePhysicsObject(PhysicsObjectf* object,ofstream& file) {
+  // to be implemented
+}
+
+void SimulationStateWriter::writePhysicsObject(PhysicsObjectd* object,ofstream& file) {
+  // to be implemented
+}
+
+void SimulationStateWriter::writePhysicsBody(PhysicsBodyf* body,ofstream& file) {
+  // probably wont need
+}
+
+void SimulationStateWriter::writePhysicsBody(PhysicsBodyd* body,ofstream& file) {
+  // probably wont need
 }
 
 SimulationStateWriter* SimulationStateWriter::getInstance() {

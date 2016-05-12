@@ -19,7 +19,6 @@ void VoxelizeView::initialize() {
   dt = 0.0f;
   // do voxelizing
   voxelMesh = Voxelizer::getInstance()->voxelizeCube(Vec3f(0.0f,0.0f,0.0f),2.0f,voxelRad);
-  cout << "VoxelMesh Size: " << voxelMesh->getSize() << endl;
 }
 
 void VoxelizeView::deInitialize() {
@@ -83,9 +82,9 @@ void VoxelizeView::display() {
     RenderMode rm;
     if(wireframe)
       rm = WIREFRAME;
-
     else
       rm = SOLID;
+    ///////////// Test IO Code /////////////
     static int frame = 0;
     char buff[32];
     sprintf(buff, "frames/frame%03d.vox", frame++);
@@ -98,6 +97,7 @@ void VoxelizeView::display() {
       file << *(voxelMesh->get(i)) << endl;
     }
     file.close();
+    ////////////////////////////////////////
     glDisable(GL_CULL_FACE);
   }
 

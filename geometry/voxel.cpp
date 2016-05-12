@@ -38,6 +38,14 @@ bool Voxelf::containsPoint(Vec3f point) {
   return false;
 }
 
+void Voxelf::writeToFile(ofstream& file) {
+  // to be implemented
+}
+
+void Voxelf::readFromFile(istream& file) {
+  // to be implemented
+}
+
 void Voxelf::createMesh() {
   Array<Vertexf*>* verts = new Array<Vertexf*>();
   verts->add(new Vertexf(Vec3f(pos[0]+radius,pos[1]+radius,pos[2]+radius))); // 0
@@ -127,6 +135,14 @@ BBoxd Voxeld::getBBox() {
 bool Voxeld::containsPoint(Vec3d point) {
   // to be implemented
   return false;
+}
+
+void Voxeld::writeToFile(ofstream& file) {
+  // to be implemented
+}
+
+void Voxeld::readFromFile(istream& file) {
+  // to be implemented
 }
 
 void Voxeld::createMesh() {

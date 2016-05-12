@@ -16,6 +16,8 @@ public:
   // geometry methods
   virtual BBoxf getBBox();
   virtual bool containsPoint(Vec3f point);
+  virtual void writeToFile(ofstream& file);
+  virtual void readFromFile(ifstream& file);
   // methods
   void calculateNorm(Array<Vertexf*>* verts);
   // getter methods
@@ -32,6 +34,8 @@ public:
   // geometry methods
   virtual BBoxd getBBox();
   virtual bool containsPoint(Vec3d point);
+  virtual void writeToFile(ofstream& file);
+  virtual void readFromFile(ifstream& file);
   // methods
   void calculateNorm(Array<Vertexd*>* verts);
   // getter methods

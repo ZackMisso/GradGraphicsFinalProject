@@ -6,9 +6,11 @@
 #include "../math/vec3.h"
 #include "../dataStructures/array.h"
 #include "../geometry/geometry.h"
+#include "spring.h"
 
 class PhysicsObjectf {
 protected:
+  Array<Springf*>* collisionForces;
   Array<Vec3f*>* externalForces;
   Geometryf* geometry;
   Vec3f position;
@@ -20,6 +22,7 @@ public:
   ~PhysicsObjectf();
   virtual void performPhysicsStep(float dt);
   // getter methods
+  Array<Springf*>* getCollisionForces();
   Array<Vec3f*>* getExternelForces();
   Geometryf* getGeometry();
   Vec3f getPosition();
@@ -27,6 +30,7 @@ public:
   float getMass();
   bool getNoForce();
   // setter methods
+  void setCollisionForces(Array<Springf*>* param);
   void setExternelForces(Array<Vec3f*>* param);
   void setGeometry(Geometryf* param);
   void setPosition(Vec3f param);
@@ -37,6 +41,7 @@ public:
 
 class PhysicsObjectd {
 protected:
+  Array<Springd*>* collisionForces;
   Array<Vec3d*>* externalForces;
   Geometryd* geometry;
   Vec3d position;
@@ -48,6 +53,7 @@ public:
   ~PhysicsObjectd();
   virtual void performPhysicsStep(double dt);
   // getter methods
+  Array<Springd*>* getCollisionForces();
   Array<Vec3d*>* getExternelForces();
   Geometryd* getGeometry();
   Vec3d getPosition();
@@ -55,6 +61,7 @@ public:
   double getMass();
   bool getNoForce();
   // setter methods
+  void setCollisionForces(Array<Springd*>* param);
   void setExternelForces(Array<Vec3d*>* param);
   void setGeometry(Geometryd* param);
   void setPosition(Vec3d param);

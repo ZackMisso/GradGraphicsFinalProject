@@ -99,11 +99,13 @@ Array<Manifoldd*>* NaiveNarrowPhase::collisionChecksd(Array<Manifoldd*>* collisi
 }
 
 Array<Manifoldf*>* NaiveNarrowPhase::collisionResolutionf(Array<Manifoldf*>* collisions) {
+  // all we do here is add soft spring forces between the colliding objects
   // to be implemented
   return collisions;
 }
 
 Array<Manifoldd*>* NaiveNarrowPhase::collisionResolutiond(Array<Manifoldd*>* collisions) {
+  // all we do here is add soft spring forces between the colliding objects
   // to be implemented
   return collisions;
 }

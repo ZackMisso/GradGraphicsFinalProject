@@ -3,16 +3,26 @@
 
 // reads the contents of a scene for a specified frame
 
-#include "../peri/periSystem.h"
+#include "../physics/physicsWorld.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 class SimulationStateWriter {
 private:
   static SimulationStateWriter* instance;
   SimulationStateWriter();
+  void writePeriSystem(PeriSystemf* peri,ofstream& file);
+  void writePeriSystem(PeriSystemd* peri,ofstream& file);
+  void writePhysicsObject(PhysicsObjectf* object,ofstream& file);
+  void writePhysicsObject(PhysicsObjectd* object,ofstream& file);
+  void writePhysicsBody(PhysicsBodyf* body,ofstream& file);
+  void writePhysicsBody(PhysicsBodyd* body,ofstream& file);
 public:
   ~SimulationStateWriter();
-  void writeSimulationStatef(PeriSystemf* ps);
-  void writeSimulationStated(PeriSystemd* ps);
+  void writeSimulationStatef(PhysicsWorld* world);
+  void writeSimulationStated(PhysicsWorld* world);
   // singleton methods
   static SimulationStateWriter* getInstance();
   static void initialize();

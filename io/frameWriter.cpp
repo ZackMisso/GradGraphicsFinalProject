@@ -6,12 +6,36 @@ FrameWriter::FrameWriter() { }
 
 FrameWriter::~FrameWriter() { }
 
-void writeFramef(PeriSystemf* ps) {
+void FrameWriter::writeFramef(PhysicsWorld* ps) {
   // to be implemented
 }
 
-void writeFramed(PeriSystemd* ps) {
+void FrameWriter::writeFramed(PhysicsWorld* ps) {
   // to be implemented
+}
+
+void FrameWriter::writePeriSystem(PeriSystemf* peri,ofstream& file) {
+  // to be implemented
+}
+
+void FrameWriter::writePeriSystem(PeriSystemd* peri,ofstream& file) {
+  // to be implemented
+}
+
+void FrameWriter::writePhysicsObject(PhysicsObjectf* object,ofstream& file) {
+  // to be implemented
+}
+
+void FrameWriter::writePhysicsObject(PhysicsObjectd* object,ofstream& file) {
+  // to be implemented
+}
+
+void FrameWriter::writePhysicsBody(PhysicsBodyf* body,ofstream& file) {
+  // probably wont be used
+}
+
+void FrameWriter::writePhysicsBody(PhysicsBodyd* body,ofstream& file) {
+  // probably wont be used
 }
 
 FrameWriter* FrameWriter::getInstance() {

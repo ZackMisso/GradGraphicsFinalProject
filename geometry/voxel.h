@@ -20,6 +20,8 @@ public:
   // geometry methods
   virtual BBoxf getBBox();
   virtual bool containsPoint(Vec3f point);
+  virtual void writeToFile(ofstream& file);
+  virtual void readFromFile(istream& file);
   // methods
   void display(RenderMode rm);
   void createMesh();
@@ -48,6 +50,8 @@ public:
   // geometry methods
   virtual BBoxd getBBox();
   virtual bool containsPoint(Vec3d point);
+  virtual void writeToFile(ofstream& file);
+  virtual void readFromFile(istream& file);
   // methods
   void display(RenderMode rm);
   void createMesh();

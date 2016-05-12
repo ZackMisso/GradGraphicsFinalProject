@@ -24,6 +24,14 @@ bool TriMeshf::containsPoint(Vec3f point) {
   return false;
 }
 
+void TriMeshf::writeToFile(ofstream& file) {
+  // to be implemented
+}
+
+void TriMeshf::readFromFile(ifstream& file) {
+  // to be implemented
+}
+
 void TriMeshf::normalCalc() {
   for(int i=0;i<tris->getSize();i++)
 		tris->get(i)->calculateNorm(verts);
@@ -73,6 +81,14 @@ BBoxd TriMeshd::getBBox() {
 bool TriMeshd::containsPoint(Vec3d point) {
   // to be implemented
   return false;
+}
+
+void TriMeshd::writeToFile(ofstream& file) {
+  // to be implemented
+}
+
+void TriMeshd::readFromFile(ifstream& file) {
+  // to be implemented
 }
 
 void TriMeshd::normalCalc() {

@@ -18,6 +18,16 @@ bool Geometryf::containsPoint(Vec3f point) {
   return false;
 }
 
+void Geometryf::writeToFile(ofstream& file) {
+  // to be extended
+}
+
+void Geometryf::readFromFile(ifstream& file) {
+  // to be extended
+}
+
+///////////////////// DOUBLE VERSION ///////////////////
+
 Geometryd::Geometryd() {
   // does nothing for now
 }
@@ -34,4 +44,12 @@ BBoxd Geometryd::getBBox() {
 bool Geometryd::containsPoint(Vec3d point) {
   // to be extended
   return false;
+}
+
+void Geometryd::writeToFile(ofstream& file) {
+  // to be extended
+}
+
+void Geometryd::readFromFile(ifstream& file) {
+  // to be extended
 }

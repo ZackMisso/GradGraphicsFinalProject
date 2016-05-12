@@ -24,6 +24,14 @@ bool Trif::containsPoint(Vec3f point) {
   return false;
 }
 
+void Trif::writeToFile(ofstream& file) {
+  // to be implemented
+}
+
+void Trif::readFromFile(ifstream& file) {
+  // to be implemented
+}
+
 void Trif::calculateNorm(Array<Vertexf*>* verts) {
   Vec3f a = verts->get(ind[0])->getPos();
   Vec3f b = verts->get(ind[1])->getPos();
@@ -63,6 +71,14 @@ BBoxd Trid::getBBox() {
 bool Trid::containsPoint(Vec3d point) {
   // to be implemented
   return false;
+}
+
+void Trid::writeToFile(ofstream& file) {
+  // to be implemented
+}
+
+void Trid::readFromFile(ifstream& file) {
+  // to be implemented
 }
 
 void Trid::calculateNorm(Array<Vertexd*>* verts) {

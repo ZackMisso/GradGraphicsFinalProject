@@ -24,6 +24,8 @@ public:
   // geometry methods
   virtual BBoxf getBBox();
   virtual bool containsPoint(Vec3f point);
+  virtual void writeToFile(ofstream& file);
+  virtual void readFromFile(ifstream& file);
   // methods
   void normalCalc();
   void addVertex(float *vals);
@@ -47,6 +49,8 @@ public:
   // geometry methods
   virtual BBoxd getBBox();
   virtual bool containsPoint(Vec3d point);
+  virtual void writeToFile(ofstream& file);
+  virtual void readFromFile(ifstream& file);
   // methods
   void normalCalc();
   void addVertex(float *vals);

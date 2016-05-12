@@ -20,6 +20,14 @@ bool Spheref::containsPoint(Vec3f point) {
   return dist.mag() <= radius;
 }
 
+void Spheref::writeToFile(ofstream& file) {
+  // to be implemented
+}
+
+void Spheref::readFromFile(ifstream& file) {
+  // to be implemented
+}
+
 Vec3f Spheref::getPosition() { return position; }
 float Spheref::getRadius() { return radius; }
 
@@ -46,6 +54,14 @@ BBoxd Sphered::getBBox() {
 bool Sphered::containsPoint(Vec3d point) {
   Vec3d dist = position-point;
   return dist.mag() <= radius;
+}
+
+void Sphered::writeToFile(ofstream& file) {
+  // to be implemented
+}
+
+void Sphered::readFromFile(ifstream& file) {
+  // to be implemented
 }
 
 Vec3d Sphered::getPosition() { return position; }
