@@ -2,6 +2,9 @@
 #define GLFW_INCLUDE_GLU
 #include <GLFW/glfw3.h>
 #include "../peri/pointMass.h"
+#include <iostream>
+
+using namespace std;
 
 Springf::Springf(void* one,void* two) {
   oneID = -1;
@@ -11,6 +14,7 @@ Springf::Springf(void* one,void* two) {
   springConstant = 0.0f;
   breakForce = 100.0f;
   currentPotential = Vec3f();
+  currentForce = Vec3f();
   PhysicsObjectf* oneRefP = (PhysicsObjectf*)one;
   PhysicsObjectf* twoRefP = (PhysicsObjectf*)two;
   firstRestPosition = oneRefP->getPosition();
@@ -18,6 +22,7 @@ Springf::Springf(void* one,void* two) {
   currentRestPosition = secondRestPosition;
   firstPosition = firstRestPosition;
   secondPosition = secondRestPosition;
+  restLength = (firstPosition - secondPosition).mag();
   isPeriSpring = false;
 }
 
@@ -79,6 +84,8 @@ void Springf::calculateSpringForce() {
   // displacement from rest position.
   // idk if that is the right order or not
   Vec3f dPos = currentRestPosition - secondPosition;
+  cout << "SecondPosition: ";
+  secondPosition.debug();
   currentForce[0] = springConstant * dPos[0];
   currentForce[1] = springConstant * dPos[1];
   currentForce[2] = springConstant * dPos[2];
@@ -90,7 +97,7 @@ void Springf::calculatePeriForce() {
 }
 
 // this method assumes setCurrentPositions was called first
-void Springf::calculateCurrentRestPositon() {
+void Springf::calculateCurrentRestPosition() {
   // vector from one to two
   Vec3f diff = secondPosition - firstPosition;
   diff.normalize();
@@ -98,6 +105,8 @@ void Springf::calculateCurrentRestPositon() {
   currentRestPosition[0] = diff[0] * restLength;
   currentRestPosition[1] = diff[1] * restLength;
   currentRestPosition[2] = diff[2] * restLength;
+  cout << "Current Rest Position: ";
+  currentRestPosition.debug();
 }
 
 void Springf::setCurrentPositions() {
@@ -105,6 +114,17 @@ void Springf::setCurrentPositions() {
   PhysicsObjectf* two = (PhysicsObjectf*)twoRef;
   firstPosition = one->getPosition();
   secondPosition = two->getPosition();
+}
+
+Vec3f Springf::getForceForObject(void* obj) {
+  cout << "CurrentForce: ";
+  currentForce.debug();
+  if(obj != oneRef) {
+    return currentForce;
+  } else {
+    Vec3f negForce = Vec3f() - currentForce;
+    return negForce;
+  }
 }
 
 bool Springf::isEqual(int one,int two) {
@@ -155,13 +175,15 @@ void Springf::setIsPeriSpring(bool param) { isPeriSpring = param; }
 //////////////////////// DOUBLE VERSION //////////////////////////
 
 Springd::Springd(void* one,void* two) {
-  oneID = -1;
+  oneID = -1;cout << "CurrentForce: ";
+  currentForce.debug();
   twoID = -1;
   oneRef = one;
   twoRef = two;
   springConstant = 0.0;
   breakForce = 100.0;
-  currentPotential = Vec3();
+  currentPotential = Vec3d();
+  currentForce = Vec3d();
   PhysicsObjectd* oneRefP = (PhysicsObjectd*)one;
   PhysicsObjectd* twoRefP = (PhysicsObjectd*)two;
   firstRestPosition = oneRefP->getPosition();
@@ -169,6 +191,7 @@ Springd::Springd(void* one,void* two) {
   currentRestPosition = secondRestPosition;
   firstPosition = firstRestPosition;
   secondPosition = secondRestPosition;
+  restLength = (firstPosition - secondPosition).mag();
   isPeriSpring = false;
 }
 
@@ -242,7 +265,7 @@ void Springd::calculatePeriForce() {
 }
 
 // this method assumes setCurrentPositions was called first
-void Springd::calculateCurrentRestPositon() {
+void Springd::calculateCurrentRestPosition() {
   // vector from one to two
   Vec3d diff = secondPosition - firstPosition;
   diff.normalize();
@@ -259,8 +282,19 @@ void Springd::setCurrentPositions() {
   secondPosition = two->getPosition();
 }
 
+Vec3d Springd::getForceForObject(void* obj) {
+  //cout << "CurrentForce: ";
+  //currentForce.debug();
+  if(obj != oneRef) {
+    return currentForce;
+  } else {
+    Vec3d negForce = Vec3d() - currentForce;
+    return negForce;
+  }
+}
+
 bool Springd::isEqual(int one,int two) {
-  if(oneID == one && twoID == two); }
+  if(oneID == one && twoID == two)
     return true;
   if(twoID == one && oneID == two)
     return true;
@@ -268,11 +302,9 @@ bool Springd::isEqual(int one,int two) {
 }
 
 void Springd::render() {
-  PointMassd* onePos = (PointMassd*)oneRef;
-  PointMassd* twoPos = (PointMassd*)twoRef;
   glBegin(GL_LINES);
-  glVertex3f(onePos->getPosition()[0],onePos->getPosition()[1],onePos->getPosition()[2]);
-  glVertex3f(twoPos->getPosition()[0],twoPos->getPosition()[1],twoPos->getPosition()[2]);
+  glVertex3f(firstPosition[0],firstPosition[1],firstPosition[2]);
+  glVertex3f(secondPosition[0],secondPosition[1],secondPosition[2]);
   glEnd();
 }
 

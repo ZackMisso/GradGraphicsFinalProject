@@ -22,7 +22,32 @@ PhysicsObjectf::~PhysicsObjectf() {
 }
 
 void PhysicsObjectf::performPhysicsStep(float dt) {
-  // to be extended
+  eulerIntegration(dt);
+}
+
+void PhysicsObjectf::eulerIntegration(float dt) {
+  Vec3f force = Vec3f();
+  if(!noForce) {
+    force = accumulateForces(dt);
+  }
+  Vec3f acc = Vec3f(force[0]/mass,force[1]/mass,force[2]/mass);
+  position[0] = position[0] + velocity[0] * dt;
+  position[1] = position[1] + velocity[1] * dt;
+  position[2] = position[2] + velocity[2] * dt;
+  velocity[0] = velocity[0] + acc[0] * dt;
+  velocity[1] = velocity[1] + acc[1] * dt;
+  velocity[2] = velocity[2] + acc[2] * dt;
+}
+
+Vec3f PhysicsObjectf::accumulateForces(float dt) {
+  Vec3f totalForce = Vec3f();
+  for(int i=0;i<externalForces->getSize();i++) {
+    totalForce = totalForce + *(externalForces->get(i));
+  }
+  for(int i=0;i<collisionForces->getSize();i++) {
+    totalForce = totalForce + collisionForces->get(i)->getForceForObject((void*)this);
+  }
+  return totalForce;
 }
 
 Array<Springf*>* PhysicsObjectf::getCollisionForces() { return collisionForces; }
@@ -66,6 +91,14 @@ PhysicsObjectd::~PhysicsObjectd() {
 
 void PhysicsObjectd::performPhysicsStep(double dt) {
   // to be extended
+}
+
+void PhysicsObjectd::eulerIntegration(double dt) {
+  // to be implemented
+}
+
+Vec3d PhysicsObjectd::accumulateForces(double dt) {
+  // to be implemented
 }
 
 Array<Springd*>* PhysicsObjectd::getCollisionForces() { return collisionForces; }

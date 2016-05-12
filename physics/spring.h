@@ -31,8 +31,9 @@ public:
   void calculateForce();
   void calculateSpringForce();
   void calculatePeriForce();
-  void calculateCurrentRestPositon();
+  void calculateCurrentRestPosition();
   void setCurrentPositions();
+  Vec3f getForceForObject(void* obj);
   bool isEqual(int one,int two);
   void render();
   // getter methods
@@ -66,7 +67,7 @@ public:
   void setCurrentPotential(Vec3f param);
   void setCurrentForce(Vec3f param);
   void setCurrentRestPosition(Vec3f param);
-  bool setIsPeriSpring(bool param);
+  void setIsPeriSpring(bool param);
 };
 
 class Springd {
@@ -96,8 +97,9 @@ public:
   void calculateForce();
   void calculateSpringForce();
   void calculatePeriForce();
-  void calculateCurrentRestPositon();
+  void calculateCurrentRestPosition();
   void setCurrentPositions();
+  Vec3d getForceForObject(void* obj);
   bool isEqual(int one,int two);
   void render();
   // getter methods

@@ -1,5 +1,8 @@
 #include "vec3.h"
 #include <tgmath.h>
+#include <iostream>
+
+using namespace std;
 
 Vec3f::Vec3f() {
   v[0] = 0.0f;
@@ -28,6 +31,10 @@ float Vec3f::mag() {
 
 float Vec3f::sqrMag() {
   return v[0]*v[0]+v[1]*v[1]+v[2]*v[2];
+}
+
+void Vec3f::debug() {
+  cout<<"("<<v[0]<<","<<v[1]<<","<<v[2]<<")"<<endl;
 }
 
 Vec3f Vec3f::operator+(Vec3f other) {
@@ -85,6 +92,10 @@ double Vec3d::mag() {
 
 double Vec3d::sqrMag() {
   return v[0]*v[0]+v[1]*v[1]+v[2]*v[2];
+}
+
+void Vec3d::debug() {
+  cout<<"("<<v[0]<<","<<v[1]<<","<<v[2]<<")"<<endl;
 }
 
 Vec3d Vec3d::operator+(Vec3d other) {
