@@ -1,4 +1,4 @@
-#include "fractureView.h"
+/*#include "fractureView.h"
 #include "../geometry/bbox.h"
 #include "../geometry/voxelizer.h"
 #include "../geometry/rectPrism.h"
@@ -104,3 +104,4 @@ void FractureView::display() {
 void FractureView::doPhysicsStep(double dt) {
   periSystem->performPhysicsStep(dt);
 }
+*/
