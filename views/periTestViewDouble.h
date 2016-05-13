@@ -1,5 +1,5 @@
-#ifndef __PERITESTVIEW_H__
-#define __PERITESTVIEW_H__
+#ifndef __PERITESTVIEWDOUBLE_H__
+#define __PERITESTVIEWDOUBLE_H__
 
 #define GLFW_INCLUDE_GLU
 #include <GLFW/glfw3.h>
@@ -8,14 +8,14 @@
 #include "../physics/dummyObject.h"
 #include "../dataStructures/array.h"
 
-class PeriTestView : public View {
+class PeriTestViewDouble : public View {
 private:
-  PeriSystemf* periSystem;
-  PhysicsObjectf* collideObject;
-  Array<Springf*>* collisionSprings;
-  Array<DummyObjectf*>* collisionObjects;
+  PeriSystemd* periSystem;
+  PhysicsObjectd* collideObject;
+  Array<Springd*>* collisionSprings;
+  Array<DummyObjectd*>* collisionObjects;
   int cnt;
-  void doPhysicsStep(float dt);
+  void doPhysicsStep(double dt);
 public:
   virtual void initialize();
   virtual void deInitialize();

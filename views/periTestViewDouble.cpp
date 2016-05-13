@@ -1,4 +1,4 @@
-#include "periTestView.h"
+#include "periTestViewDouble.h"
 #include "../geometry/bbox.h"
 #include "../geometry/voxelizer.h"
 #include "../geometry/rectPrism.h"
@@ -8,41 +8,41 @@
 
 using namespace std;
 
-void PeriTestView::initialize() {
-  collisionObjects = new Array<DummyObjectf*>();
-  collisionSprings = new Array<Springf*>();
-  BBoxf box = BBoxf(Vec3f(-0.5f,-0.3f,-0.05f),Vec3f(1.0f,1.0f,0.1f));
-  Array<Voxelf*>* voxelMesh = Voxelizer::getInstance()->voxelizeBBox(box,0.05f);
+void PeriTestViewDouble::initialize() {
+  collisionObjects = new Array<DummyObjectd*>();
+  collisionSprings = new Array<Springd*>();
+  BBoxd box = BBoxd(Vec3d(-0.5,-0.3,-0.05),Vec3d(1.0,1.0,0.1));
+  Array<Voxeld*>* voxelMesh = Voxelizer::getInstance()->voxelizeBBox(box,0.05);
   //Array<Voxelf*>* voxelMesh = Voxelizer::getInstance()->voxelizeBBox(box,0.5f);
   cout << "Voxel Mesh Size: " << voxelMesh->getSize() << endl;
-  periSystem = new PeriSystemf();
-  periSystem->setPointMassR(0.05f);
-  periSystem->setPointMassM(1.0f);
-  periSystem->setPointMassH(0.31f);
-  //periSystem->setPointMassH(0.31f);
-  periSystem->setSpringConstant(10.0f);
-  periSystem->setSpringDamp(5.0f);
-  //periSystem->setSpringConstant(60.0f);
-  //periSystem->setSpringDamp(5.0f);
-  //periSystem->setSpringConstant(1.0f);
-  //periSystem->setSpringDamp(0.1f);
+  periSystem = new PeriSystemd();
+  periSystem->setPointMassR(0.05);
+  periSystem->setPointMassM(1.0);
+  periSystem->setPointMassH(0.31);
+  //periSystem->setPointMassH(0.31);
+  periSystem->setSpringConstant(10.0);
+  periSystem->setSpringDamp(5.0);
+  //periSystem->setSpringConstant(60.0);
+  //periSystem->setSpringDamp(5.0);
+  //periSystem->setSpringConstant(1.0);
+  //periSystem->setSpringDamp(0.1);
   cnt = 0;
-  periSystem->setSpringBreak(10.0f);
+  periSystem->setSpringBreak(10.0);
   periSystem->convertVoxelsToPoints(voxelMesh);
   for(int i=0;i<periSystem->getPointMasses()->getSize();i++) {
-    periSystem->getPointMasses()->get(i)->getExternelForces()->add(new Vec3f(0.0f,-1.0f,0.0f));
+    periSystem->getPointMasses()->get(i)->getExternelForces()->add(new Vec3d(0.0,-1.0,0.0));
     //periSystem->getPointMasses()->get(i)->getExternelForces()->add(new Vec3f(0.0f,-1.0f,0.0f));
   }
-  collideObject = new PhysicsObjectf();
-  Vec3f collidePosition = Vec3f(-0.3f,-0.9,0.0f);
-  Vec3f collideDimension = Vec3f(0.6f,0.4f,0.0f);
-  collideObject->setGeometry(new RectPrismf(collidePosition,collideDimension));
+  collideObject = new PhysicsObjectd();
+  Vec3d collidePosition = Vec3d(-0.3,-0.9,0.0);
+  Vec3d collideDimension = Vec3d(0.6,0.4,0.0);
+  collideObject->setGeometry(new RectPrismd(collidePosition,collideDimension));
   collideObject->setPosition(collidePosition);
   cout << "Spring Size: " << periSystem->getSprings()->getSize() << endl;
   cout << "First Ones Springs: " << periSystem->getPointMasses()->get(0)->getNeighborhood()->getSize() << endl;
 }
 
-void PeriTestView::deInitialize() {
+void PeriTestViewDouble::deInitialize() {
   delete periSystem;
   delete collideObject;
   while(collisionSprings->getSize())
@@ -53,21 +53,21 @@ void PeriTestView::deInitialize() {
   delete collisionObjects;
 }
 
-void PeriTestView::keyboard(int key,int scancode,int action,int mods) {
+void PeriTestViewDouble::keyboard(int key,int scancode,int action,int mods) {
   if(key == GLFW_KEY_B && action == GLFW_PRESS) {
-    PointMassf* one = periSystem->getPointMasses()->get(0);
-    one->setPosition(Vec3f(-0.8f,-0.05f,0.0f));
+    PointMassd* one = periSystem->getPointMasses()->get(0);
+    one->setPosition(Vec3d(-0.8,-0.05,0.0));
   }
 }
 
-void PeriTestView::mouseClick(int button,int action,int mods) {
+void PeriTestViewDouble::mouseClick(int button,int action,int mods) {
   // to be implemented
 }
 
-void PeriTestView::display() {
+void PeriTestViewDouble::display() {
   //cout << "Frame: " << (cnt++) / 10 << endl;
   //cout << "Frame: " << (cnt++) << endl;
-  doPhysicsStep(1.0f/600.0f);
+  doPhysicsStep(1.0/600.0);
   //doPhysicsStep(1.0f/600.0f);
   //cout << "Exit Physics Step" << endl;
 
@@ -86,7 +86,7 @@ void PeriTestView::display() {
   //}
 }
 
-void PeriTestView::doPhysicsStep(float dt) {
+void PeriTestViewDouble::doPhysicsStep(double dt) {
   //cout << "PHYSICSC" << endl;
   //cout << "Start Physics Step" << endl;
   for(int i=0;i<collisionSprings->getSize();i++) {
@@ -105,15 +105,15 @@ void PeriTestView::doPhysicsStep(float dt) {
     //cout << "HI" << endl;
     if(collisionSprings->get(i)->shouldDestroySpring()) {
       //cout << "Hey Listen" << endl;
-      PhysicsObjectf* two = (PhysicsObjectf*)collisionSprings->get(i)->getTwoRef();
+      PhysicsObjectd* two = (PhysicsObjectd*)collisionSprings->get(i)->getTwoRef();
       //cout << "Hey Listen" << endl;
-      DummyObjectf* one = (DummyObjectf*)collisionSprings->get(i)->getOneRef();
+      DummyObjectd* one = (DummyObjectd*)collisionSprings->get(i)->getOneRef();
       //cout << "Hey Listen" << endl;
       two->getCollisionForces()->remove(collisionSprings->get(i));
       //cout << "Hey Listen" << endl;
       collisionObjects->remove(one);
       //cout << "Hey Listen" << endl;
-      Springf* spring = collisionSprings->get(i);
+      Springd* spring = collisionSprings->get(i);
       //cout << "Hey Listen" << endl;
       collisionSprings->removeEff(i);
       //cout << "Hey Listen" << endl;
@@ -131,27 +131,27 @@ void PeriTestView::doPhysicsStep(float dt) {
 
   periSystem->performPhysicsStep(dt);
   //cout << "Finish Peri System Update" << endl;
-  Array<PointMassf*>* pointMasses = periSystem->getPointMasses();
+  Array<PointMassd*>* pointMasses = periSystem->getPointMasses();
   //for(int i=0;i<collision)
   for(int i=0;i<pointMasses->getSize();i++) {
-    BBoxf one = pointMasses->get(i)->getGeometry()->getBBox();
-    BBoxf two = collideObject->getGeometry()->getBBox();
-    float tmp;
-    Vec3f tmp2;
+    BBoxd one = pointMasses->get(i)->getGeometry()->getBBox();
+    BBoxd two = collideObject->getGeometry()->getBBox();
+    double tmp;
+    Vec3d tmp2;
     if(CollisionMethods::getInstance()->bboxOnbbox(one,two,&tmp,&tmp2)) {
       bool exists = false;
-      Array<Springf*>* sprs = pointMasses->get(i)->getCollisionForces();
+      Array<Springd*>* sprs = pointMasses->get(i)->getCollisionForces();
       for(int j=0;j<sprs->getSize();j++) {
         if(sprs->get(j)->isEqual(0x0,(void*)pointMasses->get(i)))
           exists = true;
       }
       cout << "Collision Found: " << cnt << endl;
       if(!exists) {
-        DummyObjectf* obj = new DummyObjectf(collideObject,periSystem->getPointMasses()->get(i));
+        DummyObjectd* obj = new DummyObjectd(collideObject,periSystem->getPointMasses()->get(i));
         collisionObjects->add(obj);
-        Springf* spring = new Springf((void*)obj,(void*)pointMasses->get(i));
-        spring->setSpringConstant(60.0f);
-        spring->setDampConstant(5.0f);
+        Springd* spring = new Springd((void*)obj,(void*)pointMasses->get(i));
+        spring->setSpringConstant(60.0);
+        spring->setDampConstant(5.0);
         spring->setIsCollisionSpring(true);
         pointMasses->get(i)->getCollisionForces()->add(spring);
         collisionSprings->add(spring);

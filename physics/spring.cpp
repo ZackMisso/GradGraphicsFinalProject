@@ -16,6 +16,7 @@ Springf::Springf(void* one,void* two) {
   breakForce = 100.0f;
   dampConstant = 0.05f;
   periRadius = 0.05f;
+  repulseConstant = 0.9f;
   currentPotential = Vec3f();
   currentForce = Vec3f();
   currentDampForce = Vec3f();
@@ -34,6 +35,7 @@ Springf::Springf(void* one,void* two) {
   //secondRestPosition.debug();
   isPeriSpring = false;
   isCollisionSpring = false;
+  isBroken = false;
   dummyCount = 0;
 }
 
@@ -45,6 +47,7 @@ Springf::Springf(int param,int param2) {
   springConstant = 0.0f;
   breakForce = 10.0f;
   dampConstant = 0.05f;
+  repulseConstant = 0.9f;
   periRadius = 0.05f;
   currentPotential = Vec3f();
   currentPotential = Vec3f();
@@ -54,6 +57,7 @@ Springf::Springf(int param,int param2) {
   secondRestPosition = Vec3f();
   isPeriSpring = false;
   isCollisionSpring = false;
+  isBroken = false;
   dummyCount = 0;
 }
 
@@ -68,6 +72,9 @@ void Springf::calculatePotential() {
   //PointMassf* twoPos = (PointMassf*)twoRef;
   if(isPeriSpring) {
     //cout << "SON OF A BITCH" << endl;
+    if(isBroken) {
+      return;
+    }
     calculatePeriPotential();
   } else {
     calculateSpringPotential();
@@ -107,6 +114,9 @@ void Springf::calculateSpringPotential() {
 
 void Springf::calculateForce() {
   if(isPeriSpring) {
+    if(isBroken) {
+      return;
+    }
     calculatePeriForce();
   } else {
     calculateSpringForce();
@@ -136,7 +146,9 @@ void Springf::calculateSpringForce() {
 
 // this method assumes calculateCurrentRestPositon was called first
 void Springf::calculatePeriForce() {
-  if(isCollisionSpring) {
+  if(isBroken) {
+    return;
+  } if(isCollisionSpring) {
     Vec3f dPos = firstPosition - secondPosition;
     currentForce[0] = springConstant * dPos[0];
     currentForce[1] = springConstant * dPos[1];
@@ -161,20 +173,30 @@ void Springf::calculatePeriForce() {
     fnz[1] = fnz[1]/mag;
     fnz[2] = fnz[2]/mag;
     Vec3f rep = Vec3f();
-    float tmp = 0.9f * (secondPosition - firstPosition).mag();
+    float tmp = 1.0f * (secondPosition - firstPosition).mag();
     float tmp2 = 1.35f*(periRadius*2.0f);
     float ds = tmp < tmp2 ? tmp : tmp2;
-    rep[0] = fnz[0]*springConstant*(mag-ds);
-    rep[1] = fnz[1]*springConstant*(mag-ds);
-    rep[2] = fnz[2]*springConstant*(mag-ds);
+    if(ds < 0.0f) {
+      cout << "WHATATATAT" << endl;
+    }
+    //rep[0] = fnz[0]*springConstant*(mag-ds);
+    //rep[1] = fnz[1]*springConstant*(mag-ds);
+    //rep[2] = fnz[2]*springConstant*(mag-ds);
+    float factor = (restLength-mag) > 0.0f ? (restLength-mag) : 0.0f;
+    factor *= repulseConstant;
+    rep[0] = fnz[0]*springConstant*factor;
+    rep[1] = fnz[1]*springConstant*factor;
+    rep[2] = fnz[2]*springConstant*factor;
     fnz[0] = springConstant * strain * fnz[0];
     fnz[1] = springConstant * strain * fnz[1];
     fnz[2] = springConstant * strain * fnz[2];
+    //fnz[0] = strain * fnz[0];
+    //fnz[1] = strain * fnz[1];
+    //fnz[2] = strain * fnz[2];
+    // add repulsive force
     fnz[0] = fnz[0] - rep[0];
     fnz[1] = fnz[1] - rep[1];
     fnz[2] = fnz[2] - rep[2];
-
-    // ToDo :: add Repulsive force
     currentForce[0] = fnz[0];
     currentForce[1] = fnz[1];
     currentForce[2] = fnz[2];
@@ -218,6 +240,9 @@ bool Springf::shouldDestroySpring() {
     //return false;
     return dummyCount == 2;
   } else {
+    if((firstPosition-secondPosition).mag() > 1.25f*restLength || (firstPosition-secondPosition).mag() < 0.75f*restLength) {
+      isBroken = true;
+    }
     // to be implemented
   }
   return false;
@@ -226,7 +251,9 @@ bool Springf::shouldDestroySpring() {
 Vec3f Springf::getForceForObject(void* obj) {
   //cout << "CurrentForce: ";
   //currentForce.debug();
-  if(obj != oneRef) {
+  if(isBroken) {
+    return Vec3f();
+  } if(obj != oneRef) {
     return currentForce;
   } else {
     Vec3f negForce = Vec3f() - currentForce;
@@ -258,10 +285,21 @@ bool Springf::isEqual(void* one,void* two) {
 void Springf::render(RenderMode rm) {
   PointMassf* onePos = (PointMassf*)oneRef;
   PointMassf* twoPos = (PointMassf*)twoRef;
-  glBegin(GL_LINES);
-  glVertex3f(onePos->getPosition()[0],onePos->getPosition()[1],onePos->getPosition()[2]);
-  glVertex3f(twoPos->getPosition()[0],twoPos->getPosition()[1],twoPos->getPosition()[2]);
-  glEnd();
+  if(isBroken) {
+    //cout << "IT IS BROKEN" << endl;
+  //if((firstPosition-secondPosition).mag() > 1.25f*restLength
+  //    || (firstPosition-secondPosition).mag() < 0.75f*restLength) {
+    glColor3f(1.0f,1.0f,1.0f);
+    glBegin(GL_LINES);
+    glVertex3f(onePos->getPosition()[0],onePos->getPosition()[1],onePos->getPosition()[2]);
+    glVertex3f(twoPos->getPosition()[0],twoPos->getPosition()[1],twoPos->getPosition()[2]);
+    glEnd();
+  } else {
+    glBegin(GL_LINES);
+    glVertex3f(onePos->getPosition()[0],onePos->getPosition()[1],onePos->getPosition()[2]);
+    glVertex3f(twoPos->getPosition()[0],twoPos->getPosition()[1],twoPos->getPosition()[2]);
+    glEnd();
+  }
 }
 
 int Springf::getOneID() { return oneID; }
@@ -273,6 +311,7 @@ float Springf::getSpringConstant() { return springConstant; }
 float Springf::getBreakForce() { return breakForce; }
 float Springf::getDampConstant() { return dampConstant; }
 float Springf::getPeriRadius() { return periRadius; }
+float Springf::getRepulseConstant() { return repulseConstant; }
 Vec3f Springf::getFirstRestPosition() { return firstRestPosition; }
 Vec3f Springf::getSecondRestPosition() { return secondRestPosition; }
 Vec3f Springf::getCurrentPotential() { return currentPotential; }
@@ -281,6 +320,7 @@ Vec3f Springf::getCurrentRestPosition() { return currentRestPosition; }
 Vec3f Springf::getCurrentDampForce() { return currentDampForce; }
 bool Springf::getIsPeriSpring() { return isPeriSpring; }
 bool Springf::getIsCollisionSpring() { return isCollisionSpring; }
+bool Springf::getIsBroken() { return isBroken; }
 
 void Springf::setOneID(int param) { oneID = param; }
 void Springf::setTwoID(int param) { twoID = param; }
@@ -291,6 +331,7 @@ void Springf::setSpringConstant(float param) { springConstant = param; }
 void Springf::setBreakForce(float param) { breakForce = param; }
 void Springf::setDampConstant(float param) { dampConstant = param; }
 void Springf::setPeriRadius(float param) { periRadius = param; }
+void Springf::setRepulseConstant(float param) { repulseConstant = param; }
 void Springf::setFirstRestPosition(Vec3f param) { firstRestPosition = param; }
 void Springf::setSecondRestPosition(Vec3f param) { secondRestPosition = param; }
 void Springf::setCurrentPotential(Vec3f param) { currentPotential = param; }
@@ -299,6 +340,7 @@ void Springf::setCurrentRestPosition(Vec3f param) { currentRestPosition = param;
 void Springf::setCurrentDampForce(Vec3f param) { currentDampForce = param; }
 void Springf::setIsPeriSpring(bool param) { isPeriSpring = param; }
 void Springf::setIsCollisionSpring(bool param) { isCollisionSpring = param; }
+void Springf::setIsBroken(bool param) { isBroken = param; }
 
 //////////////////////// DOUBLE VERSION //////////////////////////
 
@@ -313,6 +355,7 @@ Springd::Springd(void* one,void* two) {
   breakForce = 100.0;
   dampConstant = 0.05;
   periRadius = 0.05;
+  repulseConstant = 0.9;
   currentPotential = Vec3d();
   currentForce = Vec3d();
   currentDampForce = Vec3d();
@@ -326,6 +369,7 @@ Springd::Springd(void* one,void* two) {
   restLength = (firstPosition - secondPosition).mag();
   isPeriSpring = false;
   isCollisionSpring = false;
+  isBroken = false;
   dummyCount = 0;
 }
 
@@ -344,8 +388,10 @@ Springd::Springd(int param,int param2) {
   breakForce = 0.0;
   dampConstant = 0.05;
   periRadius = 0.05;
+  repulseConstant = 0.9;
   currentDampForce = Vec3d();
   isCollisionSpring = false;
+  isBroken = false;
   dummyCount = 0;
 }
 
@@ -359,6 +405,9 @@ void Springd::calculatePotential() {
   //PointMassd* onePos = (PointMassd*)oneRef;
   //PointMassd* twoPos = (PointMassd*)twoRef;
   if(isPeriSpring) {
+    if(isBroken) {
+      return;
+    }
     calculatePeriPotential();
   } else {
     calculateSpringPotential();
@@ -400,6 +449,9 @@ void Springd::calculateSpringPotential() {
 // this method assumes calculateCurrentRestPositon was called first
 void Springd::calculateForce() {
   if(isPeriSpring) {
+    if(isBroken) {
+      return;
+    }
     calculatePeriForce();
   } else {
     calculateSpringForce();
@@ -446,34 +498,61 @@ void Springd::calculatePeriForce() {
     fnz = n + zet;
     double strain = ((n+zet).mag() - zet.mag()) / zet.mag();
     double mag = (n+zet).mag();
-    fnz[0] = springConstant * strain * fnz[0]/mag;
-    fnz[1] = springConstant * strain * fnz[1]/mag;
-    fnz[2] = springConstant * strain * fnz[2]/mag;
-    // ToDo :: add Repulsive force
+    fnz[0] = fnz[0]/mag;
+    fnz[1] = fnz[1]/mag;
+    fnz[2] = fnz[2]/mag;
+    Vec3d rep = Vec3d();
+    double tmp = 1.0 * (secondPosition - firstPosition).mag();
+    double tmp2 = 1.35*(periRadius*2.0);
+    double ds = tmp < tmp2 ? tmp : tmp2;
+    if(ds < 0.0) {
+      cout << "WHATATATAT" << endl;
+    }
+    //rep[0] = fnz[0]*springConstant*(mag-ds);
+    //rep[1] = fnz[1]*springConstant*(mag-ds);
+    //rep[2] = fnz[2]*springConstant*(mag-ds);
+    double factor = (restLength-mag) > 0.0 ? (restLength-mag) : 0.0;
+    factor *= repulseConstant;
+    rep[0] = fnz[0]*springConstant*factor;
+    rep[1] = fnz[1]*springConstant*factor;
+    rep[2] = fnz[2]*springConstant*factor;
+    fnz[0] = springConstant * strain * fnz[0];
+    fnz[1] = springConstant * strain * fnz[1];
+    fnz[2] = springConstant * strain * fnz[2];
+    //fnz[0] = strain * fnz[0];
+    //fnz[1] = strain * fnz[1];
+    //fnz[2] = strain * fnz[2];
+    // add repulsive force
+    fnz[0] = fnz[0] - rep[0];
+    fnz[1] = fnz[1] - rep[1];
+    fnz[2] = fnz[2] - rep[2];
     currentForce[0] = fnz[0];
     currentForce[1] = fnz[1];
     currentForce[2] = fnz[2];
-    currentForce.debug();
   }
 }
 
 // this method assumes setCurrentPositions was called first
 void Springd::calculateCurrentRestPosition() {
   // vector from one to two
-  Vec3d diff = secondPosition - firstPosition;
-  diff.normalize();
-  // set rest position relative to location of first object
-  currentRestPosition[0] = diff[0] * restLength;
-  currentRestPosition[1] = diff[1] * restLength;
-  currentRestPosition[2] = diff[2] * restLength;
+  if(!isBroken) {
+    Vec3d diff = secondPosition - firstPosition;
+    diff.normalize();
+    // set rest position relative to location of first object
+    currentRestPosition[0] = diff[0] * restLength;
+    currentRestPosition[1] = diff[1] * restLength;
+    currentRestPosition[2] = diff[2] * restLength;
+  }
 }
 
 void Springd::setCurrentPositions() {
   //cout << "HELLO" << endl;
-  PhysicsObjectd* one = (PhysicsObjectd*)oneRef;
-  PhysicsObjectd* two = (PhysicsObjectd*)twoRef;
-  firstPosition = one->getPosition();
-  secondPosition = two->getPosition();
+  if(!isBroken) {
+    PhysicsObjectd* one = (PhysicsObjectd*)oneRef;
+    PhysicsObjectd* two = (PhysicsObjectd*)twoRef;
+    firstPosition = one->getPosition();
+    secondPosition = two->getPosition();
+  }
 }
 
 bool Springd::shouldDestroySpring() {
@@ -486,7 +565,10 @@ bool Springd::shouldDestroySpring() {
     //return false;
     return dummyCount == 2;
   } else {
-    // to be implemented
+      if((firstPosition-secondPosition).mag() > 1.25*restLength
+          || (firstPosition-secondPosition).mag() < 0.75*restLength) {
+        isBroken = true;
+      }
   }
   return false;
 }
@@ -494,7 +576,9 @@ bool Springd::shouldDestroySpring() {
 Vec3d Springd::getForceForObject(void* obj) {
   //cout << "CurrentForce: ";
   //currentForce.debug();
-  if(obj != oneRef) {
+  if(isBroken) {
+    return Vec3d();
+  }if(obj != oneRef) {
     return currentForce;
   } else {
     Vec3d negForce = Vec3d() - currentForce;
@@ -539,6 +623,7 @@ double Springd::getSpringConstant() { return springConstant; }
 double Springd::getBreakForce() { return breakForce; }
 double Springd::getDampConstant() { return dampConstant; }
 double Springd::getPeriRadius() { return periRadius; }
+double Springd::getRepulseConstant() { return repulseConstant; }
 Vec3d Springd::getFirstRestPosition() { return firstRestPosition; }
 Vec3d Springd::getSecondRestPosition() { return secondRestPosition; }
 Vec3d Springd::getCurrentPotential() { return currentPotential; }
@@ -547,6 +632,7 @@ Vec3d Springd::getCurrentRestPosition() { return currentRestPosition; }
 Vec3d Springd::getCurrentDampForce() { return currentDampForce; }
 bool Springd::getIsPeriSpring() { return isPeriSpring; }
 bool Springd::getIsCollisionSpring() { return isCollisionSpring; }
+bool Springd::getIsBroken() { return isBroken; }
 
 void Springd::setOneID(int param) { oneID = param; }
 void Springd::setTwoID(int param) { twoID = param; }
@@ -554,6 +640,7 @@ void Springd::setOneRef(void* param) { oneRef = param; }
 void Springd::setTwoRef(void* param) { twoRef = param; }
 void Springd::setRestLength(double param) { restLength = param; }
 void Springd::setSpringConstant(double param) { springConstant = param; }
+void Springd::setRepulseConstant(double param) { repulseConstant = param; }
 void Springd::setBreakForce(double param) { breakForce = param; }
 void Springd::setDampConstant(double param) { dampConstant = param; }
 void Springd::setPeriRadius(double param) { periRadius = param; }
@@ -565,3 +652,4 @@ void Springd::setCurrentRestPosition(Vec3d param) { currentRestPosition = param;
 void Springd::setCurrentDampForce(Vec3d param) { currentDampForce = param; }
 void Springd::setIsPeriSpring(bool param) { isPeriSpring = param; }
 void Springd::setIsCollisionSpring(bool param) { isCollisionSpring = param; }
+void Springd::setIsBroken(bool param) { isBroken = param; }

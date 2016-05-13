@@ -9,6 +9,7 @@
 #include "finalDemoView.h"
 #include "springTestView.h"
 #include "physicsEngineTestView.h"
+#include "periTestViewDouble.h"
 
 ViewController* ViewController::instance = 0x0;
 
@@ -20,6 +21,7 @@ ViewController::ViewController() {
   //switchToView(SPRING_TEST_VIEW);
   //switchToView(COLLISION_TEST_VIEW);
   switchToView(PERI_VIEW);
+  //switchToView(PERI_DOUBLE_VIEW);
 }
 
 ViewController::~ViewController() {
@@ -40,6 +42,7 @@ void ViewController::createViews() {
   views->add(new FinalDemoView());
   views->add(new SpringTestView());
   views->add(new PhysicsEngineTestView());
+  views->add(new PeriTestViewDouble());
   // create more in the order they appear in the enum
 }
 

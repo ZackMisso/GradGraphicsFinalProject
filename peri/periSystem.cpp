@@ -115,6 +115,7 @@ void PeriSystemf::performPhysicsStep(float dt) {
     springs->get(i)->calculateCurrentRestPosition();
     springs->get(i)->calculateForce();
     springs->get(i)->calculatePotential();
+    springs->get(i)->shouldDestroySpring();
   }
   for(int i=0;i<pointMasses->getSize();i++) {
     pointMasses->get(i)->performPhysicsStep(dt);
@@ -127,9 +128,9 @@ void PeriSystemf::render(RenderMode rm,bool displaySprings) {
   for(int i=0;i<pointMasses->getSize();i++) {
     pointMasses->get(i)->render(rm);
   }
-  glColor3f(0.0f,0.0f,1.0f);
   if(displaySprings) {
     for(int i=0;i<springs->getSize();i++) {
+      glColor3f(0.0f,0.0f,1.0f);
       springs->get(i)->render(rm);
     }
   }

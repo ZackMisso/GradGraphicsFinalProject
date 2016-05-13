@@ -15,6 +15,7 @@ private:
   float springConstant;
   float dampConstant;
   float periRadius;
+  float repulseConstant;
   Vec3f firstRestPosition;
   Vec3f secondRestPosition;
   Vec3f firstPosition; // may not need
@@ -25,6 +26,7 @@ private:
   Vec3f currentDampForce;
   bool isPeriSpring;
   bool isCollisionSpring;
+  bool isBroken;
   int dummyCount;
 public:
   Springf(void* one,void* two);
@@ -53,6 +55,7 @@ public:
   float getBreakForce();
   float getDampConstant();
   float getPeriRadius();
+  float getRepulseConstant();
   Vec3f getFirstRestPosition();
   Vec3f getSecondRestPosition();
   Vec3f getFirstPosition();
@@ -63,6 +66,7 @@ public:
   Vec3f getCurrentDampForce();
   bool getIsPeriSpring();
   bool getIsCollisionSpring();
+  bool getIsBroken();
   // setter methods
   void setOneID(int param);
   void setTwoID(int param);
@@ -73,6 +77,7 @@ public:
   void setBreakForce(float param);
   void setDampConstant(float param);
   void setPeriRadius(float param);
+  void setRepulseConstant(float param);
   void setFirstRestPosition(Vec3f param);
   void setSecondRestPosition(Vec3f param);
   void setFirstPosition(Vec3f param);
@@ -83,6 +88,7 @@ public:
   void setCurrentDampForce(Vec3f param);
   void setIsPeriSpring(bool param);
   void setIsCollisionSpring(bool param);
+  void setIsBroken(bool param);
 };
 
 class Springd {
@@ -96,6 +102,7 @@ private:
   double breakForce;
   double dampConstant;
   double periRadius;
+  double repulseConstant;
   Vec3d firstRestPosition;
   Vec3d secondRestPosition;
   Vec3d firstPosition;
@@ -106,6 +113,7 @@ private:
   Vec3d currentDampForce;
   bool isPeriSpring;
   bool isCollisionSpring;
+  bool isBroken;
   int dummyCount;
 public:
   Springd(void* one,void* two);
@@ -134,6 +142,7 @@ public:
   double getBreakForce();
   double getDampConstant();
   double getPeriRadius();
+  double getRepulseConstant();
   Vec3d getFirstRestPosition();
   Vec3d getSecondRestPosition();
   Vec3d getFirstPosition();
@@ -144,6 +153,7 @@ public:
   Vec3d getCurrentDampForce();
   bool getIsPeriSpring();
   bool getIsCollisionSpring();
+  bool getIsBroken();
   // setter methods
   void setOneID(int param);
   void setTwoID(int param);
@@ -154,6 +164,7 @@ public:
   void setBreakForce(double param);
   void setDampConstant(double param);
   void setPeriRadius(double param);
+  void setRepulseConstant(double param);
   void setFirstRestPosition(Vec3d param);
   void setSecondRestPosition(Vec3d param);
   void setFirstPosition(Vec3d param);
@@ -164,6 +175,7 @@ public:
   void setCurrentDampForce(Vec3d param);
   void setIsPeriSpring(bool param);
   void setIsCollisionSpring(bool param);
+  void setIsBroken(bool param);
 };
 
 #endif
