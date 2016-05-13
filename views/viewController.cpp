@@ -13,6 +13,9 @@
 #include "springTestViewDouble.h"
 #include "collisionTestDoubleView.h"
 #include "fractureView.h"
+#include "fractureTwo.h"
+#include "fractureThree.h"
+#include "fractureFour.h"
 
 ViewController* ViewController::instance = 0x0;
 
@@ -53,6 +56,9 @@ void ViewController::createViews() {
   views->add(new SpringTestViewDouble());
   views->add(new CollisionTestDoubleView());
   views->add(new FractureView());
+  views->add(new FractureTwo());
+  views->add(new FractureThree());
+  views->add(new FractureFour());
   // create more in the order they appear in the enum
 }
 
