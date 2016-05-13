@@ -114,7 +114,8 @@ PhysicsObjectd::~PhysicsObjectd() {
 
 void PhysicsObjectd::performPhysicsStep(double dt) {
   eulerIntegration(dt);
-  geometry->updatePosition(position);
+  if(geometry)
+    geometry->updatePosition(position);
 }
 
 void PhysicsObjectd::eulerIntegration(double dt) {

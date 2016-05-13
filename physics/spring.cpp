@@ -608,10 +608,23 @@ bool Springd::isEqual(void* one,void* two) {
 }
 
 void Springd::render(RenderMode rm) {
-  glBegin(GL_LINES);
-  glVertex3f(firstPosition[0],firstPosition[1],firstPosition[2]);
-  glVertex3f(secondPosition[0],secondPosition[1],secondPosition[2]);
-  glEnd();
+  PointMassd* onePos = (PointMassd*)oneRef;
+  PointMassd* twoPos = (PointMassd*)twoRef;
+  if(isBroken) {
+    //cout << "IT IS BROKEN" << endl;
+  //if((firstPosition-secondPosition).mag() > 1.25f*restLength
+  //    || (firstPosition-secondPosition).mag() < 0.75f*restLength) {
+    glColor3f(1.0f,1.0f,1.0f);
+    glBegin(GL_LINES);
+    glVertex3f(onePos->getPosition()[0],onePos->getPosition()[1],onePos->getPosition()[2]);
+    glVertex3f(twoPos->getPosition()[0],twoPos->getPosition()[1],twoPos->getPosition()[2]);
+    glEnd();
+  } else {
+    glBegin(GL_LINES);
+    glVertex3f(onePos->getPosition()[0],onePos->getPosition()[1],onePos->getPosition()[2]);
+    glVertex3f(twoPos->getPosition()[0],twoPos->getPosition()[1],twoPos->getPosition()[2]);
+    glEnd();
+  }
 }
 
 int Springd::getOneID() { return oneID; }

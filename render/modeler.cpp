@@ -460,8 +460,122 @@ void Modeler::drawBBox(RenderMode rm,BBoxf box) {
   }
 }
 
-void Modeler::drawBBox(RenderMode rm, BBoxd box) {
-  // to be implemented
+void Modeler::drawBBox(RenderMode rm,BBoxd box) {
+  if(rm == WIREFRAME) {
+    Vec3d pos = box.getPosition();
+    Vec3d dim = box.getDimension();
+
+    glBegin(GL_LINES);
+    glVertex3f(pos[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1],pos[2]);
+
+    glVertex3f(pos[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1],pos[2]);
+
+    glVertex3f(pos[0],pos[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1],pos[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glEnd();
+  } else if(rm == SOLID) {
+    glBegin(GL_QUADS);
+    Vec3d pos = box.getPosition();
+    Vec3d dim = box.getDimension();
+
+    glVertex3f(pos[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+
+    glVertex3f(pos[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0],pos[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glEnd();
+  } else if(rm == SHADED) {
+
+  }
 }
 
 void Modeler::initialize() {

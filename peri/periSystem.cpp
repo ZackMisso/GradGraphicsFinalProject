@@ -229,8 +229,9 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
           bool exists = false;
           // make sure their connection doesnt already exist
           for(int k=0;k<springs->getSize();k++) {
-            if(springs->get(k)->isEqual(pm->getID(),two->getID()))
+            if(springs->get(k)->isEqual((void*)pm,(void*)two)) {
               exists = true;
+            }
           }
           if(!exists) {
             // add the connection
@@ -256,7 +257,16 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
 }
 
 void PeriSystemd::performPhysicsStep(double dt) {
-  // to be implemented
+  for(int i=0;i<springs->getSize();i++) {
+    springs->get(i)->setCurrentPositions();
+    springs->get(i)->calculateCurrentRestPosition();
+    springs->get(i)->calculateForce();
+    springs->get(i)->calculatePotential();
+    springs->get(i)->shouldDestroySpring();
+  }
+  for(int i=0;i<pointMasses->getSize();i++) {
+    pointMasses->get(i)->performPhysicsStep(dt);
+  }
 }
 
 void PeriSystemd::render(RenderMode rm,bool displaySprings) {
@@ -265,6 +275,7 @@ void PeriSystemd::render(RenderMode rm,bool displaySprings) {
   }
   if(displaySprings) {
     for(int i=0;i<springs->getSize();i++) {
+      glColor3f(0.0f,0.0f,1.0f);
       springs->get(i)->render(rm);
     }
   }

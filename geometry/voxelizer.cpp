@@ -65,8 +65,15 @@ Array<Voxeld*>* Voxelizer::voxelizeCube(Vec3d pos,double side,double vRad) {
 }
 
 Array<Voxeld*>* Voxelizer::voxelizeBBox(BBoxd bbox,double vRad) {
-  // to be implemented
-  return 0x0;
+  Array<Voxeld*>* voxelMesh = new Array<Voxeld*>();
+  Vec3d pos = bbox.getPosition();
+  Vec3d dim = bbox.getDimension();
+  double vDia = 2*vRad;
+  for(double x=pos[0]+vRad; x < pos[0]+dim[0]; x+=vDia)
+    for(double y=pos[1]+vRad; y < pos[1]+dim[1]; y+=vDia)
+      for(double z=pos[2]+vRad; z < pos[2]+dim[2]; z+=vDia)
+        voxelMesh->add(new Voxeld(Vec3d(x,y,z),vRad));
+  return voxelMesh;
 }
 
 Array<Voxeld*>* Voxelizer::voxelizeSphere(Sphered sphere,double vRad) {

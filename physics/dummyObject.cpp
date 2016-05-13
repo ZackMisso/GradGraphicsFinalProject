@@ -25,7 +25,9 @@ Vec3f DummyObjectf::accumulateForces(float dt) {
 //////////////////// DOUBLE VERSION //////////////////////////
 
 DummyObjectd::DummyObjectd(PhysicsObjectd* collidedWith,PhysicsObjectd* collider) {
-  // to be implemented
+  setPosition(collider->getPosition());
+  owner = collidedWith;
+  setIsDummy(true);
 }
 
 void DummyObjectd::performPhysicsStep(double dt) {

@@ -18,6 +18,7 @@ public:
 
 class DummyObjectd : public PhysicsObjectd {
 private:
+  PhysicsObjectd* owner;
   Vec3d relativePosition;
   Vec3d relativeVelocity;
 public:
