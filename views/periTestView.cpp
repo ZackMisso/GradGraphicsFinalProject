@@ -51,7 +51,7 @@ void PeriTestView::deInitialize() {
 void PeriTestView::keyboard(int key,int scancode,int action,int mods) {
   if(key == GLFW_KEY_B && action == GLFW_PRESS) {
     PointMassf* one = periSystem->getPointMasses()->get(0);
-    one->setPosition(Vec3f(-0.8f,-0.8f,0.0f));
+    one->setPosition(Vec3f(-0.8f,-0.05f,0.0f));
   }
 }
 

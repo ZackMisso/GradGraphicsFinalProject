@@ -14,6 +14,7 @@ private:
   float breakForce;
   float springConstant;
   float dampConstant;
+  float periRadius;
   Vec3f firstRestPosition;
   Vec3f secondRestPosition;
   Vec3f firstPosition; // may not need
@@ -51,6 +52,7 @@ public:
   float getSpringConstant();
   float getBreakForce();
   float getDampConstant();
+  float getPeriRadius();
   Vec3f getFirstRestPosition();
   Vec3f getSecondRestPosition();
   Vec3f getFirstPosition();
@@ -70,6 +72,7 @@ public:
   void setSpringConstant(float param);
   void setBreakForce(float param);
   void setDampConstant(float param);
+  void setPeriRadius(float param);
   void setFirstRestPosition(Vec3f param);
   void setSecondRestPosition(Vec3f param);
   void setFirstPosition(Vec3f param);
@@ -92,6 +95,7 @@ private:
   double springConstant;
   double breakForce;
   double dampConstant;
+  double periRadius;
   Vec3d firstRestPosition;
   Vec3d secondRestPosition;
   Vec3d firstPosition;
@@ -129,6 +133,7 @@ public:
   double getSpringConstant();
   double getBreakForce();
   double getDampConstant();
+  double getPeriRadius();
   Vec3d getFirstRestPosition();
   Vec3d getSecondRestPosition();
   Vec3d getFirstPosition();
@@ -148,6 +153,7 @@ public:
   void setSpringConstant(double param);
   void setBreakForce(double param);
   void setDampConstant(double param);
+  void setPeriRadius(double param);
   void setFirstRestPosition(Vec3d param);
   void setSecondRestPosition(Vec3d param);
   void setFirstPosition(Vec3d param);

@@ -8,13 +8,14 @@
 using namespace std;
 
 Springf::Springf(void* one,void* two) {
-  oneID = -1;
-  twoID = -1;
+  //oneID = -1;
+  //twoID = -1;
   oneRef = one;
   twoRef = two;
   springConstant = 0.0f;
   breakForce = 100.0f;
   dampConstant = 0.05f;
+  periRadius = 0.05f;
   currentPotential = Vec3f();
   currentForce = Vec3f();
   currentDampForce = Vec3f();
@@ -44,6 +45,7 @@ Springf::Springf(int param,int param2) {
   springConstant = 0.0f;
   breakForce = 10.0f;
   dampConstant = 0.05f;
+  periRadius = 0.05f;
   currentPotential = Vec3f();
   currentPotential = Vec3f();
   currentForce = Vec3f();
@@ -155,9 +157,23 @@ void Springf::calculatePeriForce() {
     fnz = n + zet;
     float strain = ((n+zet).mag() - zet.mag()) / zet.mag();
     float mag = (n+zet).mag();
-    fnz[0] = springConstant * strain * fnz[0]/mag;
-    fnz[1] = springConstant * strain * fnz[1]/mag;
-    fnz[2] = springConstant * strain * fnz[2]/mag;
+    fnz[0] = fnz[0]/mag;
+    fnz[1] = fnz[1]/mag;
+    fnz[2] = fnz[2]/mag;
+    Vec3f rep = Vec3f();
+    float tmp = 0.9f * (secondPosition - firstPosition).mag();
+    float tmp2 = 1.35f*(periRadius*2.0f);
+    float ds = tmp < tmp2 ? tmp : tmp2;
+    rep[0] = fnz[0]*springConstant*(mag-ds);
+    rep[1] = fnz[1]*springConstant*(mag-ds);
+    rep[2] = fnz[2]*springConstant*(mag-ds);
+    fnz[0] = springConstant * strain * fnz[0];
+    fnz[1] = springConstant * strain * fnz[1];
+    fnz[2] = springConstant * strain * fnz[2];
+    fnz[0] = fnz[0] - rep[0];
+    fnz[1] = fnz[1] - rep[1];
+    fnz[2] = fnz[2] - rep[2];
+
     // ToDo :: add Repulsive force
     currentForce[0] = fnz[0];
     currentForce[1] = fnz[1];
@@ -256,6 +272,7 @@ float Springf::getRestLength() { return restLength; }
 float Springf::getSpringConstant() { return springConstant; }
 float Springf::getBreakForce() { return breakForce; }
 float Springf::getDampConstant() { return dampConstant; }
+float Springf::getPeriRadius() { return periRadius; }
 Vec3f Springf::getFirstRestPosition() { return firstRestPosition; }
 Vec3f Springf::getSecondRestPosition() { return secondRestPosition; }
 Vec3f Springf::getCurrentPotential() { return currentPotential; }
@@ -273,6 +290,7 @@ void Springf::setRestLength(float param) { restLength = param; }
 void Springf::setSpringConstant(float param) { springConstant = param; }
 void Springf::setBreakForce(float param) { breakForce = param; }
 void Springf::setDampConstant(float param) { dampConstant = param; }
+void Springf::setPeriRadius(float param) { periRadius = param; }
 void Springf::setFirstRestPosition(Vec3f param) { firstRestPosition = param; }
 void Springf::setSecondRestPosition(Vec3f param) { secondRestPosition = param; }
 void Springf::setCurrentPotential(Vec3f param) { currentPotential = param; }
@@ -294,6 +312,7 @@ Springd::Springd(void* one,void* two) {
   springConstant = 0.0;
   breakForce = 100.0;
   dampConstant = 0.05;
+  periRadius = 0.05;
   currentPotential = Vec3d();
   currentForce = Vec3d();
   currentDampForce = Vec3d();
@@ -324,6 +343,7 @@ Springd::Springd(int param,int param2) {
   springConstant = 0.0;
   breakForce = 0.0;
   dampConstant = 0.05;
+  periRadius = 0.05;
   currentDampForce = Vec3d();
   isCollisionSpring = false;
   dummyCount = 0;
@@ -518,6 +538,7 @@ double Springd::getRestLength() { return restLength; }
 double Springd::getSpringConstant() { return springConstant; }
 double Springd::getBreakForce() { return breakForce; }
 double Springd::getDampConstant() { return dampConstant; }
+double Springd::getPeriRadius() { return periRadius; }
 Vec3d Springd::getFirstRestPosition() { return firstRestPosition; }
 Vec3d Springd::getSecondRestPosition() { return secondRestPosition; }
 Vec3d Springd::getCurrentPotential() { return currentPotential; }
@@ -535,6 +556,7 @@ void Springd::setRestLength(double param) { restLength = param; }
 void Springd::setSpringConstant(double param) { springConstant = param; }
 void Springd::setBreakForce(double param) { breakForce = param; }
 void Springd::setDampConstant(double param) { dampConstant = param; }
+void Springd::setPeriRadius(double param) { periRadius = param; }
 void Springd::setFirstRestPosition(Vec3d param) { firstRestPosition = param; }
 void Springd::setSecondRestPosition(Vec3d param) { secondRestPosition = param; }
 void Springd::setCurrentPotential(Vec3d param) { currentPotential = param; }
