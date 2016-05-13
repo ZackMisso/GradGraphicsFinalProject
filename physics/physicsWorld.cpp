@@ -124,6 +124,22 @@ void PhysicsWorld::addPeriSystemToWorld(PeriSystemd* peri) {
   }
 }
 
+void PhysicsWorld::addDummyObjectToWorld(DummyObjectf* dummy) {
+  if(usingSeparateLists) {
+    dummyObjectsF->add(dummy);
+  } else {
+    dummyObjectsF->add(dummy);
+  }
+}
+
+void PhysicsWorld::addDummyObjectToWorld(DummyObjectd* dummy) {
+  if(usingSeparateLists) {
+    dummyObjectsD->add(dummy);
+  } else {
+    dummyObjectsD->add(dummy);
+  }
+}
+
 void PhysicsWorld::clearWorld() {
   if(usingSeparateLists) {
     while(allObjectsF->getSize())
@@ -160,6 +176,10 @@ void PhysicsWorld::clearWorld() {
     while(allObjectsD->getSize())
       delete allObjectsD->removeLast();
   }
+  while(dummyObjectsF->getSize())
+    delete dummyObjectsF->removeLast();
+  while(dummyObjectsD->getSize())
+    delete dummyObjectsD->removeLast();
 }
 
 Array<PhysicsObjectf*>* PhysicsWorld::getAllObjectsF() { return allObjectsF; }
@@ -170,6 +190,8 @@ Array<PhysicsObjectf*>* PhysicsWorld::getPhysicsObjectsF() { return physicsObjec
 Array<PhysicsObjectd*>* PhysicsWorld::getPhysicsObjectsD() { return physicsObjectsD; }
 Array<PeriSystemf*>* PhysicsWorld::getPeriSystemsF() { return periSystemsF; }
 Array<PeriSystemd*>* PhysicsWorld::getPeriSystemsD() { return periSystemsD; }
+Array<DummyObjectf*>* PhysicsWorld::getDummyObjectsF() { return dummyObjectsF; }
+Array<DummyObjectd*>* PhysicsWorld::getDummyObjectsD() { return dummyObjectsD; }
 bool PhysicsWorld::getDoublePercision() { return doublePercision; }
 bool PhysicsWorld::getUsingSeparateLists() { return usingSeparateLists; }
 
@@ -181,5 +203,7 @@ void PhysicsWorld::setPhysicsObjectsF(Array<PhysicsObjectf*>* param) { physicsOb
 void PhysicsWorld::setPhysicsObjectsD(Array<PhysicsObjectd*>* param) { physicsObjectsD = param; }
 void PhysicsWorld::setPeriSystemsF(Array<PeriSystemf*>* param) { periSystemsF = param; }
 void PhysicsWorld::setPeriSystensD(Array<PeriSystemd*>* param) { periSystemsD = param; }
+void PhysicsWorld::setDummyObjectsF(Array<DummyObjectf*>* param) { dummyObjectsF = param; }
+void PhysicsWorld::setDummyObjectsD(Array<DummyObjectd*>* param) { dummyObjectsD = param; }
 void PhysicsWorld::setDoublePercision(bool param) { doublePercision = param; }
 void PhysicsWorld::setUsingSeparateLists(bool param) { usingSeparateLists = param; }

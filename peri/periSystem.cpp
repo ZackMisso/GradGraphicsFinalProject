@@ -95,7 +95,7 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
             connection->setDampConstant(springDamp);
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
-            //connection->setIsPeriSpring(true);
+            connection->setIsPeriSpring(true);
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);
@@ -150,6 +150,7 @@ void PeriSystemf::setPointMassM(float param) { pointMassM = param; }
 void PeriSystemf::setPointMassH(float param) { pointMassH = param; }
 void PeriSystemf::setSpringConstant(float param) { springConstant = param; }
 void PeriSystemf::setSpringDamp(float param) { springDamp = param; }
+void PeriSystemf::setSpringBreak(float param) { springBreak = param; }
 
 /////////////////////////// DOUBLE VERSION //////////////////////////////
 
@@ -240,7 +241,7 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
             connection->setBreakForce(springBreak);
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
-            //connection->setIsPeriSpring(true);
+            connection->setIsPeriSpring(true);
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);

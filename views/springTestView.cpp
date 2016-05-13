@@ -8,6 +8,7 @@ void SpringTestView::initialize() {
   spring = new Springf((void*)one,(void*)two);
   spring->setSpringConstant(1.0f);
   spring->setDampConstant(0.1f);
+  spring->setIsPeriSpring(true);
   one->getCollisionForces()->add(spring);
   two->getCollisionForces()->add(spring);
   cout << "Initialized" << endl;
@@ -63,5 +64,5 @@ void SpringTestView::doPhysicsStep(float dt) {
   cout << "Performing Physics Step One" << endl;
   one->performPhysicsStep(dt);
   cout << "Performing Physics Step Two" << endl;
-  two->performPhysicsStep(dt);
+  //two->performPhysicsStep(dt);
 }

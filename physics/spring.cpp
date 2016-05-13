@@ -134,7 +134,35 @@ void Springf::calculateSpringForce() {
 
 // this method assumes calculateCurrentRestPositon was called first
 void Springf::calculatePeriForce() {
-  // to be implemented
+  if(isCollisionSpring) {
+    Vec3f dPos = firstPosition - secondPosition;
+    currentForce[0] = springConstant * dPos[0];
+    currentForce[1] = springConstant * dPos[1];
+    currentForce[2] = springConstant * dPos[2];
+  } else {
+    // define x as one and x' as two
+    //cout << "Calculating Peri Force" << endl;
+    Vec3f n = Vec3f();
+    Vec3f zet = Vec3f();
+    Vec3f u = Vec3f();
+    Vec3f up = Vec3f();
+    Vec3f fnz = Vec3f();
+    //float g = 1.0f;
+    u = firstPosition - firstRestPosition;
+    up = secondPosition - secondRestPosition;
+    n = u - up;
+    zet = firstPosition - secondPosition;
+    fnz = n + zet;
+    float strain = ((n+zet).mag() - zet.mag()) / zet.mag();
+    float mag = (n+zet).mag();
+    fnz[0] = springConstant * strain * fnz[0]/mag;
+    fnz[1] = springConstant * strain * fnz[1]/mag;
+    fnz[2] = springConstant * strain * fnz[2]/mag;
+    // ToDo :: add Repulsive force
+    currentForce[0] = fnz[0];
+    currentForce[1] = fnz[1];
+    currentForce[2] = fnz[2];
+  }
 }
 
 // this method assumes setCurrentPositions was called first
@@ -364,7 +392,36 @@ void Springd::calculateSpringForce() {
 
 // this method assumes calculateCurrentRestPositon was called first
 void Springd::calculatePeriForce() {
-  // to be implemented
+  if(isCollisionSpring) {
+    Vec3d dPos = firstPosition - secondPosition;
+    currentForce[0] = springConstant * dPos[0];
+    currentForce[1] = springConstant * dPos[1];
+    currentForce[2] = springConstant * dPos[2];
+  } else {
+    // define x as one and x' as two
+    //cout << "Calculating Peri Force" << endl;
+    Vec3d n = Vec3d();
+    Vec3d zet = Vec3d();
+    Vec3d u = Vec3d();
+    Vec3d up = Vec3d();
+    Vec3d fnz = Vec3d();
+    //float g = 1.0f;
+    u = firstPosition - firstRestPosition;
+    up = secondPosition - secondRestPosition;
+    n = u - up;
+    zet = firstPosition - secondPosition;
+    fnz = n + zet;
+    double strain = ((n+zet).mag() - zet.mag()) / zet.mag();
+    double mag = (n+zet).mag();
+    fnz[0] = springConstant * strain * fnz[0]/mag;
+    fnz[1] = springConstant * strain * fnz[1]/mag;
+    fnz[2] = springConstant * strain * fnz[2]/mag;
+    // ToDo :: add Repulsive force
+    currentForce[0] = fnz[0];
+    currentForce[1] = fnz[1];
+    currentForce[2] = fnz[2];
+    currentForce.debug();
+  }
 }
 
 // this method assumes setCurrentPositions was called first

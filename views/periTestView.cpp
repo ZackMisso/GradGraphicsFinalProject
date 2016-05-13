@@ -15,6 +15,11 @@ void PeriTestView::initialize() {
   periSystem->setPointMassR(0.05f);
   periSystem->setPointMassM(1.0f);
   periSystem->setPointMassH(0.21f);
+  periSystem->setSpringConstant(10.0f);
+  periSystem->setSpringDamp(5.0f);
+  //periSystem->setSpringConstant(1.0f);
+  //periSystem->setSpringDamp(0.1f);
+  periSystem->setSpringBreak(10.0f);
   periSystem->convertVoxelsToPoints(voxelMesh);
   cout << "Spring Size: " << periSystem->getSprings()->getSize() << endl;
   cout << "First Ones Springs: " << periSystem->getPointMasses()->get(0)->getNeighborhood()->getSize() << endl;
