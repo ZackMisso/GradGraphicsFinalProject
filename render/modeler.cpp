@@ -426,9 +426,9 @@ void Modeler::drawBBox(RenderMode rm,BBoxf box) {
     Vec3f dim = box.getDimension();
 
     glVertex3f(pos[0],pos[1],pos[2]);
-    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
-    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
     glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
 
     glVertex3f(pos[0],pos[1],pos[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
@@ -436,9 +436,9 @@ void Modeler::drawBBox(RenderMode rm,BBoxf box) {
     glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
 
     glVertex3f(pos[0],pos[1],pos[2]);
-    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
-    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
 
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
@@ -446,9 +446,9 @@ void Modeler::drawBBox(RenderMode rm,BBoxf box) {
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
 
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
-    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
-    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
 
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
