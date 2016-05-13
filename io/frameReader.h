@@ -5,8 +5,15 @@
 
 #include "../bake/bakedSystem.h"
 #include "../dataStructures/array.h"
+#include "../geometry/geometry.h"
+#include "../geometry/sphere.h"
+#include "../geometry/cylinder.h"
+#include "../geometry/rectPrism.h"
+#include "../geometry/voxel.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -16,14 +23,14 @@ private:
   FrameReader();
   Array<BakedPhysicsObjectf*>* readPeriSystemf(ifstream& file);
   Array<BakedPhysicsObjectd*>* readPeriSystemd(ifstream& file);
-  BakedPhysicsObjectf* readPhysicsObjectf(ifstream& file);
-  BakedPhysicsObjectd* readPhysicsObjectd(ifstream& file);
+  void readPhysicsObjectf(ifstream& file, BakedPhysicsObjectf* o);
+  void readPhysicsObjectd(ifstream& file, BakedPhysicsObjectd* o);
   Array<BakedPhysicsObjectf*>* readPhysicsBodyf(ifstream& file);
   Array<BakedPhysicsObjectd*>* readPhysicsBodyd(ifstream& file);
 public:
   ~FrameReader();
-  void readFramef(BakedSystem* world,string fileName);
-  void readFramed(BakedSystem* world,string fileName);
+  void readFramef(BakedSystem* world,string fileBase, int frames);
+  void readFramed(BakedSystem* world,string fileBase, int frames);
   // singleton methods
   static FrameReader* getInstance();
   static void initialize();

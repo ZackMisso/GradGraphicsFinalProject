@@ -4,7 +4,7 @@
 #include "geometry.h"
 #include "../math/vec3.h"
 
-class Spheref : Geometryf {
+class Spheref : public Geometryf {
 private:
   Vec3f position;
   float radius;
