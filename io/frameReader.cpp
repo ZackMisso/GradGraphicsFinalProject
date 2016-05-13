@@ -91,6 +91,7 @@ void FrameReader::readFramed(BakedSystem* world,string fileBase, int frames) {
   string line;
 
   while (getline(firstFile, line)) {
+    // cout << line << endl;
     if (line.length() > 0) {
       BakedPhysicsObjectd* obj = new BakedPhysicsObjectd();
       // TODO: get initial geometry
@@ -153,10 +154,13 @@ void FrameReader::readFramed(BakedSystem* world,string fileBase, int frames) {
     ostringstream s;
     s << fileBase << frame << ".vox";
     ifstream file(s.str());
+    string trashLine;
     for (int i = 0; i < objects->getSize(); ++i) {
       readPhysicsObjectd(file, objects->get(i));
+      getline(file, trashLine);
     }
   }
+  cout << "set " << objects->getSize() << endl;
   world->setObjectsD(objects);
 }
 

@@ -9,6 +9,7 @@ private:
 public:
   BakedPhysicsObjectf();
   ~BakedPhysicsObjectf();
+  void render(int frame, RenderMode rd);
   // getter methods
   Array<Vec3f*>* getPositions();
   // setter methods
@@ -21,6 +22,7 @@ private:
 public:
   BakedPhysicsObjectd();
   ~BakedPhysicsObjectd();
+  void render(int frame, RenderMode rd);
   // getter methods
   Array<Vec3d*>* getPositions();
   // setter methods

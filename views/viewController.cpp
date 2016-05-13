@@ -22,10 +22,11 @@ ViewController::ViewController() {
   //switchToView(VOXEL_VIEW);
   //switchToView(SPRING_TEST_VIEW);
   //switchToView(COLLISION_TEST_VIEW);
-  //switchToView(COLLISION_TEST_DOUBLE_VIEW);
+  // switchToView(COLLISION_TEST_DOUBLE_VIEW);
   //switchToView(PERI_VIEW);
   //switchToView(SPRING_TEST_DOUBLE_VIEW);
-  switchToView(PERI_DOUBLE_VIEW);
+  // switchToView(PERI_DOUBLE_VIEW);
+  switchToView(REPLAY_VIEW);
 }
 
 ViewController::~ViewController() {
