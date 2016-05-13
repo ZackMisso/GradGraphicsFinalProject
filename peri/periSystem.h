@@ -34,12 +34,18 @@ public:
   float getPointMassR();
   float getPointMassM();
   float getPointMassH();
+  float getSpringConstant();
+  float getSpringDamp();
+  float getSpringBreak();
   // setter methods
   void setPointMasses(Array<PointMassf*>* param);
   void setSprings(Array<Springf*>* param);
   void setPointMassR(float param);
   void setPointMassM(float param);
   void setPointMassH(float param);
+  void setSpringConstant(float param);
+  void setSpringDamp(float param);
+  void setSpringBreak(float param);
 };
 
 class PeriSystemd {
@@ -49,6 +55,9 @@ private:
   double pointMassR; // radius
   double pointMassM; // mass
   double pointMassH; // horizon
+  double springConstant;
+  double springDamp;
+  double springBreak;
 public:
   PeriSystemd();
   PeriSystemd(TriMeshd* mesh);
@@ -65,12 +74,18 @@ public:
   double getPointMassR();
   double getPointMassM();
   double getPointMassH();
+  double getSpringConstant();
+  double getSpringDamp();
+  double getSpringBreak();
   // setter methods
   void setPointMasses(Array<PointMassd*>* param);
   void setSprings(Array<Springd*>* param);
   void setPointMassR(double param);
   void setPointMassM(double param);
   void setPointMassH(double param);
+  void setSpringConstant(double param);
+  void setSpringDamp(double param);
+  void setSpringBreak(double param);
 };
 
 #endif

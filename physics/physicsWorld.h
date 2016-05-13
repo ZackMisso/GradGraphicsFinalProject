@@ -19,7 +19,7 @@ private:
   Array<PeriSystemf*>* periSystemsF;
   Array<PeriSystemd*>* periSystemsD;
   Array<DummyObjectf*>* dummyObjectsF;
-  Array<DummyObjectf*>* dummyObjectsD;
+  Array<DummyObjectd*>* dummyObjectsD;
   bool doublePercision;
   bool usingSeparateLists;
 public:

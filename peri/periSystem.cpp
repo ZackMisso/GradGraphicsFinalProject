@@ -12,6 +12,9 @@ PeriSystemf::PeriSystemf() {
   pointMassR = 0.5f; // to be set outside of class
   pointMassM = 1.0f; // to be set outside of class
   pointMassH = 1.5f; // to be set outside of class
+  springConstant = 0.0f;
+  springDamp = 0.0f;
+  springBreak = 0.0f;
 }
 
 PeriSystemf::PeriSystemf(TriMeshf* mesh) {
@@ -20,6 +23,9 @@ PeriSystemf::PeriSystemf(TriMeshf* mesh) {
   pointMassR = 0.5f; // to be set outside of class
   pointMassM = 1.0f; // to be set outside of class
   pointMassH = 1.5f; // to be set outside of class
+  springConstant = 0.0f;
+  springDamp = 0.0f;
+  springBreak = 0.0f;
   Array<Voxelf*>* voxelMesh = Voxelizer::getInstance()->voxelizeTriMesh(mesh,pointMassR);
   convertVoxelsToPoints(voxelMesh);
 }
@@ -30,6 +36,9 @@ PeriSystemf::PeriSystemf(Array<Voxelf*>* voxelMesh) {
   pointMassR = 0.5f; // to be set outside of class
   pointMassM = 1.0f; // to be set outside of class
   pointMassH = 1.5f; // to be set outside of class
+  springConstant = 0.0f;
+  springDamp = 0.0f;
+  springBreak = 0.0f;
   convertVoxelsToPoints(voxelMesh);
 }
 
@@ -81,6 +90,9 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
             connection->setOneRef((void*)pm);
             connection->setTwoRef((void*)two);
             connection->setRestLength(pm->getDistTo(two));
+            connection->setSpringConstant(springConstant);
+            connection->setBreakForce(springBreak);
+            connection->setDampConstant(springDamp);
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
             //connection->setIsPeriSpring(true);
@@ -127,12 +139,17 @@ Array<Springf*>* PeriSystemf::getSprings() { return springs; }
 float PeriSystemf::getPointMassR() { return pointMassR; }
 float PeriSystemf::getPointMassM() { return pointMassM; }
 float PeriSystemf::getPointMassH() { return pointMassH; }
+float PeriSystemf::getSpringConstant() { return springConstant; }
+float PeriSystemf::getSpringDamp() { return springDamp; }
+float PeriSystemf::getSpringBreak() { return springBreak; }
 
 void PeriSystemf::setPointMasses(Array<PointMassf*>* param) { pointMasses = param; }
 void PeriSystemf::setSprings(Array<Springf*>* param) { springs = param; }
 void PeriSystemf::setPointMassR(float param) { pointMassR = param; }
 void PeriSystemf::setPointMassM(float param) { pointMassM = param; }
 void PeriSystemf::setPointMassH(float param) { pointMassH = param; }
+void PeriSystemf::setSpringConstant(float param) { springConstant = param; }
+void PeriSystemf::setSpringDamp(float param) { springDamp = param; }
 
 /////////////////////////// DOUBLE VERSION //////////////////////////////
 
@@ -142,6 +159,9 @@ PeriSystemd::PeriSystemd() {
   pointMassR = 0.5; // to be set outside of class
   pointMassM = 1.0; // to be set outside of class
   pointMassH = 1.5; // to be set outside of class
+  springConstant = 0.0;
+  springDamp = 0.0;
+  springBreak = 0.0;
 }
 
 PeriSystemd::PeriSystemd(TriMeshd* mesh) {
@@ -150,6 +170,9 @@ PeriSystemd::PeriSystemd(TriMeshd* mesh) {
   pointMassR = 0.5; // to be set outside of class
   pointMassM = 1.0; // to be set outside of class
   pointMassH = 1.5; // to be set outside of class
+  springConstant = 0.0;
+  springDamp = 0.0;
+  springBreak = 0.0;
   Array<Voxeld*>* voxelMesh = Voxelizer::getInstance()->voxelizeTriMesh(mesh,pointMassR);
   convertVoxelsToPoints(voxelMesh);
 }
@@ -160,6 +183,9 @@ PeriSystemd::PeriSystemd(Array<Voxeld*>* voxelMesh) {
   pointMassR = 0.5; // to be set outside of class
   pointMassM = 1.0; // to be set outside of class
   pointMassH = 1.5; // to be set outside of class
+  springConstant = 0.0;
+  springDamp = 0.0;
+  springBreak = 0.0;
   convertVoxelsToPoints(voxelMesh);
 }
 
@@ -209,6 +235,9 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
             connection->setOneRef((void*)pm);
             connection->setTwoRef((void*)two);
             connection->setRestLength(pm->getDistTo(two));
+            connection->setSpringConstant(springConstant);
+            connection->setDampConstant(springDamp);
+            connection->setBreakForce(springBreak);
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
             //connection->setIsPeriSpring(true);
@@ -242,9 +271,15 @@ Array<Springd*>* PeriSystemd::getSprings() { return springs; }
 double PeriSystemd::getPointMassR() { return pointMassR; }
 double PeriSystemd::getPointMassM() { return pointMassM; }
 double PeriSystemd::getPointMassH() { return pointMassH; }
+double PeriSystemd::getSpringConstant() { return springConstant; }
+double PeriSystemd::getSpringDamp() { return springDamp; }
+double PeriSystemd::getSpringBreak() { return springBreak; }
 
 void PeriSystemd::setPointMasses(Array<PointMassd*>* param) { pointMasses = param; }
 void PeriSystemd::setSprings(Array<Springd*>* param) { springs = param; }
 void PeriSystemd::setPointMassR(double param) { pointMassR = param; }
 void PeriSystemd::setPointMassM(double param) { pointMassM = param; }
 void PeriSystemd::setPointMassH(double param) { pointMassH = param; }
+void PeriSystemd::setSpringConstant(double param) { springConstant = param; }
+void PeriSystemd::setSpringDamp(double param) { springDamp = param; }
+void PeriSystemd::setSpringBreak(double param) { springBreak = param; }

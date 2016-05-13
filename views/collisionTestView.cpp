@@ -103,3 +103,17 @@ void CollisionTestView::doPhysicsStep(float dt) {
     }
   }
 }
+
+void CollisionTestView::headless() {
+  int numFrames = 300;
+  for(int i=0;i<numFrames;i++) {
+    doPhysicsStep(1.0f/60.0f);
+    // implement file writes
+    char buff[32];
+    sprintf(buff, "frames/frame%05d.vox", i);
+    ofstream file(buff);
+    FrameWriter::getInstance()->writePhysicsObject(one, file);
+    FrameWriter::getInstance()->writePhysicsObject(two, file);
+    file.close();
+  }
+}

@@ -31,40 +31,48 @@ int main(int argc,char** argv) {
   SimulationStateReader::initialize();
   SimulationStateWriter::initialize();
   TriMeshReader::initialize();
-  // initialize glfw
-  if(!glfwInit())
-    exit(EXIT_FAILURE);
-  // create the window
-  GLFWwindow* window = glfwCreateWindow(1000,1000,"zBaEcNk",NULL,NULL);
-  if (!window) {
-    // there is an error if the window is not created
+  if(argc > 1) {
+    // run headless mode
+    ViewController::getInstance()->getCurrentView()->headless();
+  } else {
+    // initialize glfw
+    if(!glfwInit())
+      exit(EXIT_FAILURE);
+    // create the window
+    GLFWwindow* window = glfwCreateWindow(1000,1000,"zBaEcNk",NULL,NULL);
+    if (!window) {
+      // there is an error if the window is not created
+      glfwTerminate();
+      exit(EXIT_FAILURE);
+    }
+    int width;
+    int height;
+    // set the error callback
+    glfwSetErrorCallback(error);
+    // set the main context for OpenGL to draw to
+    glfwMakeContextCurrent(window);
+    // set the callback method for keyboard input
+    glfwSetKeyCallback(window,keyboard);
+    // set the callback method for mouse movement input
+    glfwSetCursorPosCallback(window,mouseMove);
+    // set the callback method for mouse click input
+    glfwSetMouseButtonCallback(window,mouseClick);
+    // get the size of the window
+    glfwGetFramebufferSize(window, &width, &height);
+    // set the viewport (what part of the window is drawn on by OpenGL)
+    glViewport(0,0,width,height);
+    // set the speed for swapping buffers (once per frame)
+    glfwSwapInterval(1);
+    // main loop
+    while (!glfwWindowShouldClose(window))
+    {
+      display();
+      glfwSwapBuffers(window);
+      glfwPollEvents();
+    }
+    // clean up glfw
+    glfwDestroyWindow(window);
     glfwTerminate();
-    exit(EXIT_FAILURE);
-  }
-  int width;
-  int height;
-  // set the error callback
-  glfwSetErrorCallback(error);
-  // set the main context for OpenGL to draw to
-  glfwMakeContextCurrent(window);
-  // set the callback method for keyboard input
-  glfwSetKeyCallback(window,keyboard);
-  // set the callback method for mouse movement input
-  glfwSetCursorPosCallback(window,mouseMove);
-  // set the callback method for mouse click input
-  glfwSetMouseButtonCallback(window,mouseClick);
-  // get the size of the window
-  glfwGetFramebufferSize(window, &width, &height);
-  // set the viewport (what part of the window is drawn on by OpenGL)
-  glViewport(0,0,width,height);
-  // set the speed for swapping buffers (once per frame)
-  glfwSwapInterval(1);
-  // main loop
-  while (!glfwWindowShouldClose(window))
-  {
-    display();
-    glfwSwapBuffers(window);
-    glfwPollEvents();
   }
   // clean up
   // destroy our own subsystems
@@ -78,9 +86,6 @@ int main(int argc,char** argv) {
   SimulationStateReader::destroy();
   SimulationStateWriter::destroy();
   TriMeshReader::destroy();
-  // clean up glfw
-  glfwDestroyWindow(window);
-  glfwTerminate();
   return 0;
 }
 

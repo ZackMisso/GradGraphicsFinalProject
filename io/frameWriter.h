@@ -14,13 +14,13 @@ class FrameWriter {
 private:
   static FrameWriter* instance;
   FrameWriter();
+public:
   void writePeriSystem(PeriSystemf* peri,ofstream& file);
   void writePeriSystem(PeriSystemd* peri,ofstream& file);
   void writePhysicsObject(PhysicsObjectf* object,ofstream& file);
   void writePhysicsObject(PhysicsObjectd* object,ofstream& file);
   void writePhysicsBody(PhysicsBodyf* body,ofstream& file);
   void writePhysicsBody(PhysicsBodyd* body,ofstream& file);
-public:
   ~FrameWriter();
   void writeFramef(PhysicsWorld* world,string fileName);
   void writeFramed(PhysicsWorld* world,string fileName);

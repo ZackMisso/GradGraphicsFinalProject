@@ -23,6 +23,7 @@ public:
   virtual void keyboard(int key,int scancode,int action,int mods);
   virtual void mouseClick(int button,int action,int mods);
   virtual void display();
+  virtual void headless();
 };
 
 #endif

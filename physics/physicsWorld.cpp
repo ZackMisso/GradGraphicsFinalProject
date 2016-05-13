@@ -11,8 +11,8 @@ PhysicsWorld::PhysicsWorld() {
   physicsObjectsD = new Array<PhysicsObjectd*>();
   periSystemsF = new Array<PeriSystemf*>();
   periSystemsD = new Array<PeriSystemd*>();
-  //dummyObjectsF = new Array<DummyObjectf*>();
-  //dummyObjectsD = new Array<DummyObjectd*>();
+  dummyObjectsF = new Array<DummyObjectf*>();
+  dummyObjectsD = new Array<DummyObjectd*>();
 }
 
 PhysicsWorld::~PhysicsWorld() {
@@ -54,6 +54,12 @@ PhysicsWorld::~PhysicsWorld() {
     while(allObjectsD->getSize())
       delete allObjectsD->removeLast();
   }
+  while(dummyObjectsF->getSize())
+    delete dummyObjectsF->removeLast();
+  while(dummyObjectsD->getSize())
+    delete dummyObjectsD->removeLast();
+  delete dummyObjectsF;
+  delete dummyObjectsD;
   delete allObjectsF;
   delete allObjectsD;
   delete physicsBodiesF;

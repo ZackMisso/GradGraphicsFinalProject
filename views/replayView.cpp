@@ -3,8 +3,8 @@
 
 void ReplayView::initialize() {
   bakedSystem = new BakedSystem();
-  fileName = "testScene";
-  totalFrames = 4*60;
+  fileName = "frames/frame%05d.vox";
+  totalFrames = 300;
   currentFrame = 0;
   fps = 1.0f/60.0f;
   if(getDoublePercision()) {

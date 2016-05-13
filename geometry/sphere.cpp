@@ -27,7 +27,7 @@ void Spheref::writeToFile(ofstream& file) {
 void Spheref::readFromFile(ifstream& file) {
   float r;
   file >> r;
-  setRadius(r)
+  setRadius(r);
 }
 
 void Spheref::render(RenderMode rm) {
@@ -73,7 +73,7 @@ void Sphered::writeToFile(ofstream& file) {
 void Sphered::readFromFile(ifstream& file) {
   double r;
   file >> r;
-  setRadius(r)
+  setRadius(r);
 }
 
 void Sphered::render(RenderMode rm) {
