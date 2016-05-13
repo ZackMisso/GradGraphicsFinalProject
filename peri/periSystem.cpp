@@ -71,19 +71,19 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
   float sqrH = pointMassH*pointMassH;
   for(int i=0;i<pointMasses->getSize();i++) {
     PointMassf* pm = pointMasses->get(i);
-    for(int j=0;j<pointMasses->getSize();j++) {
+    for(int j=i+1;j<pointMasses->getSize();j++) {
       if(i!=j) {
         PointMassf* two = pointMasses->get(j);
         // check if the two pointmasses are in the same neighborhood
         if(pm->getSqrDistTo(two) <= sqrH) {
           bool exists = false;
           // make sure their connection doesnt already exist
-          for(int k=0;k<springs->getSize();k++) {
-            if(springs->get(k)->isEqual((void*)pm,(void*)two)) {
-              //cout << "IT EXISTS" << endl;
-              exists = true;
-            }
-          }
+          //for(int k=0;k<springs->getSize();k++) {
+          //  if(springs->get(k)->isEqual((void*)pm,(void*)two)) {
+          //    //cout << "IT EXISTS" << endl;
+          //    exists = true;
+          //  }
+          //}
           if(!exists) {
             // add the connection
             Springf* connection = new Springf(pm->getID(),two->getID());
@@ -165,6 +165,7 @@ PeriSystemd::PeriSystemd() {
   springConstant = 0.0;
   springDamp = 0.0;
   springBreak = 0.0;
+  drawSprings = false;
 }
 
 PeriSystemd::PeriSystemd(TriMeshd* mesh) {
@@ -176,6 +177,7 @@ PeriSystemd::PeriSystemd(TriMeshd* mesh) {
   springConstant = 0.0;
   springDamp = 0.0;
   springBreak = 0.0;
+  drawSprings = true;
   Array<Voxeld*>* voxelMesh = Voxelizer::getInstance()->voxelizeTriMesh(mesh,pointMassR);
   convertVoxelsToPoints(voxelMesh);
 }
@@ -221,18 +223,18 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
   double sqrH = pointMassH*pointMassH;
   for(int i=0;i<pointMasses->getSize();i++) {
     PointMassd* pm = pointMasses->get(i);
-    for(int j=0;j<pointMasses->getSize();j++) {
+    for(int j=i+1;j<pointMasses->getSize();j++) {
       if(i!=j) {
         PointMassd* two = pointMasses->get(j);
         // check if the two pointmasses are in the same neighborhood
         if(pm->getSqrDistTo(two) <= sqrH) {
           bool exists = false;
           // make sure their connection doesnt already exist
-          for(int k=0;k<springs->getSize();k++) {
-            if(springs->get(k)->isEqual((void*)pm,(void*)two)) {
-              exists = true;
-            }
-          }
+          //for(int k=0;k<springs->getSize();k++) {
+          //  if(springs->get(k)->isEqual((void*)pm,(void*)two)) {
+          //    exists = true;
+          //  }
+          //}
           if(!exists) {
             // add the connection
             Springd* connection = new Springd(pm->getID(),two->getID());
@@ -273,7 +275,7 @@ void PeriSystemd::render(RenderMode rm,bool displaySprings) {
   for(int i=0;i<pointMasses->getSize();i++) {
     pointMasses->get(i)->render(rm);
   }
-  if(displaySprings) {
+  if(displaySprings || drawSprings) {
     for(int i=0;i<springs->getSize();i++) {
       glColor3f(0.0f,0.0f,1.0f);
       springs->get(i)->render(rm);
@@ -289,6 +291,7 @@ double PeriSystemd::getPointMassH() { return pointMassH; }
 double PeriSystemd::getSpringConstant() { return springConstant; }
 double PeriSystemd::getSpringDamp() { return springDamp; }
 double PeriSystemd::getSpringBreak() { return springBreak; }
+bool PeriSystemd::getDrawSprings() { return drawSprings; }
 
 void PeriSystemd::setPointMasses(Array<PointMassd*>* param) { pointMasses = param; }
 void PeriSystemd::setSprings(Array<Springd*>* param) { springs = param; }
@@ -298,3 +301,4 @@ void PeriSystemd::setPointMassH(double param) { pointMassH = param; }
 void PeriSystemd::setSpringConstant(double param) { springConstant = param; }
 void PeriSystemd::setSpringDamp(double param) { springDamp = param; }
 void PeriSystemd::setSpringBreak(double param) { springBreak = param; }
+void PeriSystemd::setDrawSprings(bool param) { drawSprings = param; }

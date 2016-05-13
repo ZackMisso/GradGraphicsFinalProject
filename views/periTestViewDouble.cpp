@@ -12,7 +12,7 @@ void PeriTestViewDouble::initialize() {
   cout << "Initializing" << endl;
   collisionObjects = new Array<DummyObjectd*>();
   collisionSprings = new Array<Springd*>();
-  BBoxd box = BBoxd(Vec3d(-0.5,-0.3,-0.05),Vec3d(1.0,1.0,0.1));
+  BBoxd box = BBoxd(Vec3d(-0.5,-0.3,-0.05),Vec3d(1.0,1.0,0.2));
   cout << "Voxelizing Box" << endl;
   Array<Voxeld*>* voxelMesh = Voxelizer::getInstance()->voxelizeBBox(box,0.05);
   cout << "Voxelized Box" << endl;
@@ -36,7 +36,8 @@ void PeriTestViewDouble::initialize() {
   periSystem->convertVoxelsToPoints(voxelMesh);
   cout << "Finished Conversion" << endl;
   for(int i=0;i<periSystem->getPointMasses()->getSize();i++) {
-    periSystem->getPointMasses()->get(i)->getExternelForces()->add(new Vec3d(0.0,-1.0,0.0));
+    //periSystem->getPointMasses()->get(i)->getExternelForces()->add(new Vec3d(0.0,-5.0,0.0));
+    periSystem->getPointMasses()->get(i)->getExternelForces()->add(new Vec3d(0.0,-4.0,0.0));
     //periSystem->getPointMasses()->get(i)->getExternelForces()->add(new Vec3f(0.0f,-1.0f,0.0f));
   }
   cout << "Creating Collide Object" << endl;
@@ -130,7 +131,7 @@ void PeriTestViewDouble::doPhysicsStep(double dt) {
       collisionSprings->removeEff(i);
       //cout << "Hey Listen" << endl;
       i--;
-      //cout << "Before Delete" << endl;
+      cout << "Before Delete" << endl;
       delete spring;
       delete one;
       cnt--;
@@ -162,8 +163,8 @@ void PeriTestViewDouble::doPhysicsStep(double dt) {
         DummyObjectd* obj = new DummyObjectd(collideObject,periSystem->getPointMasses()->get(i));
         collisionObjects->add(obj);
         Springd* spring = new Springd((void*)obj,(void*)pointMasses->get(i));
-        spring->setSpringConstant(60.0);
-        spring->setDampConstant(2.0);
+        spring->setSpringConstant(500.0);
+        spring->setDampConstant(8.0);
         spring->setIsCollisionSpring(true);
         pointMasses->get(i)->getCollisionForces()->add(spring);
         collisionSprings->add(spring);
