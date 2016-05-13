@@ -3,14 +3,14 @@
 
 void ReplayView::initialize() {
   bakedSystem = new BakedSystem();
-  fileName = "frames/frame%05d.vox";
+  fileName = "frames/frame";
   totalFrames = 300;
   currentFrame = 0;
   fps = 1.0f/60.0f;
   if(getDoublePercision()) {
-    FrameReader::getInstance()->readFramed(bakedSystem,fileName);
+    FrameReader::getInstance()->readFramed(bakedSystem,fileName, totalFrames);
   } else {
-    FrameReader::getInstance()->readFramef(bakedSystem,fileName);
+    FrameReader::getInstance()->readFramef(bakedSystem,fileName, totalFrames);
   }
 }
 

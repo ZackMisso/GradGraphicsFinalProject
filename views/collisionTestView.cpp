@@ -110,7 +110,7 @@ void CollisionTestView::headless() {
     doPhysicsStep(1.0f/60.0f);
     // implement file writes
     char buff[32];
-    sprintf(buff, "frames/frame%05d.vox", i);
+    sprintf(buff, "frames/frame%d.vox", i);
     ofstream file(buff);
     FrameWriter::getInstance()->writePhysicsObject(one, file);
     FrameWriter::getInstance()->writePhysicsObject(two, file);
