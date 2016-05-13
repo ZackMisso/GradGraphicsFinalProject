@@ -22,8 +22,8 @@ public:
   // methods
   void calculateVolume();
   // physics methods
-  virtual void performPhysicsStep(float dt);
-  Vec3f accumulateForces();
+  //virtual void performPhysicsStep(float dt);
+  virtual Vec3f accumulateForces(float dt);
   float getDistTo(PointMassf* other);
   float getSqrDistTo(PointMassf* other);
   void physicsUpdate();
@@ -56,10 +56,10 @@ public:
   // methods
   void calculateVolume();
   // physics methods
-  virtual void performPhysicsStep(double dt);
+  //virtual void performPhysicsStep(double dt);
   double getDistTo(PointMassd* other);
   double getSqrDistTo(PointMassd* other);
-  Vec3d accumulateForces();
+  virtual Vec3d accumulateForces(double dt);
   void physicsUpdate();
   // getter methods
   Array<Springd*>* getNeighborhood();

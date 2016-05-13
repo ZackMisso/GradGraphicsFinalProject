@@ -23,8 +23,10 @@ PhysicsObjectf::~PhysicsObjectf() {
 }
 
 void PhysicsObjectf::performPhysicsStep(float dt) {
+  //cout << "PERFORMING PHYSICS" << endl;
   eulerIntegration(dt);
-  geometry->updatePosition(position);
+  if(geometry)
+    geometry->updatePosition(position);
 }
 
 void PhysicsObjectf::eulerIntegration(float dt) {
@@ -47,6 +49,7 @@ void PhysicsObjectf::implicitIntegration(float dt) {
 
 Vec3f PhysicsObjectf::accumulateForces(float dt) {
   Vec3f totalForce = Vec3f();
+  //cout << "AHAHAHAHAAH" << endl;
   for(int i=0;i<externalForces->getSize();i++) {
     totalForce = totalForce + *(externalForces->get(i));
   }

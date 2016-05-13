@@ -1,11 +1,13 @@
 #include "periTestView.h"
 #include "../geometry/bbox.h"
 #include "../geometry/voxelizer.h"
+//#include "../peri/pointMass.h"
 #include <iostream>
 
 using namespace std;
 
 void PeriTestView::initialize() {
+  collisionObjects = new Array<DummyObjectf*>();
   BBoxf box = BBoxf(Vec3f(-0.5f,-0.5f,-0.05f),Vec3f(1.0f,1.0f,0.1f));
   Array<Voxelf*>* voxelMesh = Voxelizer::getInstance()->voxelizeBBox(box,0.05f);
   cout << "Voxel Mesh Size: " << voxelMesh->getSize() << endl;
@@ -23,7 +25,10 @@ void PeriTestView::deInitialize() {
 }
 
 void PeriTestView::keyboard(int key,int scancode,int action,int mods) {
-  // to be implementd
+  if(key == GLFW_KEY_B && action == GLFW_PRESS) {
+    PointMassf* one = periSystem->getPointMasses()->get(0);
+    one->setPosition(Vec3f(-0.8f,-0.8f,0.0f));
+  }
 }
 
 void PeriTestView::mouseClick(int button,int action,int mods) {
@@ -47,5 +52,6 @@ void PeriTestView::display() {
 }
 
 void PeriTestView::doPhysicsStep(float dt) {
-  // to be implemented
+  //cout << "PHYSICSC" << endl;
+  periSystem->performPhysicsStep(dt);
 }

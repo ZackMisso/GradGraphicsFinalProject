@@ -65,6 +65,7 @@ void Springf::calculatePotential() {
   //PointMassf* onePos = (PointMassf*)oneRef;
   //PointMassf* twoPos = (PointMassf*)twoRef;
   if(isPeriSpring) {
+    //cout << "SON OF A BITCH" << endl;
     calculatePeriPotential();
   } else {
     calculateSpringPotential();

@@ -83,7 +83,7 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
             connection->setRestLength(pm->getDistTo(two));
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
-            connection->setIsPeriSpring(true);
+            //connection->setIsPeriSpring(true);
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);
@@ -96,7 +96,16 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
   }
 }
 
-void PeriSystemf::update() {
+void PeriSystemf::performPhysicsStep(float dt) {
+  for(int i=0;i<springs->getSize();i++) {
+    springs->get(i)->setCurrentPositions();
+    springs->get(i)->calculateCurrentRestPosition();
+    springs->get(i)->calculateForce();
+    springs->get(i)->calculatePotential();
+  }
+  for(int i=0;i<pointMasses->getSize();i++) {
+    pointMasses->get(i)->performPhysicsStep(dt);
+  }
   // to be implemented
 }
 
@@ -202,7 +211,7 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
             connection->setRestLength(pm->getDistTo(two));
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
-            connection->setIsPeriSpring(true);
+            //connection->setIsPeriSpring(true);
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);
@@ -213,7 +222,7 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
   }
 }
 
-void PeriSystemd::update() {
+void PeriSystemd::performPhysicsStep(double dt) {
   // to be implemented
 }
 

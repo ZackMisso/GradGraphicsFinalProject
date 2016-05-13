@@ -5,10 +5,13 @@
 #include <GLFW/glfw3.h>
 #include "view.h"
 #include "../peri/periSystem.h"
+#include "../physics/dummyObject.h"
+#include "../dataStructures/array.h"
 
 class PeriTestView : public View {
 private:
   PeriSystemf* periSystem;
+  Array<DummyObjectf*>* collisionObjects;
   void doPhysicsStep(float dt);
 public:
   virtual void initialize();

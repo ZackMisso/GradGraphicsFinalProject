@@ -13,10 +13,6 @@ PointMassf::~PointMassf() {
   delete neighborhood;
 }
 
-void PointMassf::performPhysicsStep(float dt) {
-  // to be implemented
-}
-
 float PointMassf::getDistTo(PointMassf* other) {
   Vec3f dist = position - other->position;
   return dist.mag();
@@ -27,9 +23,31 @@ float PointMassf::getSqrDistTo(PointMassf* other) {
   return dist.sqrMag();
 }
 
-Vec3f PointMassf::accumulateForces() {
-  // to be implemented
-  return Vec3f();
+Vec3f PointMassf::accumulateForces(float dt) {
+  //cout << "YEA" << endl;
+  Vec3f totalForce = Vec3f();
+  for(int i=0;i<externalForces->getSize();i++) {
+    totalForce = totalForce + *(externalForces->get(i));
+  }
+  for(int i=0;i<getCollisionForces()->getSize();i++) {
+    Vec3f force = getCollisionForces()->get(i)->getForceForObject((void*)this);
+    // spring dampening
+    float dampC = getCollisionForces()->get(i)->getDampConstant();
+    force = force - Vec3f(dampC*getVelocity()[0],dampC*getVelocity()[1],dampC*getVelocity()[2]);
+    // acumulate dampened force
+    totalForce = totalForce + force;
+  }
+  for(int i=0;i<neighborhood->getSize();i++) {
+    // THIS WILL NEED TO BE
+    Vec3f force = neighborhood->get(i)->getForceForObject((void*)this);
+    // spring dampening
+    float dampC = neighborhood->get(i)->getDampConstant();
+    force = force - Vec3f(dampC*getVelocity()[0],dampC*getVelocity()[1],dampC*getVelocity()[2]);
+    totalForce = totalForce + force;
+  }
+  //cout << "TotalForce: ";
+  //totalForce.debug();
+  return totalForce;
 }
 
 void PointMassf::physicsUpdate() {
@@ -66,10 +84,6 @@ PointMassd::~PointMassd() {
   delete neighborhood;
 }
 
-void PointMassd::performPhysicsStep(double dt) {
-  // to be implemented
-}
-
 double PointMassd::getDistTo(PointMassd* other) {
   Vec3d dist = position - other->position;
   return dist.mag();
@@ -80,9 +94,29 @@ double PointMassd::getSqrDistTo(PointMassd* other) {
   return dist.sqrMag();
 }
 
-Vec3d PointMassd::accumulateForces() {
-  // to be implemented
-  return Vec3d();
+Vec3d PointMassd::accumulateForces(double dt) {
+  //cout << "YEA" << endl;
+  Vec3d totalForce = Vec3d();
+  for(int i=0;i<externalForces->getSize();i++) {
+    totalForce = totalForce + *(externalForces->get(i));
+  }
+  for(int i=0;i<getCollisionForces()->getSize();i++) {
+    Vec3d force = getCollisionForces()->get(i)->getForceForObject((void*)this);
+    // spring dampening
+    double dampC = getCollisionForces()->get(i)->getDampConstant();
+    force = force - Vec3d(dampC*getVelocity()[0],dampC*getVelocity()[1],dampC*getVelocity()[2]);
+    // acumulate dampened force
+    totalForce = totalForce + force;
+  }
+  for(int i=0;i<neighborhood->getSize();i++) {
+    // THIS WILL NEED TO BE
+    Vec3d force = neighborhood->get(i)->getForceForObject((void*)this);
+    // spring dampening
+    double dampC = neighborhood->get(i)->getDampConstant();
+    force = force - Vec3d(dampC*getVelocity()[0],dampC*getVelocity()[1],dampC*getVelocity()[2]);
+    totalForce = totalForce + force;
+  }
+  return totalForce;
 }
 
 void PointMassd::physicsUpdate() {

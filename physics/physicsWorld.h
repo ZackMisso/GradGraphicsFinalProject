@@ -5,6 +5,7 @@
 #include "../peri/periSystem.h"
 #include "physicsObject.h"
 #include "physicsBody.h"
+#include "dummyObject.h"
 
 class PhysicsWorld {
 private:
@@ -17,6 +18,8 @@ private:
   Array<PhysicsObjectd*>* physicsObjectsD;
   Array<PeriSystemf*>* periSystemsF;
   Array<PeriSystemd*>* periSystemsD;
+  Array<DummyObjectf*>* dummyObjectsF;
+  Array<DummyObjectf*>* dummyObjectsD;
   bool doublePercision;
   bool usingSeparateLists;
 public:
@@ -29,6 +32,8 @@ public:
   void addPhysicsObjectToWorld(PhysicsObjectd* object);
   void addPeriSystemToWorld(PeriSystemf* peri);
   void addPeriSystemToWorld(PeriSystemd* peri);
+  void addDummyObjectToWorld(DummyObjectf* dummy);
+  void addDummyObjectToWorld(DummyObjectd* dummy);
   // methods
   void clearWorld();
   // getter methods
@@ -40,6 +45,8 @@ public:
   Array<PhysicsObjectd*>* getPhysicsObjectsD();
   Array<PeriSystemf*>* getPeriSystemsF();
   Array<PeriSystemd*>* getPeriSystemsD();
+  Array<DummyObjectf*>* getDummyObjectsF();
+  Array<DummyObjectd*>* getDummyObjectsD();
   bool getDoublePercision();
   bool getUsingSeparateLists();
   // setter methods
@@ -51,6 +58,8 @@ public:
   void setPhysicsObjectsD(Array<PhysicsObjectd*>* param);
   void setPeriSystemsF(Array<PeriSystemf*>* param);
   void setPeriSystensD(Array<PeriSystemd*>* param);
+  void setDummyObjectsF(Array<DummyObjectf*>* param);
+  void setDummyObjectsD(Array<DummyObjectd*>* param);
   void setDoublePercision(bool param);
   void setUsingSeparateLists(bool param);
 };

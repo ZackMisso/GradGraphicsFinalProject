@@ -15,6 +15,9 @@ private:
   float pointMassR; // radius
   float pointMassM; // mass
   float pointMassH; // horizon
+  float springConstant;
+  float springDamp;
+  float springBreak;
 public:
   PeriSystemf();
   PeriSystemf(TriMeshf* mesh);
@@ -23,7 +26,7 @@ public:
   // methods
   void preprocess();
   void convertVoxelsToPoints(Array<Voxelf*>* voxels);
-  void update();
+  void performPhysicsStep(float dt);
   void render(RenderMode rm,bool displaySprings);
   // getter methods
   Array<PointMassf*>* getPointMasses();
@@ -54,7 +57,7 @@ public:
   // methods
   void preprocess();
   void convertVoxelsToPoints(Array<Voxeld*>* voxels);
-  void update();
+  void performPhysicsStep(double dt);
   void render(RenderMode rm,bool displaySprings);
   // getter methods
   Array<PointMassd*>* getPointMasses();

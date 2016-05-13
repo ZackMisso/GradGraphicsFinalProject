@@ -11,6 +11,8 @@ PhysicsWorld::PhysicsWorld() {
   physicsObjectsD = new Array<PhysicsObjectd*>();
   periSystemsF = new Array<PeriSystemf*>();
   periSystemsD = new Array<PeriSystemd*>();
+  //dummyObjectsF = new Array<DummyObjectf*>();
+  //dummyObjectsD = new Array<DummyObjectd*>();
 }
 
 PhysicsWorld::~PhysicsWorld() {
