@@ -385,7 +385,7 @@ Springd::Springd(int param,int param2) {
   secondRestPosition = Vec3d();
   isPeriSpring = false;
   springConstant = 0.0;
-  breakForce = 0.0;
+  breakForce = 0.25;
   dampConstant = 0.05;
   periRadius = 0.05;
   repulseConstant = 0.9;
@@ -523,6 +523,7 @@ void Springd::calculatePeriForce() {
     //fnz[1] = strain * fnz[1];
     //fnz[2] = strain * fnz[2];
     // add repulsive force
+    
     fnz[0] = fnz[0] - rep[0];
     fnz[1] = fnz[1] - rep[1];
     fnz[2] = fnz[2] - rep[2];
@@ -565,8 +566,8 @@ bool Springd::shouldDestroySpring() {
     //return false;
     return dummyCount == 2;
   } else {
-      if((firstPosition-secondPosition).mag() > 1.25*restLength
-          || (firstPosition-secondPosition).mag() < 0.75*restLength) {
+      if((firstPosition-secondPosition).mag() > (1.00+breakForce)*restLength
+          || (firstPosition-secondPosition).mag() < (1.00-breakForce)*restLength) {
         isBroken = true;
       }
   }

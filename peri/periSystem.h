@@ -58,6 +58,7 @@ private:
   double springConstant;
   double springDamp;
   double springBreak;
+  bool drawSprings;
 public:
   PeriSystemd();
   PeriSystemd(TriMeshd* mesh);
@@ -77,6 +78,7 @@ public:
   double getSpringConstant();
   double getSpringDamp();
   double getSpringBreak();
+  bool getDrawSprings();
   // setter methods
   void setPointMasses(Array<PointMassd*>* param);
   void setSprings(Array<Springd*>* param);
@@ -86,6 +88,7 @@ public:
   void setSpringConstant(double param);
   void setSpringDamp(double param);
   void setSpringBreak(double param);
+  void setDrawSprings(bool param);
 };
 
 #endif
