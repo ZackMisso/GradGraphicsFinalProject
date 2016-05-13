@@ -11,6 +11,8 @@
 class PeriTestView : public View {
 private:
   PeriSystemf* periSystem;
+  PhysicsObjectf* collideObject;
+  Array<Springf>* collisionSprings;
   Array<DummyObjectf*>* collisionObjects;
   void doPhysicsStep(float dt);
 public:

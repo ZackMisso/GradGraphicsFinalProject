@@ -13,6 +13,8 @@ PhysicsWorld::PhysicsWorld() {
   periSystemsD = new Array<PeriSystemd*>();
   dummyObjectsF = new Array<DummyObjectf*>();
   dummyObjectsD = new Array<DummyObjectd*>();
+  collisionSpringsF = new Array<Springf*>();
+  collisionSpringsD = new Array<Springd*>();
 }
 
 PhysicsWorld::~PhysicsWorld() {
@@ -58,8 +60,14 @@ PhysicsWorld::~PhysicsWorld() {
     delete dummyObjectsF->removeLast();
   while(dummyObjectsD->getSize())
     delete dummyObjectsD->removeLast();
+  while(collisionSpringsF->getSize())
+    delete collisionSpringsF->removeLast();
+  while(collisionSpringsD->getSize())
+    delete collisionSpringsD->removeLast();
   delete dummyObjectsF;
   delete dummyObjectsD;
+  delete collisionSpringsF;
+  delete collisionSpringsD;
   delete allObjectsF;
   delete allObjectsD;
   delete physicsBodiesF;
@@ -140,6 +148,22 @@ void PhysicsWorld::addDummyObjectToWorld(DummyObjectd* dummy) {
   }
 }
 
+void PhysicsWorld::addCollisionSpringToWorld(Springf* spring) {
+  if(usingSeparateLists) {
+    collisionSpringsF->add(spring);
+  } else {
+    collisionSpringsF->add(spring);
+  }
+}
+
+void PhysicsWorld::addCollisionSpringToWorld(Springd* spring) {
+  if(usingSeparateLists) {
+    collisionSpringsD->add(spring);
+  } else {
+    collisionSpringsD->add(spring);
+  }
+}
+
 void PhysicsWorld::clearWorld() {
   if(usingSeparateLists) {
     while(allObjectsF->getSize())
@@ -180,6 +204,10 @@ void PhysicsWorld::clearWorld() {
     delete dummyObjectsF->removeLast();
   while(dummyObjectsD->getSize())
     delete dummyObjectsD->removeLast();
+  while(collisionSpringsF->getSize())
+    delete collisionSpringsF->removeLast();
+  while(collisionSpringsD->getSize())
+    delete collisionSpringsD->removeLast();
 }
 
 Array<PhysicsObjectf*>* PhysicsWorld::getAllObjectsF() { return allObjectsF; }
@@ -192,6 +220,8 @@ Array<PeriSystemf*>* PhysicsWorld::getPeriSystemsF() { return periSystemsF; }
 Array<PeriSystemd*>* PhysicsWorld::getPeriSystemsD() { return periSystemsD; }
 Array<DummyObjectf*>* PhysicsWorld::getDummyObjectsF() { return dummyObjectsF; }
 Array<DummyObjectd*>* PhysicsWorld::getDummyObjectsD() { return dummyObjectsD; }
+Array<Springf*>* PhysicsWorld::getCollisionSpringsF() { return collisionSpringsF; }
+Array<Springd*>* PhysicsWorld::getCollisionSpringsD() { return collisionSpringsD; }
 bool PhysicsWorld::getDoublePercision() { return doublePercision; }
 bool PhysicsWorld::getUsingSeparateLists() { return usingSeparateLists; }
 
@@ -205,5 +235,7 @@ void PhysicsWorld::setPeriSystemsF(Array<PeriSystemf*>* param) { periSystemsF = 
 void PhysicsWorld::setPeriSystensD(Array<PeriSystemd*>* param) { periSystemsD = param; }
 void PhysicsWorld::setDummyObjectsF(Array<DummyObjectf*>* param) { dummyObjectsF = param; }
 void PhysicsWorld::setDummyObjectsD(Array<DummyObjectd*>* param) { dummyObjectsD = param; }
+void PhysicsWorld::setCollisionSpringsF(Array<Springf*>* param) { collisionSpringsF = param; }
+void PhysicsWorld::setCollisionSpringsD(Array<Springd*>* param) { collisionSpringsD = param; }
 void PhysicsWorld::setDoublePercision(bool param) { doublePercision = param; }
 void PhysicsWorld::setUsingSeparateLists(bool param) { usingSeparateLists = param; }

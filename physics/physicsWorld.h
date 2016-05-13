@@ -20,6 +20,8 @@ private:
   Array<PeriSystemd*>* periSystemsD;
   Array<DummyObjectf*>* dummyObjectsF;
   Array<DummyObjectd*>* dummyObjectsD;
+  Array<Springf*>* collisionSpringsF;
+  Array<Springd*>* collisionSpringsD;
   bool doublePercision;
   bool usingSeparateLists;
 public:
@@ -34,6 +36,8 @@ public:
   void addPeriSystemToWorld(PeriSystemd* peri);
   void addDummyObjectToWorld(DummyObjectf* dummy);
   void addDummyObjectToWorld(DummyObjectd* dummy);
+  void addCollisionSpringToWorld(Springf* spring);
+  void addCollisionSpringToWorld(Springd* spring);
   // methods
   void clearWorld();
   // getter methods
@@ -47,6 +51,8 @@ public:
   Array<PeriSystemd*>* getPeriSystemsD();
   Array<DummyObjectf*>* getDummyObjectsF();
   Array<DummyObjectd*>* getDummyObjectsD();
+  Array<Springf*>* getCollisionSpringsF();
+  Array<Springd*>* getCollisionSpringsD();
   bool getDoublePercision();
   bool getUsingSeparateLists();
   // setter methods
@@ -60,6 +66,8 @@ public:
   void setPeriSystensD(Array<PeriSystemd*>* param);
   void setDummyObjectsF(Array<DummyObjectf*>* param);
   void setDummyObjectsD(Array<DummyObjectd*>* param);
+  void setCollisionSpringsF(Array<Springf*>* param);
+  void setCollisionSpringsD(Array<Springd*>* param);
   void setDoublePercision(bool param);
   void setUsingSeparateLists(bool param);
 };
