@@ -1,6 +1,7 @@
 #ifndef __REPLAYVIEW_H__
 #define __REPLAYVIEW_H__
 
+#include <GLFW/glfw3.h>
 #include "view.h"
 #include "../bake/bakedSystem.h"
 
@@ -11,6 +12,7 @@ private:
   int totalFrames;
   int currentFrame;
   float fps;
+  bool isWireFrame;
 public:
   virtual void initialize();
   virtual void deInitialize();
