@@ -15,6 +15,7 @@ private:
   RectPrismf* twoPr;
   Springf* collisionSpring;
   bool isWireFrame;
+  int cnt;
   void doPhysicsStep(float dt);
 public:
   virtual void initialize();

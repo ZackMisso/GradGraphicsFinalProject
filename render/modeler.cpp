@@ -342,6 +342,52 @@ void Modeler::drawCube(RenderMode rm,Vec3d pos,double d) {
 	glEnd();
 }
 
+void Modeler::drawBBox(RenderMode rm,BBoxf box) {
+  if(rm == WIREFRAME) {
+
+  } else if(rm == SOLID) {
+    glBegin(GL_QUADS);
+    Vec3f pos = box.getPosition();
+    Vec3f dim = box.getDimension();
+    glVertex3f(pos[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+    glVertex3f();
+    glEnd();
+  } else if(rm == SHADED) {
+
+  }
+}
+
+void Modeler::drawBBox(RenderMode rm, BBoxd box) {
+  // to be implemented
+}
+
 void Modeler::initialize() {
   if(!instance)
     instance = new Modeler();

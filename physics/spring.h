@@ -24,6 +24,7 @@ private:
   Vec3f currentDampForce;
   bool isPeriSpring;
   bool isCollisionSpring;
+  int dummyCount;
 public:
   Springf(void* one,void* two);
   Springf(int param,int param2);
@@ -36,6 +37,7 @@ public:
   void calculatePeriForce();
   void calculateCurrentRestPosition();
   void setCurrentPositions();
+  bool shouldDestroySpring();
   Vec3f getForceForObject(void* obj);
   bool isEqual(int one,int two);
   void render();
@@ -99,6 +101,7 @@ private:
   Vec3d currentDampForce;
   bool isPeriSpring;
   bool isCollisionSpring;
+  int dummyCount;
 public:
   Springd(void* one,void* two);
   Springd(int param,int param2);
@@ -111,6 +114,7 @@ public:
   void calculatePeriForce();
   void calculateCurrentRestPosition();
   void setCurrentPositions();
+  bool shouldDestroySpring();
   Vec3d getForceForObject(void* obj);
   bool isEqual(int one,int two);
   void render();

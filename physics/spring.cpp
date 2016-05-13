@@ -2,6 +2,7 @@
 #define GLFW_INCLUDE_GLU
 #include <GLFW/glfw3.h>
 #include "../peri/pointMass.h"
+#include "dummyObject.h"
 #include <iostream>
 
 using namespace std;
@@ -25,8 +26,14 @@ Springf::Springf(void* one,void* two) {
   firstPosition = firstRestPosition;
   secondPosition = secondRestPosition;
   restLength = (firstPosition - secondPosition).mag();
+  cout << "Rest Length: " << restLength << endl;
+  cout << "FirstRestPosition: ";
+  firstRestPosition.debug();
+  cout << "SecondRestPosition: ";
+  secondRestPosition.debug();
   isPeriSpring = false;
   isCollisionSpring = false;
+  dummyCount = 0;
 }
 
 Springf::Springf(int param,int param2) {
@@ -45,6 +52,7 @@ Springf::Springf(int param,int param2) {
   secondRestPosition = Vec3f();
   isPeriSpring = false;
   isCollisionSpring = false;
+  dummyCount = 0;
 }
 
 Springf::~Springf() {
@@ -70,11 +78,28 @@ void Springf::calculatePeriPotential() {
 
 // this method assumes calculateCurrentRestPositon was called first
 void Springf::calculateSpringPotential() {
+  if(isCollisionSpring) {
+    Vec3f dPos = firstPosition-secondPosition;
+    Vec3f lastPotential = currentPotential;
+    currentPotential[0] = springConstant * dPos[0] * dPos[0] * 0.5f;
+    currentPotential[1] = springConstant * dPos[1] * dPos[1] * 0.5f;
+    currentPotential[2] = springConstant * dPos[2] * dPos[2] * 0.5f;
+    if(dummyCount == 0) {
+      if(lastPotential.sqrMag() > currentPotential.sqrMag()) {
+        dummyCount = 1;
+      }
+    } else if(dummyCount == 1) {
+      if(lastPotential.sqrMag() < currentPotential.sqrMag()) {
+        dummyCount = 2;
+      }
+    }
+  } else {
   // idk if that is the right order or not
-  Vec3f dPos = currentRestPosition - (secondPosition - firstPosition);
-  currentPotential[0] = springConstant * dPos[0] * dPos[0] * 0.5f;
-  currentPotential[1] = springConstant * dPos[1] * dPos[1] * 0.5f;
-  currentPotential[2] = springConstant * dPos[2] * dPos[2] * 0.5f;
+    Vec3f dPos = currentRestPosition - (secondPosition - firstPosition);
+    currentPotential[0] = springConstant * dPos[0] * dPos[0] * 0.5f;
+    currentPotential[1] = springConstant * dPos[1] * dPos[1] * 0.5f;
+    currentPotential[2] = springConstant * dPos[2] * dPos[2] * 0.5f;
+  }
 }
 
 void Springf::calculateForce() {
@@ -89,14 +114,21 @@ void Springf::calculateForce() {
 void Springf::calculateSpringForce() {
   // displacement from rest position.
   // idk if that is the right order or not
-  Vec3f dPos = currentRestPosition - (secondPosition - firstPosition);
-  //cout << "DPos: ";
-  //dPos.debug();
-  currentForce[0] = springConstant * dPos[0];
-  currentForce[1] = springConstant * dPos[1];
-  currentForce[2] = springConstant * dPos[2];
-  //cout << "MainCurrentForce: ";
-  //currentForce.debug();
+  if(isCollisionSpring) {
+    Vec3f dPos = firstPosition - secondPosition;
+    currentForce[0] = springConstant * dPos[0];
+    currentForce[1] = springConstant * dPos[1];
+    currentForce[2] = springConstant * dPos[2];
+  } else {
+    Vec3f dPos = currentRestPosition - (secondPosition - firstPosition);
+    //cout << "DPos: ";
+    //dPos.debug();
+    currentForce[0] = springConstant * dPos[0];
+    currentForce[1] = springConstant * dPos[1];
+    currentForce[2] = springConstant * dPos[2];
+    //cout << "MainCurrentForce: ";
+    //currentForce.debug();
+  }
 }
 
 // this method assumes calculateCurrentRestPositon was called first
@@ -122,6 +154,16 @@ void Springf::setCurrentPositions() {
   PhysicsObjectf* two = (PhysicsObjectf*)twoRef;
   firstPosition = one->getPosition();
   secondPosition = two->getPosition();
+}
+
+bool Springf::shouldDestroySpring() {
+  if(isCollisionSpring) {
+    //DummyObjectf* dummy = (DummyObjectf*)oneRef;
+    return dummyCount == 2;
+  } else {
+    // to be implemented
+  }
+  return false;
 }
 
 Vec3f Springf::getForceForObject(void* obj) {
@@ -211,6 +253,7 @@ Springd::Springd(void* one,void* two) {
   restLength = (firstPosition - secondPosition).mag();
   isPeriSpring = false;
   isCollisionSpring = false;
+  dummyCount = 0;
 }
 
 Springd::Springd(int param,int param2) {
@@ -229,6 +272,7 @@ Springd::Springd(int param,int param2) {
   dampConstant = 0.05;
   currentDampForce = Vec3d();
   isCollisionSpring = false;
+  dummyCount = 0;
 }
 
 Springd::~Springd() {
@@ -254,11 +298,28 @@ void Springd::calculatePeriPotential() {
 
 // this method assumes calculateCurrentRestPositon was called first
 void Springd::calculateSpringPotential() {
+  if(isCollisionSpring) {
+    Vec3d dPos = firstPosition - secondPosition;
+    Vec3d lastPotential = currentPotential;
+    currentPotential[0] = springConstant * dPos[0] * dPos[0] * 0.5f;
+    currentPotential[1] = springConstant * dPos[1] * dPos[1] * 0.5f;
+    currentPotential[2] = springConstant * dPos[2] * dPos[2] * 0.5f;
+    if(dummyCount == 0) {
+      if(lastPotential.sqrMag() > currentPotential.sqrMag()) {
+        dummyCount = 1;
+      }
+    } else if(dummyCount == 1) {
+      if(lastPotential.sqrMag() < currentPotential.sqrMag()) {
+        dummyCount = 2;
+      }
+    }
+  } else {
   // idk if that is the right order or not
-  Vec3d dPos = currentRestPosition - (secondPosition - firstPosition);
-  currentPotential[0] = springConstant * dPos[0] * dPos[0] * 0.5f;
-  currentPotential[1] = springConstant * dPos[1] * dPos[1] * 0.5f;
-  currentPotential[2] = springConstant * dPos[2] * dPos[2] * 0.5f;
+    Vec3d dPos = currentRestPosition - (secondPosition - firstPosition);
+    currentPotential[0] = springConstant * dPos[0] * dPos[0] * 0.5f;
+    currentPotential[1] = springConstant * dPos[1] * dPos[1] * 0.5f;
+    currentPotential[2] = springConstant * dPos[2] * dPos[2] * 0.5f;
+  }
 }
 
 // this method assumes calculateCurrentRestPositon was called first
@@ -273,11 +334,18 @@ void Springd::calculateForce() {
 // this method assumes calculateCurrentRestPositon was called first
 void Springd::calculateSpringForce() {
   // displacement from rest position.
+  if(isCollisionSpring) {
+    Vec3d dPos = firstPosition - secondPosition;
+    currentForce[0] = springConstant * dPos[0];
+    currentForce[1] = springConstant * dPos[1];
+    currentForce[2] = springConstant * dPos[2];
+  } else {
   // idk if that is the right order or not
-  Vec3d dPos = currentRestPosition - (secondPosition - firstPosition);
-  currentForce[0] = springConstant * dPos[0];
-  currentForce[1] = springConstant * dPos[1];
-  currentForce[2] = springConstant * dPos[2];
+    Vec3d dPos = currentRestPosition - (secondPosition - firstPosition);
+    currentForce[0] = springConstant * dPos[0];
+    currentForce[1] = springConstant * dPos[1];
+    currentForce[2] = springConstant * dPos[2];
+  }
 }
 
 // this method assumes calculateCurrentRestPositon was called first
@@ -301,6 +369,16 @@ void Springd::setCurrentPositions() {
   PhysicsObjectd* two = (PhysicsObjectd*)twoRef;
   firstPosition = one->getPosition();
   secondPosition = two->getPosition();
+}
+
+bool Springd::shouldDestroySpring() {
+  if(isCollisionSpring) {
+    //DummyObjectf* dummy = (DummyObjectf*)oneRef;
+    return dummyCount == 2;
+  } else {
+    // to be implemented
+  }
+  return false;
 }
 
 Vec3d Springd::getForceForObject(void* obj) {

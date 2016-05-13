@@ -58,8 +58,8 @@ Vec3f PhysicsObjectf::accumulateForces(float dt) {
     // acumulate dampened force
     totalForce = totalForce + force;
   }
-  //cout << "Total Force: ";
-  //totalForce.debug();
+  cout << "Total Force: ";
+  totalForce.debug();
   return totalForce;
 }
 

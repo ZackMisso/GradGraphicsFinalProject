@@ -1,4 +1,5 @@
 #include "rectPrism.h"
+#include "../render/modeler.h"
 
 RectPrismf::RectPrismf() {
   prism = BBoxf();
@@ -30,7 +31,7 @@ void RectPrismf::readFromFile(ifstream& file) {
 }
 
 void RectPrismf::render(RenderMode rm) {
-  // to be implemented
+  Modeler::getInstance()->drawBBox(rm,prism);
 }
 
 void RectPrismf::updatePosition(Vec3f pos) {
@@ -77,7 +78,7 @@ void RectPrismd::readFromFile(ifstream& file) {
 }
 
 void RectPrismd::render(RenderMode rm) {
-  // to be implemented
+  Modeler::getInstance()->drawBBox(rm,prism);
 }
 
 void RectPrismd::updatePosition(Vec3d pos) {
