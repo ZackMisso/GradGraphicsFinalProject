@@ -23,11 +23,14 @@ bool RectPrismf::containsPoint(Vec3f point) {
 }
 
 void RectPrismf::writeToFile(ofstream& file) {
-  // to be implemented
+  Vec3f dim = getDimension();
+  file << RECT_PRISM << " " << dim[0] << " " << dim[1] << " " << dim[2]; 
 }
 
 void RectPrismf::readFromFile(ifstream& file) {
-  // to be implemented
+  float x, y, z;
+  file >> x >> y >> z;
+  setDimension(Vec3f(x, y, z));
 }
 
 void RectPrismf::render(RenderMode rm) {
@@ -70,11 +73,14 @@ bool RectPrismd::containsPoint(Vec3d point) {
 }
 
 void RectPrismd::writeToFile(ofstream& file) {
-  // to be implemented
+  Vec3d dim = getDimension();
+  file << RECT_PRISM << " " << dim[0] << " " << dim[1] << " " << dim[2]; 
 }
 
 void RectPrismd::readFromFile(ifstream& file) {
-  // to be implemented
+  double x, y, z;
+  file >> x >> y >> z;
+  setDimension(Vec3d(x, y, z));
 }
 
 void RectPrismd::render(RenderMode rm) {

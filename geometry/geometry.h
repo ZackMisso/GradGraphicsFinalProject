@@ -8,6 +8,13 @@
 
 using namespace std;
 
+enum GeometryType {
+  SPHERE = 0,
+  CYLINDER = 1,
+  RECT_PRISM = 2,
+  VOXEL = 3
+};
+
 class Geometryf {
 private:
 public:

@@ -23,11 +23,17 @@ void FrameWriter::writePeriSystem(PeriSystemd* peri,ofstream& file) {
 }
 
 void FrameWriter::writePhysicsObject(PhysicsObjectf* object,ofstream& file) {
-  // to be implemented
+  Vec3f pos = object->getPosition();
+  file << pos[0] << " " << pos[1] << " " << pos[2] << " ";
+  object->getGeometry()->writeToFile(file);
+  file << endl;
 }
 
 void FrameWriter::writePhysicsObject(PhysicsObjectd* object,ofstream& file) {
-  // to be implemented
+  Vec3d pos = object->getPosition();
+  file << pos[0] << " " << pos[1] << " " << pos[2] << " ";
+  object->getGeometry()->writeToFile(file);
+  file << endl;
 }
 
 void FrameWriter::writePhysicsBody(PhysicsBodyf* body,ofstream& file) {
