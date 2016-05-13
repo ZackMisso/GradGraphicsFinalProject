@@ -1,5 +1,10 @@
 #include "periSystem.h"
 #include "../geometry/voxelizer.h"
+#define GLFW_INCLUDE_GLU
+#include <GLFW/glfw3.h>
+#include <iostream>
+
+using namespace std;
 
 PeriSystemf::PeriSystemf() {
   pointMasses = new Array<PointMassf*>();
@@ -65,8 +70,10 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
           bool exists = false;
           // make sure their connection doesnt already exist
           for(int k=0;k<springs->getSize();k++) {
-            if(springs->get(k)->isEqual(pm->getID(),two->getID()))
+            if(springs->get(k)->isEqual((void*)pm,(void*)two)) {
+              //cout << "IT EXISTS" << endl;
               exists = true;
+            }
           }
           if(!exists) {
             // add the connection
@@ -80,7 +87,9 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);
-          }
+          }// else {
+            //cout << "It Already Exists" << endl;
+          //}
         }
       }
     }
@@ -89,6 +98,19 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
 
 void PeriSystemf::update() {
   // to be implemented
+}
+
+void PeriSystemf::render(RenderMode rm,bool displaySprings) {
+  glColor3f(1.0f,0.0f,0.0f);
+  for(int i=0;i<pointMasses->getSize();i++) {
+    pointMasses->get(i)->render(rm);
+  }
+  glColor3f(0.0f,0.0f,1.0f);
+  if(displaySprings) {
+    for(int i=0;i<springs->getSize();i++) {
+      springs->get(i)->render(rm);
+    }
+  }
 }
 
 Array<PointMassf*>* PeriSystemf::getPointMasses() { return pointMasses; }
@@ -193,6 +215,17 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
 
 void PeriSystemd::update() {
   // to be implemented
+}
+
+void PeriSystemd::render(RenderMode rm,bool displaySprings) {
+  for(int i=0;i<pointMasses->getSize();i++) {
+    pointMasses->get(i)->render(rm);
+  }
+  if(displaySprings) {
+    for(int i=0;i<springs->getSize();i++) {
+      springs->get(i)->render(rm);
+    }
+  }
 }
 
 Array<PointMassd*>* PeriSystemd::getPointMasses() { return pointMasses; }

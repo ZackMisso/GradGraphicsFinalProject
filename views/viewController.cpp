@@ -18,7 +18,8 @@ ViewController::ViewController() {
   createViews();
   //switchToView(VOXEL_VIEW);
   //switchToView(SPRING_TEST_VIEW);
-  switchToView(COLLISION_TEST_VIEW);
+  //switchToView(COLLISION_TEST_VIEW);
+  switchToView(PERI_VIEW);
 }
 
 ViewController::~ViewController() {

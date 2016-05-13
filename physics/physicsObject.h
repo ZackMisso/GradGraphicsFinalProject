@@ -6,6 +6,7 @@
 #include "../math/vec3.h"
 #include "../dataStructures/array.h"
 #include "../geometry/geometry.h"
+#include "../render/renderInclude.h"
 #include "spring.h"
 
 class PhysicsObjectf {
@@ -25,6 +26,7 @@ public:
   virtual void eulerIntegration(float dt);
   virtual void implicitIntegration(float dt);
   virtual Vec3f accumulateForces(float dt);
+  virtual void render(RenderMode rm);
   // getter methods
   Array<Springf*>* getCollisionForces();
   Array<Vec3f*>* getExternelForces();
@@ -62,6 +64,7 @@ public:
   virtual void eulerIntegration(double dt);
   virtual void implicitIntegration(double dt);
   virtual Vec3d accumulateForces(double dt);
+  virtual void render(RenderMode rm);
   // getter methods
   Array<Springd*>* getCollisionForces();
   Array<Vec3d*>* getExternelForces();

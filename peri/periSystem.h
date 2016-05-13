@@ -5,6 +5,7 @@
 #include "../geometry/trimesh.h"
 #include "../geometry/voxel.h"
 #include "../physics/spring.h"
+#include "../render/renderInclude.h"
 #include "pointMass.h"
 
 class PeriSystemf {
@@ -23,6 +24,7 @@ public:
   void preprocess();
   void convertVoxelsToPoints(Array<Voxelf*>* voxels);
   void update();
+  void render(RenderMode rm,bool displaySprings);
   // getter methods
   Array<PointMassf*>* getPointMasses();
   Array<Springf*>* getSprings();
@@ -53,6 +55,7 @@ public:
   void preprocess();
   void convertVoxelsToPoints(Array<Voxeld*>* voxels);
   void update();
+  void render(RenderMode rm,bool displaySprings);
   // getter methods
   Array<PointMassd*>* getPointMasses();
   Array<Springd*>* getSprings();

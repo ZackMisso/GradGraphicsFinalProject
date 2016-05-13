@@ -58,9 +58,13 @@ Vec3f PhysicsObjectf::accumulateForces(float dt) {
     // acumulate dampened force
     totalForce = totalForce + force;
   }
-  cout << "Total Force: ";
-  totalForce.debug();
+  //cout << "Total Force: ";
+  //totalForce.debug();
   return totalForce;
+}
+
+void PhysicsObjectf::render(RenderMode rm) {
+  geometry->render(rm);
 }
 
 Array<Springf*>* PhysicsObjectf::getCollisionForces() { return collisionForces; }
@@ -144,6 +148,10 @@ Vec3d PhysicsObjectd::accumulateForces(double dt) {
   //cout << "Total Force: ";
   //totalForce.debug();
   return totalForce;
+}
+
+void PhysicsObjectd::render(RenderMode rm) {
+  geometry->render(rm);
 }
 
 Array<Springd*>* PhysicsObjectd::getCollisionForces() { return collisionForces; }

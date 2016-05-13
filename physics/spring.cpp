@@ -26,11 +26,11 @@ Springf::Springf(void* one,void* two) {
   firstPosition = firstRestPosition;
   secondPosition = secondRestPosition;
   restLength = (firstPosition - secondPosition).mag();
-  cout << "Rest Length: " << restLength << endl;
-  cout << "FirstRestPosition: ";
-  firstRestPosition.debug();
-  cout << "SecondRestPosition: ";
-  secondRestPosition.debug();
+  //cout << "Rest Length: " << restLength << endl;
+  //cout << "FirstRestPosition: ";
+  //firstRestPosition.debug();
+  //cout << "SecondRestPosition: ";
+  //secondRestPosition.debug();
   isPeriSpring = false;
   isCollisionSpring = false;
   dummyCount = 0;
@@ -159,6 +159,11 @@ void Springf::setCurrentPositions() {
 bool Springf::shouldDestroySpring() {
   if(isCollisionSpring) {
     //DummyObjectf* dummy = (DummyObjectf*)oneRef;
+    //if(dummyCount == 4)
+    //  return true;
+    //if(dummyCount >= 2) // add an extra frame to avoid sinking
+    //  dummyCount++;
+    //return false;
     return dummyCount == 2;
   } else {
     // to be implemented
@@ -185,7 +190,15 @@ bool Springf::isEqual(int one,int two) {
   return false;
 }
 
-void Springf::render() {
+bool Springf::isEqual(void* one,void* two) {
+  if(oneRef == one && twoRef == two)
+    return true;
+  if(twoRef == one && oneRef == two)
+    return true;
+  return false;
+}
+
+void Springf::render(RenderMode rm) {
   PointMassf* onePos = (PointMassf*)oneRef;
   PointMassf* twoPos = (PointMassf*)twoRef;
   glBegin(GL_LINES);
@@ -374,6 +387,11 @@ void Springd::setCurrentPositions() {
 bool Springd::shouldDestroySpring() {
   if(isCollisionSpring) {
     //DummyObjectf* dummy = (DummyObjectf*)oneRef;
+    //if(dummyCount == 4)
+    //  return true;
+    //if(dummyCount >= 2) // add an extra frame to avoid sinking
+    //  dummyCount++;
+    //return false;
     return dummyCount == 2;
   } else {
     // to be implemented
@@ -400,7 +418,15 @@ bool Springd::isEqual(int one,int two) {
   return false;
 }
 
-void Springd::render() {
+bool Springd::isEqual(void* one,void* two) {
+  if(oneRef == one && twoRef == two)
+    return true;
+  if(twoRef == one && oneRef == two)
+    return true;
+  return false;
+}
+
+void Springd::render(RenderMode rm) {
   glBegin(GL_LINES);
   glVertex3f(firstPosition[0],firstPosition[1],firstPosition[2]);
   glVertex3f(secondPosition[0],secondPosition[1],secondPosition[2]);

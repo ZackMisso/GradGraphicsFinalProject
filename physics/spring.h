@@ -40,7 +40,8 @@ public:
   bool shouldDestroySpring();
   Vec3f getForceForObject(void* obj);
   bool isEqual(int one,int two);
-  void render();
+  bool isEqual(void* one,void* two);
+  void render(RenderMode rm);
   // getter methods
   int getOneID();
   int getTwoID();
@@ -117,7 +118,8 @@ public:
   bool shouldDestroySpring();
   Vec3d getForceForObject(void* obj);
   bool isEqual(int one,int two);
-  void render();
+  bool isEqual(void* one,void* two);
+  void render(RenderMode rm);
   // getter methods
   int getOneID();
   int getTwoID();

@@ -46,10 +46,10 @@ void CollisionTestView::mouseClick(int button,int action,int mods) {
 }
 
 void CollisionTestView::display() {
-  cout << "Began Step" << endl;
+  //cout << "Began Step" << endl;
   doPhysicsStep(1.0f/60.0f);
-  cout << "Finished Step" << endl;
-  cout << cnt++ << endl;
+  //cout << "Finished Step" << endl;
+  //cout << cnt++ << endl;
 
   glClearColor(0.0f,0.0f,0.0f,1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -59,53 +59,17 @@ void CollisionTestView::display() {
   if(!isWireFrame) {
     onePr->render(SOLID);
     twoPr->render(SOLID);
-    //glBegin(GL_QUADS);
-    //glVertex2f(onePr->getPosition()[0],onePr->getPosition()[1]);
-    //glVertex2f(onePr->getPosition()[0]+onePr->getDimension()[0],onePr->getPosition()[1]);
-    //glVertex2f(onePr->getPosition()[0]+onePr->getDimension()[0],onePr->getPosition()[1]+onePr->getDimension()[1]);
-    //glVertex2f(onePr->getPosition()[0],onePr->getPosition()[1]+onePr->getDimension()[1]);
-
-    //glVertex2f(twoPr->getPosition()[0],twoPr->getPosition()[1]);
-    //glVertex2f(twoPr->getPosition()[0]+twoPr->getDimension()[0],twoPr->getPosition()[1]);
-    //glVertex2f(twoPr->getPosition()[0]+twoPr->getDimension()[0],twoPr->getPosition()[1]+twoPr->getDimension()[1]);
-    //glVertex2f(twoPr->getPosition()[0],twoPr->getPosition()[1]+twoPr->getDimension()[1]);
-    //glEnd();
   } else {
     onePr->render(WIREFRAME);
     twoPr->render(WIREFRAME);
-    //glBegin(GL_LINES);
-    //glVertex2f(one->getPosition()[0],one->getPosition()[1]);
-    //glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]);
-
-    //glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]);
-    //glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]+onePr->getDimension()[1]);
-
-    //glVertex2f(one->getPosition()[0]+onePr->getDimension()[0],one->getPosition()[1]+onePr->getDimension()[1]);
-    //glVertex2f(one->getPosition()[0],one->getPosition()[1]-onePr->getDimension()[1]);
-
-    //glVertex2f(one->getPosition()[0],one->getPosition()[1]-onePr->getDimension()[1]);
-    //glVertex2f(one->getPosition()[0],one->getPosition()[1]);
-
-    //glVertex2f(two->getPosition()[0],two->getPosition()[1]);
-    //glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]);
-
-    //glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]);
-    //glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]+twoPr->getDimension()[1]);
-
-    //glVertex2f(two->getPosition()[0]+twoPr->getDimension()[0],two->getPosition()[1]+twoPr->getDimension()[1]);
-    //glVertex2f(two->getPosition()[0],two->getPosition()[1]-twoPr->getDimension()[1]);
-
-    //glVertex2f(two->getPosition()[0],two->getPosition()[1]-twoPr->getDimension()[1]);
-    //glVertex2f(two->getPosition()[0],two->getPosition()[1]);
-    //glEnd();
   }
-  cout << "Drew Stuff" << endl;
+  //cout << "Drew Stuff" << endl;
 
   glColor3f(0.0f,0.0f,1.0f);
-  cout << "Drawing Spring" << endl;
+  //cout << "Drawing Spring" << endl;
   if(collisionSpring)
-    collisionSpring->render();
-  cout << "DUH" << endl;
+    collisionSpring->render(SOLID);
+  //cout << "DUH" << endl;
 }
 
 void CollisionTestView::doPhysicsStep(float dt) {
@@ -115,16 +79,16 @@ void CollisionTestView::doPhysicsStep(float dt) {
     collisionSpring->calculateForce();
     collisionSpring->calculatePotential();
     if(collisionSpring->shouldDestroySpring()) {
-      cout << "Destroying Spring" << endl;
+      //cout << "Destroying Spring" << endl;
       one->getCollisionForces()->remove(collisionSpring);
       delete collisionSpring;
-      cout << "Spring Destroyed" << endl;
+      //cout << "Spring Destroyed" << endl;
       collisionSpring = 0x0;
     }
   }
-  cout << "Performing One Update" << endl;
+  //cout << "Performing One Update" << endl;
   one->performPhysicsStep(dt);
-  cout << "Finished One Update" << endl;
+  //cout << "Finished One Update" << endl;
   float tmp;
   Vec3f tmp2;
   if(CollisionMethods::getInstance()->bboxOnbbox(one->getGeometry()->getBBox(),two->getGeometry()->getBBox(),&tmp,&tmp2)) {
@@ -138,5 +102,4 @@ void CollisionTestView::doPhysicsStep(float dt) {
       //two->getCollisionForces()->add(collisionSpring);
     }
   }
-  // to be implemented
 }

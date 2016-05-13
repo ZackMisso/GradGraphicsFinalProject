@@ -45,7 +45,7 @@ void SpringTestView::display() {
   glEnd();
 
   glColor3f(0.0f,0.0f,1.0f);
-  spring->render();
+  spring->render(SOLID);
 }
 
 void SpringTestView::doPhysicsStep(float dt) {

@@ -5,6 +5,7 @@
 
 #include "renderInclude.h"
 #include "../math/vec3.h"
+#include "../geometry/bbox.h"
 
 class Modeler {
 private:
