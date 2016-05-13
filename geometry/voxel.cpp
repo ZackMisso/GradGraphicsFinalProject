@@ -29,8 +29,9 @@ Voxelf::~Voxelf() {
 }
 
 BBoxf Voxelf::getBBox() {
-  // to be implemented
-  return BBoxf();
+  Vec3f boxPos = Vec3f(pos[0]-radius,pos[1]-radius,pos[2]-radius);
+  Vec3f boxDim = Vec3f(2.0f*radius,2.0f*radius,2.0f*radius);
+  return BBoxf(boxPos,boxDim);
 }
 
 bool Voxelf::containsPoint(Vec3f point) {
@@ -134,8 +135,9 @@ Voxeld::~Voxeld() {
 }
 
 BBoxd Voxeld::getBBox() {
-  // to be implemented
-  return BBoxd();
+  Vec3d boxPos = Vec3d(pos[0]-radius,pos[1]-radius,pos[2]-radius);
+  Vec3d boxDim = Vec3d(2.0*radius,2.0*radius,2.0*radius);
+  return BBoxd(boxPos,boxDim);
 }
 
 bool Voxeld::containsPoint(Vec3d point) {

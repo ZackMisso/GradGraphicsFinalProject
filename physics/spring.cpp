@@ -179,10 +179,17 @@ void Springf::calculateCurrentRestPosition() {
 }
 
 void Springf::setCurrentPositions() {
-  PhysicsObjectf* one = (PhysicsObjectf*)oneRef;
-  PhysicsObjectf* two = (PhysicsObjectf*)twoRef;
-  firstPosition = one->getPosition();
-  secondPosition = two->getPosition();
+  //cout << "HELLO" << endl;
+  //if(oneRef == 0x0)
+  //  cout << "WHAT One?" << endl;
+  //if(twoRef == 0x0)
+  //  cout << "What Two?" << endl;
+  //if(oneRef != 0x0 && twoRef != 0x0) {
+    PhysicsObjectf* one = (PhysicsObjectf*)oneRef;
+    PhysicsObjectf* two = (PhysicsObjectf*)twoRef;
+    firstPosition = one->getPosition();
+    secondPosition = two->getPosition();
+  //}
 }
 
 bool Springf::shouldDestroySpring() {
@@ -220,10 +227,15 @@ bool Springf::isEqual(int one,int two) {
 }
 
 bool Springf::isEqual(void* one,void* two) {
-  if(oneRef == one && twoRef == two)
-    return true;
-  if(twoRef == one && oneRef == two)
-    return true;
+  if(isCollisionSpring) {
+    if(twoRef == two)
+      return true;
+  } else {
+    if(oneRef == one && twoRef == two)
+      return true;
+    if(twoRef == one && oneRef == two)
+      return true;
+  }
   return false;
 }
 
@@ -364,6 +376,7 @@ void Springd::calculateSpringPotential() {
   }
 }
 
+
 // this method assumes calculateCurrentRestPositon was called first
 void Springd::calculateForce() {
   if(isPeriSpring) {
@@ -436,6 +449,7 @@ void Springd::calculateCurrentRestPosition() {
 }
 
 void Springd::setCurrentPositions() {
+  //cout << "HELLO" << endl;
   PhysicsObjectd* one = (PhysicsObjectd*)oneRef;
   PhysicsObjectd* two = (PhysicsObjectd*)twoRef;
   firstPosition = one->getPosition();
@@ -477,10 +491,15 @@ bool Springd::isEqual(int one,int two) {
 }
 
 bool Springd::isEqual(void* one,void* two) {
-  if(oneRef == one && twoRef == two)
-    return true;
-  if(twoRef == one && oneRef == two)
-    return true;
+  if(isCollisionSpring) {
+    if(twoRef == two)
+      return true;
+  } else {
+    if(oneRef == one && twoRef == two)
+      return true;
+    if(twoRef == one && oneRef == two)
+      return true;
+  }
   return false;
 }
 

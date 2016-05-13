@@ -95,7 +95,7 @@ void PeriSystemf::convertVoxelsToPoints(Array<Voxelf*>* voxels) {
             connection->setDampConstant(springDamp);
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
-            connection->setIsPeriSpring(true);
+            connection->setIsPeriSpring(false);
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);
@@ -241,7 +241,7 @@ void PeriSystemd::convertVoxelsToPoints(Array<Voxeld*>* voxels) {
             connection->setBreakForce(springBreak);
             connection->setFirstRestPosition(pm->getPosition());
             connection->setSecondRestPosition(two->getPosition());
-            connection->setIsPeriSpring(true);
+            connection->setIsPeriSpring(false);
             pm->getNeighborhood()->add(connection);
             two->getNeighborhood()->add(connection);
             springs->add(connection);
