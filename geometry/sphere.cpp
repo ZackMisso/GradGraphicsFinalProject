@@ -21,11 +21,13 @@ bool Spheref::containsPoint(Vec3f point) {
 }
 
 void Spheref::writeToFile(ofstream& file) {
-  // to be implemented
+  file << SPHERE << " " << getRadius();
 }
 
 void Spheref::readFromFile(ifstream& file) {
-  // to be implemented
+  float r;
+  file >> r;
+  setRadius(r)
 }
 
 void Spheref::render(RenderMode rm) {
@@ -65,11 +67,13 @@ bool Sphered::containsPoint(Vec3d point) {
 }
 
 void Sphered::writeToFile(ofstream& file) {
-  // to be implemented
+  file << SPHERE << " " << getRadius();
 }
 
 void Sphered::readFromFile(ifstream& file) {
-  // to be implemented
+  double r;
+  file >> r;
+  setRadius(r)
 }
 
 void Sphered::render(RenderMode rm) {

@@ -39,11 +39,13 @@ bool Voxelf::containsPoint(Vec3f point) {
 }
 
 void Voxelf::writeToFile(ofstream& file) {
-  // to be implemented
+  file << VOXEL << getRadius();
 }
 
 void Voxelf::readFromFile(istream& file) {
-  // to be implemented
+  float r;
+  file >> r;
+  setRadius(r);
 }
 
 void Voxelf::updatePosition(Vec3f param) {
@@ -142,11 +144,13 @@ bool Voxeld::containsPoint(Vec3d point) {
 }
 
 void Voxeld::writeToFile(ofstream& file) {
-  // to be implemented
+  file << VOXEL << getRadius();
 }
 
 void Voxeld::readFromFile(istream& file) {
-  // to be implemented
+  double r;
+  file >> r;
+  setRadius(r);
 }
 
 void Voxeld::createMesh() {

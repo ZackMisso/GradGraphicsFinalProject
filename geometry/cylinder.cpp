@@ -24,11 +24,14 @@ bool Cylinderf::containsPoint(Vec3f point) {
 }
 
 void Cylinderf::writeToFile(ofstream& file) {
-  // to be implemented
+  file << CYLINDER << " " << getRadius() << " " << getHeight();
 }
 
 void Cylinderf::readFromFile(ifstream& file) {
-  // to be implemented
+  float r, h;
+  file >> r >> h;
+  setRadius(r);
+  setHeight(h);
 }
 
 void Cylinderf::render(RenderMode rm) {
@@ -73,11 +76,14 @@ bool Cylinderd::containsPoint(Vec3d point) {
 }
 
 void Cylinderd::writeToFile(ofstream& file) {
-  // to be implemented
+  file << CYLINDER << " " << getRadius() << " " << getHeight();
 }
 
 void Cylinderd::readFromFile(ifstream& file) {
-  // to be implemented
+  double r, h;
+  file >> r >> h;
+  setRadius(r);
+  setHeight(h);
 }
 
 void Cylinderd::render(RenderMode rm) {
