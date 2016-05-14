@@ -27,8 +27,9 @@ enum ViewID {
   FRACTURE_THREE=16,
   FRACTURE_FOUR=17,
   FRACTURE_FIVE=18,
-  FRACTURE_FAIL=19,
-  AWESOME_FAIL=20
+  FRACTURE_THREE3D=19,
+  FRACTURE_FAIL=20,
+  AWESOME_FAIL=21
 };
 
 class ViewController {
@@ -46,7 +47,7 @@ public:
   ~ViewController();
   // singleton methods
   static ViewController* getInstance();
-  static void initialize(ViewID id = FRACTURE_VIEW);
+  static void initialize(ViewID id = FRACTURE_FOUR);
   static void destroy();
   // methods
   void switchToView(ViewID id);
