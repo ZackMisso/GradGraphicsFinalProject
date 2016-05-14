@@ -18,6 +18,7 @@
 #include "fractureThree.h"
 #include "fractureFour.h"
 #include "fractureFive.h"
+#include "fractureThree3D.h"
 #include "fractureFail.h"
 #include "awesomeFail.h"
 
@@ -36,7 +37,7 @@ ViewController::ViewController() {
   // switchToView(REPLAY_VIEW);
   //switchToView(PERI_DOUBLE_VIEW);
   // switchToView(FRACTURE_VIEW);
-  switchToView(FRACTURE_THREE);
+  switchToView(FRACTURE_THREE_3D);
   // switchToView(FRACTURE_FOUR);
 }
 
@@ -67,6 +68,7 @@ void ViewController::createViews() {
   views->add(new FractureThree());
   views->add(new FractureFour());
   views->add(new FractureFive());
+  views->add(new FractureThree3D());
   views->add(new FractureFail());
   views->add(new AwesomeFail());
   // create more in the order they appear in the enum
