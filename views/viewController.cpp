@@ -27,6 +27,7 @@ ViewController::ViewController() {
   views = new Array<View*>();
   currentView = 0x0;
   createViews();
+  // our test views (dont judge us by whats in here i dont even remember)
   //switchToView(VOXEL_VIEW);
   //switchToView(SPRING_TEST_VIEW);
   //switchToView(COLLISION_TEST_VIEW);
@@ -36,12 +37,15 @@ ViewController::ViewController() {
   // switchToView(REPLAY_VIEW);
   //switchToView(PERI_DOUBLE_VIEW);
   // switchToView(FRACTURE_VIEW);
+  // Good Example Views
+  //switchToView(FRACTURE_ONE);
+  //switchToView(FRACTURE_TWO);
   //switchToView(FRACTURE_THREE);
-  // switchToView(FRACTURE_FOUR);
+  switchToView(FRACTURE_FOUR);
   //switchToView(FRACTURE_FIVE);
-  //switchToView(PERI_VIEW);
+  // Cool Failures caused by us picking bad constraints
   //switchToView(AWESOME_FAIL);
-  switchToView(FRACTURE_FAIL);
+  //switchToView(FRACTURE_FAIL); // dont watch with springs turned on
 }
 
 ViewController::~ViewController() {
