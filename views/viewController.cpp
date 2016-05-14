@@ -23,7 +23,7 @@ ViewController::ViewController() {
   views = new Array<View*>();
   currentView = 0x0;
   createViews();
-  // switchToView(VOXEL_VIEW);
+  //switchToView(VOXEL_VIEW);
   //switchToView(SPRING_TEST_VIEW);
   //switchToView(COLLISION_TEST_VIEW);
   // switchToView(COLLISION_TEST_DOUBLE_VIEW);
@@ -31,8 +31,7 @@ ViewController::ViewController() {
   //switchToView(SPRING_TEST_DOUBLE_VIEW);
   // switchToView(REPLAY_VIEW);
   //switchToView(PERI_DOUBLE_VIEW);
-  // switchToView(FRACTURE_VIEW);
-  switchToView(FRACTURE_TWO);
+  switchToView(FRACTURE_VIEW);
 }
 
 ViewController::~ViewController() {

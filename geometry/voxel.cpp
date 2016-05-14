@@ -91,7 +91,7 @@ void Voxelf::updateMesh() {
 }
 
 void Voxelf::render(RenderMode rm) {
-  Modeler::getInstance()->drawBBox(rm,BBoxf(Vec3f(pos[0]-radius,pos[1]-radius,pos[2]-radius),Vec3f(radius*2.0,radius*2.0,radius*2.0)));
+  Modeler::getInstance()->drawCube(rm,pos,radius);
 }
 
 Vec3f Voxelf::getPos() const { return pos; }
@@ -193,7 +193,7 @@ void Voxeld::updateMesh() {
 }
 
 void Voxeld::render(RenderMode rm) {
-  Modeler::getInstance()->drawBBox(rm,BBoxd(Vec3d(pos[0]-radius,pos[1]-radius,pos[2]-radius),Vec3d(radius*2.0,radius*2.0,radius*2.0)));
+  Modeler::getInstance()->drawCube(rm,pos,radius);
 }
 
 void Voxeld::updatePosition(Vec3d param) {
