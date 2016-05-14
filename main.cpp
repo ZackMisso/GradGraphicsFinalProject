@@ -21,7 +21,11 @@ void error(int error, const char* description);
 
 int main(int argc,char** argv) {
   // initialize our own subsystems
-  ViewController::initialize();
+  if (argc == 2) {
+    ViewController::initialize(static_cast<ViewID>(atoi(argv[1])));
+  } else {
+    ViewController::initialize();
+  }
   Modeler::initialize();
   Voxelizer::initialize();
   CollisionMethods::initialize();
@@ -31,7 +35,7 @@ int main(int argc,char** argv) {
   SimulationStateReader::initialize();
   SimulationStateWriter::initialize();
   TriMeshReader::initialize();
-  if(argc > 1) {
+  if(argc > 2) {
     // run headless mode
     ViewController::getInstance()->getCurrentView()->headless();
   } else {

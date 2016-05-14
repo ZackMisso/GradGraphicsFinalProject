@@ -24,25 +24,11 @@
 
 ViewController* ViewController::instance = 0x0;
 
-ViewController::ViewController() {
+ViewController::ViewController(ViewID id) {
   views = new Array<View*>();
   currentView = 0x0;
   createViews();
-  //switchToView(VOXEL_VIEW);
-  //switchToView(SPRING_TEST_VIEW);
-  //switchToView(COLLISION_TEST_VIEW);
-  // switchToView(COLLISION_TEST_DOUBLE_VIEW);
-  //switchToView(PERI_VIEW);
-  //switchToView(SPRING_TEST_DOUBLE_VIEW);
-  // switchToView(REPLAY_VIEW);
-  //switchToView(PERI_DOUBLE_VIEW);
-  // switchToView(FRACTURE_VIEW);
-  //switchToView(FRACTURE_THREE);
-  // switchToView(FRACTURE_FOUR);
-  //switchToView(FRACTURE_FIVE);
-  //switchToView(PERI_VIEW);
-  //switchToView(AWESOME_FAIL);
-  switchToView(FRACTURE_FAIL);
+  switchToView(id);
 }
 
 ViewController::~ViewController() {
@@ -89,9 +75,9 @@ ViewController* ViewController::getInstance() {
   return instance;
 }
 
-void ViewController::initialize() {
+void ViewController::initialize(ViewID id) {
   if(!instance)
-    instance = new ViewController();
+    instance = new ViewController(id);
 }
 
 void ViewController::destroy() {

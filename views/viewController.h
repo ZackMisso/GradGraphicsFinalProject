@@ -9,27 +9,26 @@
 
 enum ViewID {
   TEST_VIEW=0,
-  PERI_VIEW,
-  VOXEL_VIEW,
-  TRIMESH_IO_VIEW,
-  FRAME_IO_VIEW,
-  REPLAY_VIEW,
-  COLLISION_TEST_VIEW,
-  DEMO_VIEW,
-  SPRING_TEST_VIEW,
-  PHYSICS_ENGINE_TEST_VIEW,
-  PERI_DOUBLE_VIEW,
-  SPRING_TEST_DOUBLE_VIEW,
-  COLLISION_TEST_DOUBLE_VIEW,
-  FRACTURE_VIEW,
-  FRACTURE_ONE,
-  FRACTURE_TWO,
-  FRACTURE_THREE,
-  FRACTURE_FOUR,
-  FRACTURE_FIVE,
-  FRACTURE_THREE_3D,
-  FRACTURE_FAIL,
-  AWESOME_FAIL
+  PERI_VIEW=1,
+  VOXEL_VIEW=2,
+  TRIMESH_IO_VIEW=3,
+  FRAME_IO_VIEW=4,
+  REPLAY_VIEW=5,
+  COLLISION_TEST_VIEW=6,
+  DEMO_VIEW=7,
+  SPRING_TEST_VIEW=8,
+  PHYSICS_ENGINE_TEST_VIEW=9,
+  PERI_DOUBLE_VIEW=10,
+  SPRING_TEST_DOUBLE_VIEW=11,
+  COLLISION_TEST_DOUBLE_VIEW=12,
+  FRACTURE_VIEW=13,
+  FRACTURE_ONE=14,
+  FRACTURE_TWO=15,
+  FRACTURE_THREE=16,
+  FRACTURE_FOUR=17,
+  FRACTURE_FIVE=18,
+  FRACTURE_FAIL=19,
+  AWESOME_FAIL=20
 };
 
 class ViewController {
@@ -40,14 +39,14 @@ private:
   Array<View*>* views;
   View* currentView;
   // constructor for singleton
-  ViewController();
+  ViewController(ViewID id);
   // methods
   void createViews();
 public:
   ~ViewController();
   // singleton methods
   static ViewController* getInstance();
-  static void initialize();
+  static void initialize(ViewID id = FRACTURE_VIEW);
   static void destroy();
   // methods
   void switchToView(ViewID id);
