@@ -1,4 +1,4 @@
-#include "fractureView.h"
+/*#include "fractureView.h"
 #include "../geometry/bbox.h"
 #include "../geometry/voxelizer.h"
 #include "../geometry/rectPrism.h"
@@ -9,7 +9,7 @@
 using namespace std;
 
 void FractureView::initialize() {
-  BBoxd box = BBoxd(Vec3d(-0.5,-0.3,-0.05),Vec3d(1.0,1.0,0.2));
+  BBoxd box = BBoxd(Vec3d(-0.5,-0.3,-0.05),Vec3d(1.0,1.0,0.1));
   cout << "Voxelizing Box" << endl;
   Array<Voxeld*>* voxelMesh = Voxelizer::getInstance()->voxelizeBBox(box,0.05);
   cout << "Voxelized Box" << endl;
@@ -19,11 +19,11 @@ void FractureView::initialize() {
   periSystem = new PeriSystemd();
   periSystem->setPointMassR(0.05);
   periSystem->setPointMassM(1.0);
-  periSystem->setPointMassH(0.31);
+  periSystem->setPointMassH(0.21);
   //periSystem->setPointMassH(0.31);
-  periSystem->setSpringConstant(3.0);
-  periSystem->setSpringDamp(8.0);
-  periSystem->setSpringBreak(0.1);
+  periSystem->setSpringConstant(5.0);
+  periSystem->setSpringDamp(2.0);
+  periSystem->setSpringBreak(0.5);
   drawSprings = true;
   //periSystem->setSpringConstant(60.0);
   //periSystem->setSpringDamp(5.0);
@@ -41,16 +41,16 @@ void FractureView::initialize() {
   //  //periSystem->getPointMasses()->get(i)->getExternelForces()->add(new Vec3f(0.0f,-1.0f,0.0f));
   //}
 
-  for(int i=2;i<8;i++) {
-    for(int j=2;j<8;j++) {
-      periSystem->getPointMasses()->get(i*10+j)->getExternelForces()->add(new Vec3d(0.0,0.0,-10.0));
+  for(int i=3;i<7;i++) {
+    for(int j=3;j<7;j++) {
+      periSystem->getPointMasses()->get(i*10+j)->getExternelForces()->add(new Vec3d(0.0,0.0,-20.0));
     }
   }
 
-  //periSystem->getPointMasses()->get(44)->getExternelForces()->add(new Vec3d(0.0,0.0,-30.0));
-  //periSystem->getPointMasses()->get(45)->getExternelForces()->add(new Vec3d(0.0,0.0,-30.0));
-  //periSystem->getPointMasses()->get(54)->getExternelForces()->add(new Vec3d(0.0,0.0,-30.0));
-  //periSystem->getPointMasses()->get(55)->getExternelForces()->add(new Vec3d(0.0,0.0,-30.0));
+  periSystem->getPointMasses()->get(44)->getExternelForces()->add(new Vec3d(0.0,0.0,-30.0));
+  periSystem->getPointMasses()->get(45)->getExternelForces()->add(new Vec3d(0.0,0.0,-30.0));
+  periSystem->getPointMasses()->get(54)->getExternelForces()->add(new Vec3d(0.0,0.0,-30.0));
+  periSystem->getPointMasses()->get(55)->getExternelForces()->add(new Vec3d(0.0,0.0,-30.0));
 
   //for(int i=20;i<30;i++) {
   //  for(int j=20;j<30;j++) {
@@ -110,3 +110,4 @@ void FractureView::display() {
 void FractureView::doPhysicsStep(double dt) {
   periSystem->performPhysicsStep(dt);
 }
+*/
