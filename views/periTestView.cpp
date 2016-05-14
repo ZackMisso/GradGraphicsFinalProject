@@ -67,7 +67,7 @@ void PeriTestView::mouseClick(int button,int action,int mods) {
 void PeriTestView::display() {
   //cout << "Frame: " << (cnt++) / 10 << endl;
   //cout << "Frame: " << (cnt++) << endl;
-  doPhysicsStep(1.0f/600.0f);
+  doPhysicsStep(1.0f/60.0f);
   //doPhysicsStep(1.0f/600.0f);
   //cout << "Exit Physics Step" << endl;
 

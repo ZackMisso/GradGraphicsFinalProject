@@ -36,8 +36,12 @@ ViewController::ViewController() {
   // switchToView(REPLAY_VIEW);
   //switchToView(PERI_DOUBLE_VIEW);
   // switchToView(FRACTURE_VIEW);
-  switchToView(FRACTURE_THREE);
+  //switchToView(FRACTURE_THREE);
   // switchToView(FRACTURE_FOUR);
+  //switchToView(FRACTURE_FIVE);
+  //switchToView(PERI_VIEW);
+  //switchToView(AWESOME_FAIL);
+  switchToView(FRACTURE_FAIL);
 }
 
 ViewController::~ViewController() {
