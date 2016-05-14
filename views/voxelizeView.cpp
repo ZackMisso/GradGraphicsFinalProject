@@ -18,7 +18,7 @@ void VoxelizeView::initialize() {
   originalShape = BBoxf(Vec3f(0.0f,0.0f,0.0f),Vec3f(2.0f,2.0f,2.0f));
   dt = 0.0f;
   // do voxelizing
-  voxelMesh = Voxelizer::getInstance()->voxelizeCube(Vec3f(0.0f,0.0f,0.0f),2.0f,voxelRad);
+  voxelMesh = Voxelizer::getInstance()->voxelizeBBox(originalShape,voxelRad);
 }
 
 void VoxelizeView::deInitialize() {
@@ -73,9 +73,12 @@ void VoxelizeView::display() {
   if(displayOriginalShape) {
     //cout << "Displaying" << endl;
     //cout <<
-    RenderMode rm = WIREFRAME;
+    RenderMode rm = SOLID;
     glColor4f(0.0f,0.0f,1.0f,1.0f);
-    Modeler::getInstance()->drawCube(rm,originalShape.getPosition(),originalShape.getDimension()[0]/2.0f);
+    Modeler::getInstance()->drawBBox(rm,originalShape);
+
+    glColor4f(1.0f,0.0f,1.0f,1.0f);
+    Modeler::getInstance()->drawBBox(WIREFRAME,originalShape);
   }
   if(displayVoxels) {
     int numVox = voxelMesh->getSize();

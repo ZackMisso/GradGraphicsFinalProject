@@ -80,7 +80,14 @@ void FractureTwo::display() {
 
   glClearColor(0.0f,0.0f,0.0f,1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glEnable(GL_CULL_FACE);
+  glCullFace(GL_BACK);
+  glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
+  gluPerspective(35.0,1.0,.1,10);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  gluLookAt(2.0,2.0,-6.0,0.0,0.0,0.0,0.0,1.0,0.0);
   //cout << "Rendering Peri" << endl;
   glColor3f(1.0f,0.0f,0.0f);
   periSystem->render(SOLID,drawSprings);

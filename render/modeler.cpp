@@ -425,11 +425,13 @@ void Modeler::drawBBox(RenderMode rm,BBoxf box) {
     Vec3f pos = box.getPosition();
     Vec3f dim = box.getDimension();
 
+    // front
     glVertex3f(pos[0],pos[1],pos[2]);
     glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
 
+    // bottom
     glVertex3f(pos[0],pos[1],pos[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
@@ -440,11 +442,13 @@ void Modeler::drawBBox(RenderMode rm,BBoxf box) {
     glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
 
+    // back
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
 
+    // top
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
     glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
@@ -543,30 +547,34 @@ void Modeler::drawBBox(RenderMode rm,BBoxd box) {
     Vec3d pos = box.getPosition();
     Vec3d dim = box.getDimension();
 
+    // front
     glVertex3f(pos[0],pos[1],pos[2]);
-    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
-    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
     glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
 
+    // bottom
     glVertex3f(pos[0],pos[1],pos[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
     glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
 
     glVertex3f(pos[0],pos[1],pos[2]);
-    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
-    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
 
+    // back
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0],pos[1],pos[2]+dim[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
 
+    // top
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
-    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
-    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]);
+    glVertex3f(pos[0],pos[1]+dim[1],pos[2]+dim[2]);
 
     glVertex3f(pos[0]+dim[0],pos[1]+dim[1],pos[2]+dim[2]);
     glVertex3f(pos[0]+dim[0],pos[1],pos[2]+dim[2]);
