@@ -1,5 +1,4 @@
-/*#ifndef __FRACTUREVIEW_H__
-#define __FRACTUREVIEW_H__
+#pragma once
 
 #define GLFW_INCLUDE_GLU
 #include <GLFW/glfw3.h>
@@ -8,7 +7,7 @@
 #include "../physics/dummyObject.h"
 #include "../dataStructures/array.h"
 
-class FractureView : public View {
+class AwesomeFail : public View {
 private:
   PeriSystemd* periSystem;
   //PhysicsObjectd* collideObject;
@@ -23,5 +22,3 @@ public:
   virtual void mouseClick(int button,int action,int mods);
   virtual void display();
 };
-
-#endif*/

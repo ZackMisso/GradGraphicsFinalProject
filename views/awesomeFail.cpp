@@ -1,4 +1,4 @@
-/*#include "fractureView.h"
+#include "awesomeFail.h"
 #include "../geometry/bbox.h"
 #include "../geometry/voxelizer.h"
 #include "../geometry/rectPrism.h"
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void FractureView::initialize() {
+void AwesomeFail::initialize() {
   BBoxd box = BBoxd(Vec3d(-0.5,-0.3,-0.05),Vec3d(1.0,1.0,0.1));
   cout << "Voxelizing Box" << endl;
   Array<Voxeld*>* voxelMesh = Voxelizer::getInstance()->voxelizeBBox(box,0.05);
@@ -43,22 +43,22 @@ void FractureView::initialize() {
   periSystem->getPointMasses()->get(55)->getExternelForces()->add(new Vec3d(0.0,0.0,-60.0));
 }
 
-void FractureView::deInitialize() {
+void AwesomeFail::deInitialize() {
   delete periSystem;
 }
 
-void FractureView::keyboard(int key,int scancode,int action,int mods) {
+void AwesomeFail::keyboard(int key,int scancode,int action,int mods) {
   if(key == GLFW_KEY_B && action == GLFW_PRESS) {
     //PointMassd* one = periSystem->getPointMasses()->get(0);
     //one->setPosition(Vec3d(-0.8,-0.05,0.0));
   }
 }
 
-void FractureView::mouseClick(int button,int action,int mods) {
+void AwesomeFail::mouseClick(int button,int action,int mods) {
   // to be implemented
 }
 
-void FractureView::display() {
+void AwesomeFail::display() {
   //cout << "Displaying" << endl;
   //cout << "Frame: " << (cnt++) / 10 << endl;
   //cout << "Frame: " << (cnt++) << endl;
@@ -85,7 +85,6 @@ void FractureView::display() {
   periSystem->getPointMasses()->get(55)->render(WIREFRAME);
 }
 
-void FractureView::doPhysicsStep(double dt) {
+void AwesomeFail::doPhysicsStep(double dt) {
   periSystem->performPhysicsStep(dt);
 }
-*/
